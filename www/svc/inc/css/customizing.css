@@ -1,0 +1,124 @@
+/* 이건 정말로 자주쓰는거를 한번 모아본 css파일 */
+
+@import url("https://fonts.googleapis.com/css?family=Gothic+A1:700|Nanum+Gothic");
+
+.head {
+  /* border: solid; */
+  background-color: #e9ecef;
+  border-radius: 0.3rem;
+}
+#checkboxTestTbl tr.selected {
+  background-color: #a9d0f5;
+}
+#outsideTable tr.selected {
+  background-color: #a9d0f5;
+}
+select .selectCall {
+  background-color: #a9d0f5;
+}
+
+#modalTable tr.selected {
+  background-color: #a9d0f5;
+}
+select .selectCall {
+  background-color: #a9d0f5;
+}
+
+@media (max-width: 990px) {
+  .mobile {
+    display: none;
+  }
+}
+.green {
+  color: #04b486;
+}
+
+.pink {
+  color: #f7819f;
+}
+
+.sky {
+  color: #2e9afe;
+}
+
+.grey {
+  color: #848484;
+}
+
+.red {
+  color: #f78181;
+}
+
+.footer-above p {
+  font-family: "Nanum Gothic", sans-serif;
+  font-size: 13px;
+}
+
+.inputWithIcon input[type="search"] {
+  padding-left: 40px;
+}
+.inputWithIcon {
+  position: relative;
+}
+.inputWithIcon i {
+  position: absolute;
+  left: 4px;
+  top: 4px;
+  padding: 9px 8px;
+  color: #aaa;
+  transition: 0.3s;
+}
+.inputWithIcon input[type="search"]:focus + i {
+  color: dodgerBlue;
+}
+#customerList ul {
+  background-color: #eee;
+  cursor: pointer;
+}
+#customerList li {
+  padding: 12px;
+}
+
+.modalAsk {
+  color: #f7819f; /*글자 핑크색*/
+  text-decoration: underline;
+}
+
+.modalpay {
+  font-weight: bold;
+}
+
+.paySchedule {
+  font-style: italic;
+}
+
+.modalDescription {
+  color: #04b486; /*글자 녹색*/
+  text-decoration: underline;
+}
+
+p .warningg {
+  color: #fa5858; /*빨강색, 근데 왜 적용안되지? ㅜㅜ */
+}
+
+li.page-item.active {
+  color: #ffffff;
+  background-color: #007bff;
+}
+
+.mainTable {
+  height: auto;
+  max-height: 500px;
+  overflow: auto;
+}
+
+.fixedHeader {
+  position: sticky;
+  top: 0;
+}
+
+select.center {
+  text-align: center;
+}
+
+/* html 색상 코드 : https://html-color-codes.info/Korean/ */
