@@ -1,45 +1,51 @@
 <?php
 header('Content-Type: text/html; charset=UTF-8');
 session_start();
-include $_SERVER['DOCUMENT_ROOT']."/svc/view/conn.php";
+include $_SERVER['DOCUMENT_ROOT'] . "/svc/view/conn.php";
 
 // print_r($_SESSION);
 // print_r($_POST);
 // echo '111';
 
-if($_POST['dateDiv']==='executiveDate'){
-  $dateDiv = 'executiveDate';
-} elseif($_POST['dateDiv']==='createTime'){
-  $dateDiv = 'createTime';
-} elseif($_POST['dateDiv']==='updateTime'){
-  $dateDiv = 'updateTime';
+if ($_POST['dateDiv'] === 'executiveDate') {
+    $dateDiv = 'executiveDate';
+} elseif ($_POST['dateDiv'] === 'createTime') {
+    $dateDiv = 'createTime';
+} elseif ($_POST['dateDiv'] === 'updateTime') {
+    $dateDiv = 'updateTime';
+}
+
+if ($_POST['building'] === 'buildingAll') {
+    $buildingCondi = "";
+} else {
+    $buildingCondi = " and (etcContract.building_id = {$_POST['building']})";
 }
 
 $goodCondi = "";
-if($_POST['good'] <> 'goodAll'){
-  $goodCondi = "and etcContract.good_in_building_id = {$_POST['good']}";
+if ($_POST['good'] <> 'goodAll') {
+    $goodCondi = " and etcContract.good_in_building_id = {$_POST['good']}";
 }
 
 $etcDate = "";
 
-if($_POST['fromDate'] && $_POST['toDate']){
-  $etcDate = " and (DATE($dateDiv) BETWEEN '{$_POST['fromDate']}' and '{$_POST['toDate']}')";
-} elseif($_POST['fromDate']){
-  $etcDate = " and (DATE($dateDiv) >= '{$_POST['fromDate']}')";
-} elseif($_POST['toDate']){
-  $etcDate = " and (DATE($dateDiv) <= '{$_POST['toDate']}')";
+if ($_POST['fromDate'] && $_POST['toDate']) {
+    $etcDate = " and (DATE($dateDiv) BETWEEN '{$_POST['fromDate']}' and '{$_POST['toDate']}')";
+} elseif ($_POST['fromDate']) {
+    $etcDate = " and (DATE($dateDiv) >= '{$_POST['fromDate']}')";
+} elseif ($_POST['toDate']) {
+    $etcDate = " and (DATE($dateDiv) <= '{$_POST['toDate']}')";
 }
 
 
 $etcCondi = "";
-if($_POST['cText']){
-  if($_POST['etcCondi']==='customer'){
-    $etcCondi = " and (customer.name like '%".$_POST['cText']."%' or companyname like '%".$_POST['cText']."%')";
-  } elseif($_POST['etcCondi']==='contact'){
-    $etcCondi = " and (customer.contact1 like '%".$_POST['cText']."%' or customer.contact2 like '%".$_POST['cText']."%' or customer.contact3 like '%".$_POST['cText']."%')";
-  } elseif($_POST['etcCondi']==='contractId'){
-    $etcCondi = " and (etcContract.id like '%".$_POST['cText']."%')";
-  }
+if ($_POST['cText']) {
+    if ($_POST['etcCondi'] === 'customer') {
+        $etcCondi = " and (customer.name like '%" . $_POST['cText'] . "%' or companyname like '%" . $_POST['cText'] . "%')";
+    } elseif ($_POST['etcCondi'] === 'contact') {
+        $etcCondi = " and (customer.contact1 like '%" . $_POST['cText'] . "%' or customer.contact2 like '%" . $_POST['cText'] . "%' or customer.contact3 like '%" . $_POST['cText'] . "%')";
+    } elseif ($_POST['etcCondi'] === 'contractId') {
+        $etcCondi = " and (etcContract.id like '%" . $_POST['cText'] . "%')";
+    }
 }
 
 $sql = "
@@ -71,13 +77,11 @@ $sql = "
       on etcContract.building_id = building.id
   left join good_in_building
       on etcContract.good_in_building_id = good_in_building.id
-  where etcContract.user_id = {$_SESSION['id']} and
-        etcContract.building_id = {$_POST['building']}
+  where etcContract.user_id = {$_SESSION['id']}
+        $buildingCondi
         $goodCondi $etcCondi $etcDate
   order by
       paySchedule2.executiveDate desc";
 
 
 // echo $sql;
-
-?>

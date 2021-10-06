@@ -47,30 +47,29 @@ $row = mysqli_fetch_array($result);
 // print_r($row);
 
 if ($result->num_rows === 0) {
-  echo "<script>
+    echo "<script>
           alert('세션에 포함된 계약이 아니어서 조회 불가합니다.');
           location.href = 'contractetc.php';
         </script>";
-  error_log(mysqli_error($conn));
+    error_log(mysqli_error($conn));
 }
 
-$cContact = $row['contact1'].'-'.$row['contact2'].'-'.$row['contact3'];
+$cContact = $row['contact1'] . '-' . $row['contact2'] . '-' . $row['contact3'];
 
-if($row['div3']==='주식회사'){
-  $cDiv3 = '(주)';
-} elseif($row['div3']==='유한회사'){
-  $cDiv3 = '(유)';
-} elseif($row['div3']==='합자회사'){
-  $cDiv3 = '(합)';
-} elseif($row['div3']==='기타'){
-  $cDiv3 = '(기타)';
+if ($row['div3'] === '주식회사') {
+    $cDiv3 = '(주)';
+} elseif ($row['div3'] === '유한회사') {
+    $cDiv3 = '(유)';
+} elseif ($row['div3'] === '합자회사') {
+    $cDiv3 = '(합)';
+} elseif ($row['div3'] === '기타') {
+    $cDiv3 = '(기타)';
 }
 
-if($row['div2']==='개인사업자'){
-  $cName = $row['name'].'('.$row['companyname'].')';
-} else if($row['div2']==='법인사업자'){
-  $cName = $cDiv3.$row['companyname'].'('.$row['name'].')';
-} else if($row['div2']==='개인'){
-  $cName = $row['name'];
+if ($row['div2'] === '개인사업자') {
+    $cName = $row['name'] . '(' . $row['companyname'] . ')';
+} else if ($row['div2'] === '법인사업자') {
+    $cName = $cDiv3 . $row['companyname'] . '(' . $row['name'] . ')';
+} else if ($row['div2'] === '개인') {
+    $cName = $row['name'];
 }
- ?>

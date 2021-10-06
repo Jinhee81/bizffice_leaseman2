@@ -91,11 +91,11 @@ for ($i=0; $i < count($allRows); $i++) {
   $allRows[$i]['contact'] = $allRows[$i]['c1'].'-'.$allRows[$i]['c2'].'-'.$allRows[$i]['c3'];
 
   if($allRows[$i]['div2']==='개인사업자'){
-    $allRows[$i]['ccnn'] = $allRows[$i]['name'].'('.$allRows[$i]['comname'].','.$allRows[$i]['companynumber'].'),'.$allRows[$i]['contact'];
+    $allRows[$i]['ccnn'] = $allRows[$i]['bName'].", ".$allRows[$i]['name'].'('.$allRows[$i]['comname'].','.$allRows[$i]['companynumber'].'),'.$allRows[$i]['contact'];
   } else if($allRows[$i]['div2']==='법인사업자'){
-    $allRows[$i]['ccnn'] = $allRows[$i]['cdiv3'].$allRows[$i]['comname'].'('.$allRows[$i]['name'].','.$allRows[$i]['comname'].'),'.$allRows[$i]['contact'];
+    $allRows[$i]['ccnn'] = $allRows[$i]['bName'] . ", " . $allRows[$i]['cdiv3'].$allRows[$i]['comname'].'('.$allRows[$i]['name'].','.$allRows[$i]['comname'].'),'.$allRows[$i]['contact'];
   } else if($allRows[$i]['div2']==='개인'){
-    $allRows[$i]['ccnn'] = $allRows[$i]['name'].','.$allRows[$i]['contact'];
+    $allRows[$i]['ccnn'] = $allRows[$i]['bName'] . ", " . $allRows[$i]['name'].','.$allRows[$i]['contact'];
   }
 
 
@@ -103,6 +103,3 @@ for ($i=0; $i < count($allRows); $i++) {
 
 
 echo json_encode($allRows);
-
-
- ?>

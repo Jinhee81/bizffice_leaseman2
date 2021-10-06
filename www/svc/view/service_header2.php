@@ -1,10 +1,8 @@
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color:#0B173B;">
-        <a class="navbar-brand" href="/svc/main/main.php"><img src="/svc/inc/img/h1b.png" width="100" height="30"
-                class="d-inline-block align-top" alt=""></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color:#610B4B;">
+        <a class="navbar-brand" href="/svc/main/main.php"><img src="/svc/inc/img/h1b.png" width="100" height="30" class="d-inline-block align-top" alt=""></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -29,8 +27,7 @@
                     <a class="nav-link" href="/svc/service/get/getfinished.php">납부완료</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         회계관리
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -49,8 +46,7 @@
                     <a href="/svc/service/setting/building.php">
                         <i class="fas fa-cog"></i>&nbsp;환경설정</a>
                 </span>&nbsp;
-                <span class="navbar-text" data-toggle="tooltip" data-placement="bottom"
-                    title="<?=$_SESSION['gradename']?>">
+                <span class="navbar-text" data-toggle="tooltip" data-placement="bottom" title="<?= $_SESSION['gradename'] ?>">
                     <a href="/svc/myinfo.php">
                         <i class="fas fa-user"></i>&nbsp;나의정보</a>
                 </span>&nbsp;
@@ -59,7 +55,7 @@
                         <i class="fas fa-won-sign"></i>&nbsp;요금안내</a>
                 </span>&nbsp;&nbsp;
                 <span class="navbar-text">
-                    &nbsp;<?=$_SESSION['email']?>님, 안녕하세요.
+                    &nbsp;<?= $_SESSION['email'] ?>님, 안녕하세요.
                 </span>&nbsp;&nbsp;
                 <!-- <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"> -->
                 <a class="btn btn-outline-success" href="/svc/logout.php" role="button">로그아웃</a>
