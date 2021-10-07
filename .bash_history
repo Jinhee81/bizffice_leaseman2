@@ -78,3 +78,69 @@ git remote rm origin
 git remote add origin https://github.com/Jinhee81/bizffice_leaseman2.git
 #1633421222
 git push -u origin main
+#1633500837
+mysql -ubizffice -p
+#1633505530
+git status
+#1633506125
+git add .
+#1633506214
+cat .gitignore
+#1633506225
+rm .gitignore
+#1633506334
+dir .gitignore
+#1633506367
+mkdir .gitignore
+#1633506376
+cat .gitignore
+#1633506466
+rm -r .gitignore
+#1633506504
+vim .gitignore
+#1633506686
+cat .gitignore
+#1633506811
+cat /dev/null > .gitignore
+#1633506816
+cat .gitignore
+#1633506829
+vi .gitignore
+#1633506991
+cat .gitignore
+#1633507003
+gits status
+#1633507009
+git status
+#1633507070
+cat .gitignore
+#1633507079
+vi .gitignore
+#1633507202
+cat .gitngnore
+#1633507212
+cat .gitignore
+#1633507217
+git status
+#1633507279
+git reset HEAD CONTRIBUTING.md
+#1633507282
+git status
+#1633507437
+git rm -r --cached .
+#1633507453
+git add .
+#1633507473
+git commit -m 'remove ignored file'
+#1633507493
+git push origin main
+#1633507574
+git status
+#1633507750
+git push origin main
+#1633507814
+git pull --rebase origin main
+#1633507831
+git status
+#1633507840
+git push origin main

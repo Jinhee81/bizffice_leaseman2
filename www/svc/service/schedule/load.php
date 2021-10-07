@@ -1,8 +1,8 @@
 <?php
 session_start();
-// include $_SERVER['DOCUMENT_ROOT']."/view/conn.php";
+include $_SERVER['DOCUMENT_ROOT']."/svc/view/conn.php";
 
-$connect = new PDO('mysql:host=127.0.0.1;dbname=leaseman_svc','leaseman','leaseman!!22');
+$connect = new PDO('mysql:host=127.0.0.1;dbname='.$dbname,$schema_name,$password);
 
 $data = array();
 $query = "select *
@@ -23,5 +23,28 @@ foreach ($result as $row) {
   );
 }
 echo json_encode($data);
+
+// $sql = "select *
+//         from events
+//         where user_id={$_SESSION['id']}
+//         order by id asc";
+
+//         // echo $sql;
+
+// $result = mysqli_query($conn, $sql);
+
+// // $data = array();
+
+// while($row = mysqli_fetch_array($result)){
+//     $data[] = array(
+//         'id' => $row['id'],
+//         'title' => $row['title'],
+//         'start' => $row['start_event'],
+//         'end' => $row['end_event']
+//     );
+// }
+
+// echo json_encode($data);
+
 
  ?>

@@ -1,8 +1,8 @@
 <?php
 session_start();
-// include $_SERVER['DOCUMENT_ROOT']."/view/conn.php";
+include $_SERVER['DOCUMENT_ROOT']."/svc/view/conn.php";
 
-$connect = new PDO('mysql:host=127.0.0.1;dbname=leaseman_svc','leaseman','leaseman!!22');
+$connect = new PDO('mysql:host=127.0.0.1;dbname='.$dbname,$schema_name,$password);
 
 if(isset($_POST['title']))
 {
@@ -10,6 +10,8 @@ if(isset($_POST['title']))
               (title, start_event, end_event, user_id)
             values
               (:title, :start_event, :end_event, {$_SESSION['id']})";
+    echo $query;
+    
   $statement = $connect -> prepare($query);
   $statement -> execute(
     array(
@@ -19,4 +21,20 @@ if(isset($_POST['title']))
     )
   );
 }
+
+
+// if(isset($_POST['title']))
+// {
+//     $sql = "insert into events
+//             (title, start_event, end_event, user_id)
+//             values
+//             ('${$_POST['title']}',
+//             '${$_POST['start']}',
+//             '${$_POST['end']}',
+//              {$_SESSION['id']})
+//              ";
+//     $result = mysqli_query($conn, $sql);
+
+// }
+
  ?>

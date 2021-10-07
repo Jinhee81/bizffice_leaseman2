@@ -213,7 +213,7 @@ include "m_building.php";
             selectable: true,
             selectHelper: true,
             select: function(start, end, allDay) {
-                var title = prompt('이벤트를 입력하세요.');
+                var title = prompt('일정을 입력하세요.');
                 if (title) {
                     var start = $.fullCalendar.formatDate(start, "Y-MM-DD HH:mm:ss");
                     var end = $.fullCalendar.formatDate(end, "Y-MM-DD HH:mm:ss");
@@ -250,7 +250,7 @@ include "m_building.php";
                     },
                     success: function() {
                         calendar.fullCalendar('refetchEvents');
-                        alert('이벤트가 수정되었습니다.');
+                        alert('일정이 수정되었습니다.');
                     }
                 })
             },
@@ -271,7 +271,7 @@ include "m_building.php";
                     },
                     success: function() {
                         calendar.fullCalendar('refetchEvents');
-                        alert('이벤트가 수정되었습니다.');
+                        alert('일정이 수정되었습니다.');
                     }
                 })
             },
