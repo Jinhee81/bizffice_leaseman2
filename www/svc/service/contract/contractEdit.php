@@ -1541,33 +1541,10 @@ $(document).on('click', '#enddate3btn', function() {
 
     // console.log(urlaa, successMent);
 
-    $.ajax({
-        type: 'post',
-        url: urlaa,
-        data: {
-            'contractId': contractId,
-            'enddate3': enddate3,
-            'enddate4': enddate4,
-            'middleEndAmount': middleEndAmount,
-            'middleEndAvmount': middleEndAvmount,
-            'middleEndAtmount': middleEndAtmount,
-            'executiveDiv2': executiveDiv3,
-            'buildingId': buildingId,
-            'rPayid': rPayid
-        },
-        success: function(data) {
-            // console.log(data);
-            data = JSON.parse(data);
+    middleEndCreate(urlaa, contractId, enddate3, enddate4, middleEndAmount, middleEndAvmount, middleEndAtmount,
+        executiveDiv3, buildingId, rPayid, successMent)
 
-            if (data === 'success') {
-                alert(successMent);
-            } else {
-                alert('처리과정에 문제가 생겼습니다. 관리자에게 문의하세요 :' + data);
-                return false;
-            }
-        }
-    })
-    refundlist(contractId);
+    // refundlist(contractId);
 })
 
 
@@ -1576,26 +1553,7 @@ $(document).on('click', '#enddateCansel', function() { //철회버튼
     let contractId = '<?=$filtered_id?>';
     let rPayid = $('input[name=rPayid]').val();
 
-    $.ajax({
-        type: 'post',
-        url: 'p_realContract_middle_end_cansel000.php',
-        data: {
-            'contractId': contractId,
-            'rPayid': rPayid
-        },
-        success: function(data) {
-            // console.log(data);
-            data = JSON.parse(data);
-
-            if (data === 'success') {
-                alert('중간종료 취소처리했습니다.');
-            } else {
-                alert('중간종료 취소과정에 문제가 생겼습니다. 관리자에게 문의하세요 : ' + data);
-                return false;
-            }
-        }
-    })
-    refundlist(contractId);
+    middleEndCansel(contractId, rPayid);
 })
 </script>
 </body>

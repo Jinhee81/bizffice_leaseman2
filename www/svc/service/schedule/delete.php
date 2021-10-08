@@ -4,7 +4,7 @@ include $_SERVER['DOCUMENT_ROOT']."/svc/view/conn.php";
 
 if(isset($_POST['id']))
 {
-    $connect = new PDO('mysql:host=127.0.0.1;dbname='.$dbname,$schema_name,$password);
+    $connect = new PDO('mysql:host=127.0.0.1;dbname='.$schema_name,$user,$password);
 
   $query = "
     DELETE from events where id=:id

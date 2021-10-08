@@ -7,6 +7,8 @@ function m_customer(a){
       data = JSON.parse(data);
     //   console.log(data);
       $('input[name=id_m]').val(a);
+
+      $('input[name=bName]').val(data.bName);
       $('input[name=name_m]').val(data.name);
       $('input[name=contact1_m]').val(data.contact1);
       $('input[name=contact2_m]').val(data.contact2);
@@ -18,8 +20,14 @@ function m_customer(a){
       $('input[name=email_m]').val(data.email);
       $('input[name=div4_m]').val(data.div4);
       $('input[name=div5_m]').val(data.div5);
+
+      $('#sample2_postcode').val(data.zipcode);
+      $('#sample2_address').val(data.add1);
+      $('#sample2_detailAddress').val(data.add2);
+      $('#sample2_extraAddress').val(data.add3);
       $('textarea[name=etc_m]').val(data.etc);
-      $('span[name=id_m]').text(a);
+
+      $('span[name=id_m]').text(Number(a));
       $('span[name=created_m]').text(data.created);
       $('span[name=updated_m]').text(data.updated);
 

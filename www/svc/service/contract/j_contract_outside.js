@@ -87,22 +87,27 @@ function outsideTable(x, y) {
           countall = value.count;
           var ordered = Number(value.num) - ((y - 1) * x);
           let statusValue, step, filecount, memocount;
+          let end__date; //중간종료때문에 새로 만든거
 
           if (value.status2 === 'present') {
             statusValue = '현재';
             statusColor = 'info';
+            end__date = value.endDate2;
           }
           if (value.status2 === 'waiting') {
             statusValue = '대기';
             statusColor = 'warning';
+            end__date = value.endDate2;
           }
           if (value.status2 === 'the_end') {
             statusValue = '종료';
             statusColor = 'danger';
+            end__date = value.endDate2;
           }
           if (value.status2 === 'middle_end') {
             statusValue = '중간종료';
-            statusColor = 'danger';
+            statusColor = 'danger'
+            end__date = value.endDate3;
           }
 
           if(value.step === 'clear') {
@@ -148,7 +153,7 @@ function outsideTable(x, y) {
                         <td class="mobile" name=group>${value.gName}</td>
                         <td class="" name=room>${value.rName}</td>
                         <td class="mobile" name=startDate>${value.startDate}</td>
-                        <td class="mobile" name=endDate>${value.endDate2}</td>
+                        <td class="mobile" name=endDate>${end__date}</td>
                         <td class="mobile" name=period>
                             <a href="contractEdit.php?&id=${value.rid} class="green" target=_blank><u>${value
               .count2}</u></a>

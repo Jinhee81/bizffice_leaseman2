@@ -653,3 +653,58 @@ function refundlist(a){
 
   return amountlist;
 }
+
+function middleEndCreate (a,b,c,d,e,f,g,h,i,j, k){
+    $.ajax({
+        type: 'post',
+        url: a,
+        data: {
+            'contractId': b,
+            'enddate3': c,
+            'enddate4': d,
+            'middleEndAmount': e,
+            'middleEndAvmount': f,
+            'middleEndAtmount': g,
+            'executiveDiv2': h,
+            'buildingId': i,
+            'rPayid': j
+        },
+        success: function(data) {
+            // console.log(data);
+            data = JSON.parse(data);
+
+            if (data === 'success') {
+                alert(k);
+            } else {
+                alert('처리과정에 문제가 생겼습니다. 관리자에게 문의하세요 :' + data);
+                return false;
+            }
+            refundlist(b);
+        }
+    })
+
+}
+
+function middleEndCansel(a,b) {
+    $.ajax({
+        type: 'post',
+        url: 'p_realContract_middle_end_cansel000.php',
+        data: {
+            'contractId': a,
+            'rPayid': b
+        },
+        success: function(data) {
+            // console.log(data);
+            data = JSON.parse(data);
+
+            if (data === 'success') {
+                alert('중간종료 취소처리했습니다.');
+            } else {
+                alert('중간종료 취소과정에 문제가 생겼습니다. 관리자에게 문의하세요 : ' + data);
+                return false;
+            }
+            refundlist(a);
+        }
+    })
+
+}

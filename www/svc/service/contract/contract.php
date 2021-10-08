@@ -306,6 +306,8 @@ if (!isset($_SESSION['is_login'])) {
     <script src="/svc/inc/js/etc/sms_noneparase3.js?<?= date('YmdHis') ?>"></script>
     <script src="/svc/inc/js/etc/sms_existparase10.js?<?= date('YmdHis') ?>"></script>
     <!-- <script src="/svc/inc/js/etc/uploadfile.js?<?= date('YmdHis') ?>"></script> -->
+    <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script src="/svc/inc/js/daumAddressAPI3.js?<?=date('YmdHis')?>"></script>
 
     <script type="text/javascript">
     var lease_type = <?php echo json_encode($_SESSION['lease_type']); ?>;

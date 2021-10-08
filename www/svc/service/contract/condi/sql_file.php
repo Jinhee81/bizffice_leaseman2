@@ -4,6 +4,7 @@ $sql_file = "
       @num := @num + 1 as num,
       file_id,
       name_orig,
+      name_save,
       size,
       reg_time
     FROM
@@ -32,4 +33,3 @@ for ($i=0; $i < count($fileRows); $i++) {
     $fileRows[$i]['bytes'] = number_format($fileRows[$i]['size']).' bytes';
   }
 }
- ?>

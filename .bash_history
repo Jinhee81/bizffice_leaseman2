@@ -144,3 +144,15 @@ git pull --rebase origin main
 git status
 #1633507840
 git push origin main
+#1633589477
+mysql -ubizffice -p
+#1633592051
+git status
+#1633592085
+git add .
+#1633592103
+git commit -m '일정관리와 conn 변수 변경'
+#1633592113
+git push origin main
+#1633659143
+mysql -ubizffice -p
