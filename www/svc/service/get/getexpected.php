@@ -257,6 +257,8 @@ include $_SERVER['DOCUMENT_ROOT']."/svc/modal/modal_amount2.php";
     <script src="/svc/inc/js/etc/checkboxtable.js?<?=date('YmdHis')?>"></script>
     <script src="/svc/inc/js/etc/modal_table.js?<?=date('YmdHis')?>"></script>
     <script src="/svc/inc/js/etc/form.js?<?=date('YmdHis')?>"></script>
+    <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script src="/svc/inc/js/daumAddressAPI3.js?<?=date('YmdHis')?>"></script>
 
     <script type="text/javascript">
     var lease_type = <?php echo json_encode($_SESSION['lease_type']); ?>;
@@ -279,6 +281,8 @@ include $_SERVER['DOCUMENT_ROOT']."/svc/modal/modal_amount2.php";
     <script type="text/javascript" src="j_sms_array.js?<?=date('YmdHis')?>"></script>
     <script type="text/javascript" src="j_taxarray.js?<?=date('YmdHis')?>"></script>
     <script type="text/javascript" src="/svc/inc/js/etc/ce_pl_f2.js?<?=date('YmdHis')?>"></script>
+    <script type="text/javascript" src="/svc/inc/js/etc/customer.js?<?=date('YmdHis')?>"></script>
+    <script type="text/javascript" src="/svc/inc/js/etc/customer_edit.js?<?=date('YmdHis')?>"></script>
 
     <script>
     $(function() {
@@ -871,53 +875,7 @@ include $_SERVER['DOCUMENT_ROOT']."/svc/modal/modal_amount2.php";
     $(document).on('click', '.eachpop', function() {
         var cid = $(this).siblings('input[name=customer_id]').val();
         // console.log(cid);
-        $.ajax({
-            url: '../customer/ajax_customer.php',
-            method: 'post',
-            data: {
-                'cid': cid
-            },
-            success: function(data) {
-                data = JSON.parse(data);
-                // console.log(data.name);
-                $('input[name=id_m]').val(cid);
-                $('input[name=name_m]').val(data.name);
-                $('input[name=contact1_m]').val(data.contact1);
-                $('input[name=contact2_m]').val(data.contact2);
-                $('input[name=contact3_m]').val(data.contact3);
-                $('input[name=companyname_m]').val(data.companyname);
-                $('input[name=cNumber1_m]').val(data.cNumber1);
-                $('input[name=cNumber2_m]').val(data.cNumber2);
-                $('input[name=cNumber3_m]').val(data.cNumber3);
-                $('input[name=div4_m]').val(data.div4);
-                $('input[name=div5_m]').val(data.div5);
-                $('input[name=email_m]').val(data.email);
-                $('textarea[name=etc_m]').val(data.etc);
-                $('span[name=id_m]').text(cid);
-                $('span[name=created_m]').text(data.created);
-                $('span[name=updated_m]').text(data.updated);
-
-                if (data.div2 === '개인') {
-                    $('option[name=kind1]').attr('selected', true);
-                } else if (data.div2 === '개인사업자') {
-                    $('option[name=kind2]').attr('selected', true);
-                } else if (data.div2 === '법인사업자') {
-                    $('option[name=kind3]').attr('selected', true);
-                }
-
-                if (data.div3 === '주식회사') {
-                    $('option[name=a2]').attr('selected', true);
-                } else if (data.div3 === '유한회사') {
-                    $('option[name=a3]').attr('selected', true);
-                } else if (data.div3 === '합자회사') {
-                    $('option[name=a4]').attr('selected', true);
-                } else if (data.div3 === '기타') {
-                    $('option[name=a5]').attr('selected', true);
-                } else {
-                    $('option[name=a1]').attr('selected', true);
-                }
-            }
-        }) //ajax}
+        m_customer(cid);
     })
 
     $(document).on('click', '.contractAmount', function() {

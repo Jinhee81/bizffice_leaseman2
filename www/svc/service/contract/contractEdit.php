@@ -188,6 +188,8 @@ let buildingId = $('input[name=building').val();
 let step = '<?=$step?>';
 let url = '../../ajax/ajax_amountlist.php';
 
+$('input').attr('autocomplete', 'off');
+
 // console.log(contractId, customerId, buildingId, step, url);
 
 $(document).on('click', '.dateType', function() {

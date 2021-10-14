@@ -652,7 +652,8 @@ if (!isset($_SESSION['is_login'])) {
 
     <script type="text/javascript" src="/svc/service/get/js_sms_tax.js?<?=date('YmdHis')?>"></script>
     <script type="text/javascript" src="j_contract_insidebuttons.js?<?=date('YmdHis')?>"></script>
-    <script type="text/javascript" src="j_checksum_cd.js?<?=date('YmdHis')?>"></script>
+    <script tycpe="text/javascript" src="j_checksum_cd.js?<?=date('YmdHis')?>"></script>
+    <script tycpe="text/javascript" src="/svc/inc/js/etc/customer_edit.js?<?=date('YmdHis')?>"></script>
 
     </body>
 

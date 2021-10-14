@@ -156,3 +156,15 @@ git commit -m '일정관리와 conn 변수 변경'
 git push origin main
 #1633659143
 mysql -ubizffice -p
+#1633679053
+git status
+#1633679336
+git add .
+#1633679376
+git status
+#1633679416
+git commit -m '계약목록의 입주자 주소나오고, 입주자수정시 ajax로 변경함'
+#1633679423
+git push origin main
+#1634027344
+git status

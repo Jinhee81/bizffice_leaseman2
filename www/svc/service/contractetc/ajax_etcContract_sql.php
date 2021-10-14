@@ -56,9 +56,18 @@ $sql = "
       customer.companyname,
       customer.div2,
       customer.div3,
+      customer.div4,
+      customer.div5,
       customer.contact1,
       customer.contact2,
       customer.contact3,
+      customer.cNumber1,
+      customer.cNumber2,
+      customer.cNumber3,
+      customer.email,
+      customer.etc,
+      customer.created,
+      customer.updated,
       building.bName as bname,
       good_in_building.name as goodname,
       paySchedule2.executiveDate,
@@ -81,7 +90,7 @@ $sql = "
         $buildingCondi
         $goodCondi $etcCondi $etcDate
   order by
-      paySchedule2.executiveDate desc";
+  date_format(paySchedule2.executiveDate,  '%Y-%m-%d') desc";
 
 
 // echo $sql;

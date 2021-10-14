@@ -166,13 +166,39 @@ $('#btnTaxDateInput2').on('click', function(){//이건입력버튼
 
   var taxArrayTo = JSON.stringify(taxArray);
 
-  goCategoryPage(taxArrayTo, taxSelect, taxDate);
+//   goCategoryPage(taxArrayTo, taxSelect, taxDate);
 
-  function goCategoryPage(a,b,c){
-      var frm = formCreate('taxSave2', 'post', 'p_payScheduleTaxInput2.php','');
-      frm = formInput(frm, 'taxArray', a);
-      frm = formInput(frm, 'taxSelect', b);
-      frm = formInput(frm, 'taxDate', c);
-      formSubmit(frm);
-  }
+//   function goCategoryPage(a,b,c){
+//       var frm = formCreate('taxSave2', 'post', 'p_payScheduleTaxInput2.php','');
+//       frm = formInput(frm, 'taxArray', a);
+//       frm = formInput(frm, 'taxSelect', b);
+//       frm = formInput(frm, 'taxDate', c);
+//       formSubmit(frm);
+//   }
+
+  $.ajax({
+      url : '/svc/ajax/get/payScheduleTaxInput2.php',
+      method:'post',
+      data : {
+          'taxArray' : taxArrayTo,
+          'taxSelect' : taxSelect,
+          'taxDate' : taxDate
+      },
+      success : function(data){
+        data = JSON.parse(data);
+        console.log(data);
+
+        if (data === 'success') {
+            alert('입력했습니다^^');
+        } else if(data === 'none_changes'){
+            alert('변경내용이 없네요. 다시 확인해보세요^^')
+        } else {
+            alert('앗, 에러가 발생했군요. 관리자에게 문의하세요 ^^;')
+        }
+
+        maketable();
+      }
+  })
+
+
 })

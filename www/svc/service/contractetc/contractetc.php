@@ -54,13 +54,15 @@ if (!isset($_SESSION['is_login'])) {
                                 <!--codi2-->
                             </td>
                             <td width="6%" class="mobile">
-                                <input type="text" name="fromDate" value="" class="form-control form-control-sm text-center dateType yyyymmdd">
+                                <input type="text" name="fromDate" value=""
+                                    class="form-control form-control-sm text-center dateType yyyymmdd">
                                 <!--codi3-->
                             </td>
                             <td width="1%" class="mobile"> ~
                             </td>
                             <td width="6%" class="mobile">
-                                <input type="text" name="toDate" value="" class="form-control form-control-sm text-center dateType yyyymmdd">
+                                <input type="text" name="toDate" value=""
+                                    class="form-control form-control-sm text-center dateType yyyymmdd">
                                 <!--codi4-->
                             </td>
                             <td width="6%" class="">
@@ -134,7 +136,9 @@ if (!isset($_SESSION['is_login'])) {
 
 </section> -->
 
-    <?php include $_SERVER['DOCUMENT_ROOT'] . "/svc/view/service_footer.php"; ?>
+    <?php 
+    include $_SERVER['DOCUMENT_ROOT'] . "/svc/service/customer/modal_customer.php";
+    include $_SERVER['DOCUMENT_ROOT'] . "/svc/view/service_footer.php"; ?>
 
 
     <script src="/svc/inc/js/jquery-3.3.1.min.js"></script>
@@ -145,203 +149,233 @@ if (!isset($_SESSION['is_login'])) {
     <script src="/svc/inc/js/etc/newdate8.js?<?= date('YmdHis') ?>"></script>
     <script src="/svc/inc/js/etc/checkboxtable.js?<?= date('YmdHis') ?>"></script>
     <script src="/svc/inc/js/etc/form.js?<?= date('YmdHis') ?>"></script>
+    <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script src="/svc/inc/js/daumAddressAPI3.js?<?=date('YmdHis')?>"></script>
 
     <script type="text/javascript">
-        var buildingArray = <?php echo json_encode($buildingArray); ?>;
-        var goodBuildingArray = <?php echo json_encode($goodBuildingArray); ?>;
-        console.log(buildingArray);
-        console.log(goodBuildingArray);
+    var buildingArray = <?php echo json_encode($buildingArray); ?>;
+    var goodBuildingArray = <?php echo json_encode($goodBuildingArray); ?>;
+    console.log(buildingArray);
+    console.log(goodBuildingArray);
     </script>
     <script type="text/javascript" src="js_building_good.js">
     </script>
+    <script type="text/javascript" src="/svc/inc/js/etc/customer.js?<?= date('YmdHis') ?>"></script>
 
     <script>
-        function maketable() {
+    function maketable() {
 
-            var mtable = $.ajax({
-                url: 'ajax_etcContract_value.php',
-                method: 'post',
-                data: $('form').serialize(),
-                success: function(data) {
-                    data = JSON.parse(data);
-                    console.log(data);
-                    datacount = data.length;
+        var mtable = $.ajax({
+            url: 'ajax_etcContract_value.php',
+            method: 'post',
+            data: $('form').serialize(),
+            success: function(data) {
+                data = JSON.parse(data);
+                // console.log(data);
+                datacount = data.length;
 
-                    var returns = '';
+                var returns = '';
 
-                    if (datacount === 0) {
-                        returns = "<tr><td colspan='11'>조회값이 없어요. 조회조건을 다시 확인하거나 서둘러 입력해주세요!</td></tr>";
-                    } else {
-                        $.each(data, function(key, value) {
-                            returns += '<tr>';
-                            returns += '<td class="mobile"><input type="checkbox" name="eid" value="' + value.eid + '" class="tbodycheckbox"></td>';
-                            returns += '<td class="">' + datacount + '</td>';
-                            returns += '<td class="">' + value.bname + '</td>';
-                            returns += '<td class="">' + value.goodname + '</td>';
-                            returns += '<td class=""><a href="/svc/service/customer/m_c_edit.php?id=' + value.cid + '" data-toggle="tooltip" data-placement="top" title="' + value.cname + '">' + value.cnamemb + '</a></td>';
-                            returns += '<td class=""><a href="tel:' + value.contact + '">' + value.contact + '</a></td>';
-                            returns += '<td class="mobile">' + value.pAmount + '</td>';
-                            returns += '<td class="mobile">' + value.pvAmount + '</td>';
-                            returns += '<td class=""><a href="contractetc_edit.php?id=' + value.eid + '" class=green>' + value.ptAmount + '</a></td>';
-                            returns += '<td class="">' + value.executiveDate + '</td>';
-                            returns += '<td class="mobile">' + value.payKind + '</td>';
-                            returns += '<td class="mobile"><label class="" data-toggle="tooltip" data-placement="top" data-title="' + value.eetc + '">' + value.etcmb + '</td>';
-                            returns += '</tr>';
+                if (datacount === 0) {
+                    returns = "<tr><td colspan='11'>조회값이 없어요. 조회조건을 다시 확인하거나 서둘러 입력해주세요!</td></tr>";
+                } else {
+                    $.each(data, function(key, value) {
+                        returns += '<tr>';
+                        returns += '<td class="mobile"><input type="checkbox" name="eid" value="' +
+                            value.eid + '" class="tbodycheckbox"></td>';
+                        returns += '<td class="">' + datacount + '</td>';
+                        returns += '<td class="">' + value.bname + '</td>';
+                        returns += '<td class="">' + value.goodname + '</td>';
 
-                            datacount -= 1;
-                        }) //each closing}
-                    } //if..else.. closing}
-                    $('#allVals').html(returns);
-                } //ajax success part closing}
-            }) //ajax closing}
+                        returns += `<td class="" name=customer>
+                            <span data-toggle="modal" data-target="#eachpop" class="eachpop sky">${value.cnamemb}</span>
+                            <input type="hidden" name="customername" value='${value.cname}'>
+                            <input type="hidden" name="customercompanyname" value='${value.ccname}'>
+                            <input type="hidden" name="email" value='${value.email}'>
+                            <input type="hidden" name="customerId" value='${value.cid}'>
+                            <input type="hidden" name="companyname" value='${value.companyname}'>
+                            <input type="hidden" name="div2" value='${value.div2}'>
+                            <input type="hidden" name="ccnn2" value='${value.cnamemb}'>
+                            </td>`;
+                        // returns += '<td class=""><a href="/svc/service/customer/m_c_edit.php?id=' + value.cid + '" data-toggle="tooltip" data-placement="top" title="' + value.cname + '">' + value.cnamemb + '</a></td>';
+                        returns += '<td class=""><a href="tel:' + value.contact + '">' + value
+                            .contact + '</a></td>';
+                        returns += '<td class="mobile">' + value.pAmount + '</td>';
+                        returns += '<td class="mobile">' + value.pvAmount + '</td>';
+                        returns +=
+                            `<td class="">
+                            <a href="contractetc_edit.php?id=${value.eid}" class="green">
+                            <u>${value.ptAmount}</u>
+                            </a>
+                            </td>`;
+                        returns += '<td class="">' + value.executiveDate + '</td>';
+                        returns += '<td class="mobile">' + value.payKind + '</td>';
+                        returns +=
+                            '<td class="mobile"><label class="tooltip2" data-toggle="tooltip" data-placement="top" data-title="' +
+                            value.eetc + '">' + value.etcmb + '</td>';
+                        returns += '</tr>';
 
-            return mtable;
+                        datacount -= 1;
+                    }) //each closing}
+                } //if..else.. closing}
+                $('#allVals').html(returns);
+            } //ajax success part closing}
+        }) //ajax closing}
 
-        } //maketable function closing}
+        return mtable;
 
-        function msql() {
-            var msqlajax = $.ajax({
-                url: 'ajax_etcContract_sql2.php',
-                method: 'post',
-                data: $('form').serialize(),
-                success: function(data) {
-                    $('#allVals2').html(data);
-                }
-            });
+    } //maketable function closing}
 
-            return msqlajax;
-        }
-
-
-
-
-        $(document).ready(function() {
-
-            $(function() {
-                $('[data-toggle="tooltip"]').tooltip()
-            })
-
-            var periodDiv = $('select[name=periodDiv]').val();
-            dateinput2(periodDiv);
-
-            maketable();
-            msql();
-
-
-            $('.dateType').datepicker({
-                changeMonth: true,
-                changeYear: true,
-                showButtonPanel: true,
-                currentText: '오늘',
-                closeText: '닫기'
-            })
-
-            $('.yyyymmdd').keydown(function(event) {
-                var key = event.charCode || event.keyCode || 0;
-                $text = $(this);
-                if (key !== 8 && key !== 9) {
-                    if ($text.val().length === 4) {
-                        $text.val($text.val() + '-');
-                    }
-                    if ($text.val().length === 7) {
-                        $text.val($text.val() + '-');
-                    }
-                }
-
-                return (key == 8 || key == 9 || key == 46 || (key >= 48 && key <= 57) || (key >= 96 && key <= 105));
-                // Key 8번 백스페이스, Key 9번 탭, Key 46번 Delete 부터 0 ~ 9까지, Key 96 ~ 105까지 넘버패트
-                // 한마디로 JQuery 0 ~~~ 9 숫자 백스페이스, 탭, Delete 키 넘버패드외에는 입력못함
-            })
-
-
-        }) //==================document.ready function end and the other load start!
-
-        $('select[name=dateDiv]').on('change', function() {
-            maketable();
-            msql();
-        })
-
-        $('select[name=periodDiv]').on('change', function() {
-            var periodDiv = $('select[name=periodDiv]').val();
-            dateinput2(periodDiv);
-            maketable();
-            msql();
-        })
-
-        $('input[name=fromDate]').on('change', function() {
-            maketable();
-            msql();
-        })
-
-        $('input[name=toDate]').on('change', function() {
-            maketable();
-            msql();
-        })
-
-        $('select[name=building]').on('change', function() {
-            maketable();
-            msql();
-        })
-
-        $('select[name=good]').on('change', function() {
-            maketable();
-            msql();
-        })
-
-
-        $('input[name=cText]').on('keyup', function() {
-            maketable();
-            msql();
-        })
-        //---------조회버튼클릭평션 end and contractArray 펑션 시작--------------//
-
-        var contractArray = [];
-
-        $(document).on('change', '#allselect', function() {
-
-            var allCnt = $(".tbodycheckbox", table).length;
-            contractArray = [];
-
-            if ($("#allselect").is(":checked")) {
-                for (var i = 1; i <= allCnt; i++) {
-                    var contractArrayEle = [];
-                    var colOrder = table.find("tr:eq(" + i + ")").find("td:eq(1)").text().trim();
-                    var colid = table.find("tr:eq(" + i + ")").find("td:eq(0)").children('input[name=eid]').val();
-                    contractArrayEle.push(colOrder, colid);
-                    contractArray.push(contractArrayEle);
-                }
-            } else {
-                contractArray = [];
+    function msql() {
+        var msqlajax = $.ajax({
+            url: 'ajax_etcContract_sql2.php',
+            method: 'post',
+            data: $('form').serialize(),
+            success: function(data) {
+                $('#allVals2').html(data);
             }
-            console.log(contractArray);
+        });
+
+        return msqlajax;
+    }
+
+
+
+
+    $(document).ready(function() {
+
+        $(function() {
+            $('[data-toggle="tooltip"]').tooltip('show');
         })
 
-        $(document).on('change', '.tbodycheckbox', function() {
-            var contractArrayEle = [];
 
-            if ($(this).is(":checked")) {
-                var currow = $(this).closest('tr');
-                var colOrder = Number(currow.find('td:eq(1)').text());
-                var colid = currow.find('td:eq(0)').children('input[name=eid]').val();
+        var periodDiv = $('select[name=periodDiv]').val();
+        dateinput2(periodDiv);
+
+        maketable();
+        msql();
+
+        $('.dateType').datepicker({
+            changeMonth: true,
+            changeYear: true,
+            showButtonPanel: true,
+            currentText: '오늘',
+            closeText: '닫기'
+        })
+
+        $('.yyyymmdd').keydown(function(event) {
+            var key = event.charCode || event.keyCode || 0;
+            $text = $(this);
+            if (key !== 8 && key !== 9) {
+                if ($text.val().length === 4) {
+                    $text.val($text.val() + '-');
+                }
+                if ($text.val().length === 7) {
+                    $text.val($text.val() + '-');
+                }
+            }
+
+            return (key == 8 || key == 9 || key == 46 || (key >= 48 && key <= 57) || (key >= 96 &&
+                key <= 105));
+            // Key 8번 백스페이스, Key 9번 탭, Key 46번 Delete 부터 0 ~ 9까지, Key 96 ~ 105까지 넘버패트
+            // 한마디로 JQuery 0 ~~~ 9 숫자 백스페이스, 탭, Delete 키 넘버패드외에는 입력못함
+        })
+
+
+    }) //==================document.ready function end and the other load start!
+
+    $('select[name=dateDiv]').on('change', function() {
+        maketable();
+        msql();
+    })
+
+    $('select[name=periodDiv]').on('change', function() {
+        var periodDiv = $('select[name=periodDiv]').val();
+        dateinput2(periodDiv);
+        maketable();
+        msql();
+    })
+
+    $('input[name=fromDate]').on('change', function() {
+        maketable();
+        msql();
+    })
+
+    $('input[name=toDate]').on('change', function() {
+        maketable();
+        msql();
+    })
+
+    $('select[name=building]').on('change', function() {
+        maketable();
+        msql();
+    })
+
+    $('select[name=good]').on('change', function() {
+        maketable();
+        msql();
+    })
+
+
+    $('input[name=cText]').on('keyup', function() {
+        maketable();
+        msql();
+    })
+    //---------조회버튼클릭평션 end and contractArray 펑션 시작--------------//
+
+    $(document).on('click', '.eachpop', function() {
+        var cid = $(this).siblings('input[name=customerId]').val();
+        m_customer(cid);
+    })
+
+
+    var contractArray = [];
+
+    $(document).on('change', '#allselect', function() {
+
+        var allCnt = $(".tbodycheckbox", table).length;
+        contractArray = [];
+
+        if ($("#allselect").is(":checked")) {
+            for (var i = 1; i <= allCnt; i++) {
+                var contractArrayEle = [];
+                var colOrder = table.find("tr:eq(" + i + ")").find("td:eq(1)").text().trim();
+                var colid = table.find("tr:eq(" + i + ")").find("td:eq(0)").children('input[name=eid]').val();
                 contractArrayEle.push(colOrder, colid);
                 contractArray.push(contractArrayEle);
-            } else {
-                var currow = $(this).closest('tr');
-                var colOrder = Number(currow.find('td:eq(1)').text());
-
-                for (var i = 0; i < contractArray.length; i++) {
-                    if (contractArray[i][0] === colOrder) {
-                        var index = i;
-                        break;
-                    }
-                }
-                contractArray.splice(index, 1);
             }
-            console.log(contractArray);
-            // console.log(typeof(contractArray[3]));
-        })
-    </script>
+        } else {
+            contractArray = [];
+        }
+        console.log(contractArray);
+    })
 
+    $(document).on('change', '.tbodycheckbox', function() {
+        var contractArrayEle = [];
+
+        if ($(this).is(":checked")) {
+            var currow = $(this).closest('tr');
+            var colOrder = Number(currow.find('td:eq(1)').text());
+            var colid = currow.find('td:eq(0)').children('input[name=eid]').val();
+            contractArrayEle.push(colOrder, colid);
+            contractArray.push(contractArrayEle);
+        } else {
+            var currow = $(this).closest('tr');
+            var colOrder = Number(currow.find('td:eq(1)').text());
+
+            for (var i = 0; i < contractArray.length; i++) {
+                if (contractArray[i][0] === colOrder) {
+                    var index = i;
+                    break;
+                }
+            }
+            contractArray.splice(index, 1);
+        }
+        console.log(contractArray);
+        // console.log(typeof(contractArray[3]));
+    })
+    </script>
+    <script tycpe="text/javascript" src="/svc/inc/js/etc/customer_edit.js?<?=date('YmdHis')?>"></script>
     </body>
 
 </html>

@@ -1,11 +1,11 @@
 function m_customer(a){
   var m_customer = $.ajax({
-    url: '../../service/customer/ajax_customer.php',
+    url: '/svc/service/customer/ajax_customer.php',
     method: 'post',
     data: {'cid' : a},
     success: function(data){
       data = JSON.parse(data);
-    //   console.log(data);
+      // console.log(data);
       $('input[name=id_m]').val(a);
 
       $('input[name=bName]').val(data.bName);
