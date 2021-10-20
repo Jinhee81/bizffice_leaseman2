@@ -12,17 +12,6 @@ if(!isset($_SESSION['is_login'])){
     <title>리스맨홈</title>
     <?php
 include $_SERVER['DOCUMENT_ROOT']."/svc/view/service_header1_meta.php";
-?>
-
-    <div class="alert alert-primary alert-dismissible fade show" role="alert">
-        리스맨은 '크롬브라우저'에서 최적으로 작동합니다. 크롬브라우저에서 실행해주세요 ^__^ <a href="https://www.google.com/intl/ko/chrome/"
-            class="alert-link" target="_blank">다운로드 바로가기</a>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-
-    <?php
 include $_SERVER['DOCUMENT_ROOT']."/svc/view/service_header2.php";
 include $_SERVER['DOCUMENT_ROOT']."/svc/view/conn.php";
 include "condition.php";

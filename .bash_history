@@ -168,3 +168,15 @@ git commit -m '계약목록의 입주자 주소나오고, 입주자수정시 aja
 git push origin main
 #1634027344
 git status
+#1634195730
+git add .
+#1634195749
+git status
+#1634195788
+git commit -m '납부예정,납부완료,기타계약에서도 입주자팝업 수정되게하는거'
+#1634195793
+git status
+#1634195805
+git push origin main
+#1634199400
+git status

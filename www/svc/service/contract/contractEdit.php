@@ -167,8 +167,10 @@ include $_SERVER['DOCUMENT_ROOT']."/svc/view/service_footer.php"; ?>
 <script src="/svc/inc/js/etc/form.js?<?=date('YmdHis')?>"></script>
 <script src="/svc/inc/js/etc/sms_noneparase4.js?<?=date('YmdHis')?>"></script>
 <script src="/svc/inc/js/etc/customer.js?<?=date('YmdHis')?>"></script>
+<script src="/svc/inc/js/etc/customer_edit.js?<?=date('YmdHis')?>"></script>
 <script src="/svc/inc/js/etc/ce_pl_f2.js?<?=date('YmdHis')?>"></script>
-
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="/svc/inc/js/daumAddressAPI3.js?<?=date('YmdHis')?>"></script>
 
 
 <script type="text/javascript">
