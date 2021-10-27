@@ -22,7 +22,7 @@ $("#allselect").click(function(){
       var email = table.find("tr:eq("+i+")").find("td:eq(4)").children('input:eq(2)').val();//이메일
       var supplyamount = table.find("tr:eq("+i+")").find("td:eq(9)").children('label:eq(0)').text();//공급가액
       var vatamount = table.find("tr:eq("+i+")").find("td:eq(9)").children('label:eq(1)').text();//세액
-      var totalamount = table.find("tr:eq("+i+")").find("td:eq(10)").children().text();//합계
+      var totalamount = table.find("tr:eq("+i+")").find("td:eq(10)").children('.contractAmount').text();//합계
       var startdate = table.find("tr:eq("+i+")").find("td:eq(7)").children('label:eq(0)').text();//청구시작일
       var enddate = table.find("tr:eq("+i+")").find("td:eq(7)").children('label:eq(1)').text();//청구종료일
       var monthcount = table.find("tr:eq("+i+")").find("td:eq(6)").text();//청구개월

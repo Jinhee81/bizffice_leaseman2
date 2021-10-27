@@ -180,3 +180,77 @@ git status
 git push origin main
 #1634199400
 git status
+#1634698072
+git add .
+#1634698083
+git status
+#1634698144
+git reset head
+#1634698152
+git reset HEAD
+#1634698159
+git status
+#1634698223
+git add --ignore-removal
+#1634698321
+git add --all
+#1634698326
+git status
+#1634698406
+git commit -m '연도별회계조회화면과 계약보기고객수정'
+#1634698417
+git push origin main
+#1634881711
+git status
+#1634883082
+git add -all
+#1634883088
+git add --all
+#1634883091
+git status
+#1634883113
+git commit -m '납부예정, 납부완료에 파일과메모보임'
+#1634883121
+git push origin main
+#1635230702
+git status
+#1635318432
+ls
+#1635318446
+cd www
+#1635318447
+ls
+#1635318451
+cd svc
+#1635318452
+ls
+#1635318462
+cd ..
+#1635318463
+ls
+#1635318467
+cd ..
+#1635318468
+ls
+#1635318599
+cd ..
+#1635318602
+git status
+#1635318622
+ls
+#1635318629
+cd svc
+#1635318632
+cd www
+#1635318637
+ls
+#1635318658
+cd /
+#1635318660
+ls
+#1635318666
+cd www
+#1635318674
+quit
+#1635318716
+exit

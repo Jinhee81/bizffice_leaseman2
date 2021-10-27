@@ -648,6 +648,13 @@ if (!isset($_SESSION['is_login'])) {
         outsideTable(pagerow, getPage);
         // makesum(pagerow, getPage);
     })
+
+    $('#eachpop').on('hidden.bs.modal', function() {
+        var pagerow = 50;
+        var getPage = 1;
+        outsideTable(pagerow, getPage);
+        // makesum(pagerow, getPage);
+    })
     </script>
 
     <script type="text/javascript" src="/svc/service/get/js_sms_tax.js?<?=date('YmdHis')?>"></script>

@@ -66,7 +66,7 @@ $(document).on('click', '.tbodycheckbox2', function() {
 $(document).on('click', '.contractEdit', function() {
     var cid = $(this).siblings('.contractNumber').text();
     //   console.log(cid);
-    window.open('about:blank').location.href = 'contractEdit.php?id=' + cid;
+    window.open('about:blank').location.href = '/svc/service/contract/contractEdit.php?id=' + cid;
 })
 
 $('#button7').click(function() { //삭제버튼 클릭시

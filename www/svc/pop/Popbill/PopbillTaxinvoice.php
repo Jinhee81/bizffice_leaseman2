@@ -12,7 +12,7 @@
  * Author : Kim Seongjun (pallet027@gmail.com)
  * Written : 2015-06-15
  * Contributor : Jeong YoHan (code@linkhub.co.kr)
- * Updated : 2019-10-24
+ * Updated : 2021-07-01
  *
  * Thanks for your interest.
  * We welcome any suggestions, feedbacks, blames or anything.
@@ -35,11 +35,11 @@ class TaxinvoiceService extends PopbillBase
         return $this->executeCURL('/Taxinvoice/?TG=' . $TOGO, $CorpNum, $UserID)->url;
     }
 
-    //관리번호 사용여부 확인
+    //문서번호 사용여부 확인
     public function CheckMgtKeyInUse($CorpNum, $MgtKeyType, $MgtKey)
     {
         if (is_null($MgtKey) || empty($MgtKey)) {
-            throw new PopbillException('관리번호가 입력되지 않았습니다.');
+            throw new PopbillException('문서번호가 입력되지 않았습니다.');
         }
         try {
             $response = $this->executeCURL('/Taxinvoice/' . $MgtKeyType . '/' . $MgtKey, $CorpNum);
@@ -90,7 +90,7 @@ class TaxinvoiceService extends PopbillBase
     public function Delete($CorpNum, $MgtKeyType, $MgtKey, $UserID = null)
     {
         if (is_null($MgtKey) || empty($MgtKey)) {
-            throw new PopbillException('관리번호가 입력되지 않았습니다.');
+            throw new PopbillException('문서번호가 입력되지 않았습니다.');
         }
         return $this->executeCURL('/Taxinvoice/' . $MgtKeyType . '/' . $MgtKey, $CorpNum, $UserID, true, 'DELETE', '');
     }
@@ -99,7 +99,7 @@ class TaxinvoiceService extends PopbillBase
     public function Update($CorpNum, $MgtKeyType, $MgtKey, $Taxinvoice, $UserID = null, $writeSpecification = false)
     {
         if (is_null($MgtKey) || empty($MgtKey)) {
-            throw new PopbillException('관리번호가 입력되지 않았습니다.');
+            throw new PopbillException('문서번호가 입력되지 않았습니다.');
         }
         if ($writeSpecification) {
             $Taxinvoice->writeSpecification = $writeSpecification;
@@ -113,7 +113,7 @@ class TaxinvoiceService extends PopbillBase
     public function Send($CorpNum, $MgtKeyType, $MgtKey, $Memo = '', $EmailSubject = '', $UserID = null)
     {
         if (is_null($MgtKey) || empty($MgtKey)) {
-            throw new PopbillException('관리번호가 입력되지 않았습니다.');
+            throw new PopbillException('문서번호가 입력되지 않았습니다.');
         }
 
         $Request = new MemoRequest();
@@ -128,7 +128,7 @@ class TaxinvoiceService extends PopbillBase
     public function CancelSend($CorpNum, $MgtKeyType, $MgtKey, $Memo = '', $UserID = null)
     {
         if (is_null($MgtKey) || empty($MgtKey)) {
-            throw new PopbillException('관리번호가 입력되지 않았습니다.');
+            throw new PopbillException('문서번호가 입력되지 않았습니다.');
         }
         $Request = new MemoRequest();
         $Request->memo = $Memo;
@@ -141,7 +141,7 @@ class TaxinvoiceService extends PopbillBase
     public function Accept($CorpNum, $MgtKeyType, $MgtKey, $Memo = '', $UserID = null)
     {
         if (is_null($MgtKey) || empty($MgtKey)) {
-            throw new PopbillException('관리번호가 입력되지 않았습니다.');
+            throw new PopbillException('문서번호가 입력되지 않았습니다.');
         }
         $Request = new MemoRequest();
         $Request->memo = $Memo;
@@ -154,7 +154,7 @@ class TaxinvoiceService extends PopbillBase
     public function Deny($CorpNum, $MgtKeyType, $MgtKey, $Memo = '', $UserID = null)
     {
         if (is_null($MgtKey) || empty($MgtKey)) {
-            throw new PopbillException('관리번호가 입력되지 않았습니다.');
+            throw new PopbillException('문서번호가 입력되지 않았습니다.');
         }
         $Request = new MemoRequest();
         $Request->memo = $Memo;
@@ -167,7 +167,7 @@ class TaxinvoiceService extends PopbillBase
     public function Issue($CorpNum, $MgtKeyType, $MgtKey, $Memo = '', $EmailSubject = null, $ForceIssue = false, $UserID = null)
     {
         if (is_null($MgtKey) || empty($MgtKey)) {
-            throw new PopbillException('관리번호가 입력되지 않았습니다.');
+            throw new PopbillException('문서번호가 입력되지 않았습니다.');
         }
         $Request = new IssueRequest();
         $Request->memo = $Memo;
@@ -182,7 +182,7 @@ class TaxinvoiceService extends PopbillBase
     public function CancelIssue($CorpNum, $MgtKeyType, $MgtKey, $Memo = '', $UserID = null)
     {
         if (is_null($MgtKey) || empty($MgtKey)) {
-            throw new PopbillException('관리번호가 입력되지 않았습니다.');
+            throw new PopbillException('문서번호가 입력되지 않았습니다.');
         }
         $Request = new MemoRequest();
         $Request->memo = $Memo;
@@ -207,7 +207,7 @@ class TaxinvoiceService extends PopbillBase
     public function Request($CorpNum, $MgtKeyType, $MgtKey, $Memo = '', $UserID = null)
     {
         if (is_null($MgtKey) || empty($MgtKey)) {
-            throw new PopbillException('관리번호가 입력되지 않았습니다.');
+            throw new PopbillException('문서번호가 입력되지 않았습니다.');
         }
         $Request = new MemoRequest();
         $Request->memo = $Memo;
@@ -220,7 +220,7 @@ class TaxinvoiceService extends PopbillBase
     public function Refuse($CorpNum, $MgtKeyType, $MgtKey, $Memo = '', $UserID = null)
     {
         if (is_null($MgtKey) || empty($MgtKey)) {
-            throw new PopbillException('관리번호가 입력되지 않았습니다.');
+            throw new PopbillException('문서번호가 입력되지 않았습니다.');
         }
         $Request = new MemoRequest();
         $Request->memo = $Memo;
@@ -233,7 +233,7 @@ class TaxinvoiceService extends PopbillBase
     public function CancelRequest($CorpNum, $MgtKeyType, $MgtKey, $Memo = '', $UserID = null)
     {
         if (is_null($MgtKey) || empty($MgtKey)) {
-            throw new PopbillException('관리번호가 입력되지 않았습니다.');
+            throw new PopbillException('문서번호가 입력되지 않았습니다.');
         }
         $Request = new MemoRequest();
         $Request->memo = $Memo;
@@ -242,11 +242,46 @@ class TaxinvoiceService extends PopbillBase
         return $this->executeCURL('/Taxinvoice/' . $MgtKeyType . '/' . $MgtKey, $CorpNum, $UserID, true, 'CANCELREQUEST', $postdata);
     }
 
+    // 전자세금계산서 초대량 발행 접수
+    public function BulkSubmit($CorpNum, $SubmitID, $taxinvoiceList, $ForceIssue = null, $UserID = null)
+    {
+        if (is_null($SubmitID) || empty($SubmitID)) {
+            throw new PopbillException('제출아이디가 입력되지 않았습니다.');
+        }
+        if (is_null($taxinvoiceList) || empty($taxinvoiceList)) {
+            throw new PopbillException('세금계산 정보가 입력되지 않았습니다.');
+        }
+
+        $Request = new BulkRequest();
+        if($ForceIssue == true){
+            $Request->forceIssue = $ForceIssue;
+        }
+        $Request->invoices = $taxinvoiceList;
+
+        $postdata = json_encode($Request);
+
+        return $this->executeCURL('/Taxinvoice', $CorpNum, $UserID, true, 'BULKISSUE', $postdata, false, null, false, $SubmitID);
+    }
+
+    // 초대량 접수결과 확인
+    public function GetBulkResult($CorpNum, $SubmitID, $UserID = null)
+    {
+        if (is_null($SubmitID) || empty($SubmitID)) {
+            throw new PopbillException('제출아이디가 입력되지 않았습니다.');
+        }
+
+        $response = $this->executeCURL('/Taxinvoice/BULK/' . $SubmitID . '/State', $CorpNum, $UserID);
+
+        $bulkResult = new BulkTaxinvoiceResult();
+        $bulkResult->fromJsonInfo($response);
+        return $bulkResult;
+    }
+
     //국세청 즉시전송 요청
     public function SendToNTS($CorpNum, $MgtKeyType, $MgtKey, $UserID = null)
     {
         if (is_null($MgtKey) || empty($MgtKey)) {
-            throw new PopbillException('관리번호가 입력되지 않았습니다.');
+            throw new PopbillException('문서번호가 입력되지 않았습니다.');
         }
 
         return $this->executeCURL('/Taxinvoice/' . $MgtKeyType . '/' . $MgtKey, $CorpNum, $UserID, true, 'NTS', '');
@@ -256,7 +291,7 @@ class TaxinvoiceService extends PopbillBase
     public function SendEmail($CorpNum, $MgtKeyType, $MgtKey, $Receiver, $UserID = null)
     {
         if (is_null($MgtKey) || empty($MgtKey)) {
-            throw new PopbillException('관리번호가 입력되지 않았습니다.');
+            throw new PopbillException('문서번호가 입력되지 않았습니다.');
         }
 
         $Request = array('receiver' => $Receiver);
@@ -269,7 +304,7 @@ class TaxinvoiceService extends PopbillBase
     public function SendSMS($CorpNum, $MgtKeyType, $MgtKey, $Sender, $Receiver, $Contents, $UserID = null)
     {
         if (is_null($MgtKey) || empty($MgtKey)) {
-            throw new PopbillException('관리번호가 입력되지 않았습니다.');
+            throw new PopbillException('문서번호가 입력되지 않았습니다.');
         }
 
         $Request = array('receiver' => $Receiver, 'sender' => $Sender, 'contents' => $Contents);
@@ -282,7 +317,7 @@ class TaxinvoiceService extends PopbillBase
     public function SendFAX($CorpNum, $MgtKeyType, $MgtKey, $Sender, $Receiver, $UserID = null)
     {
         if (is_null($MgtKey) || empty($MgtKey)) {
-            throw new PopbillException('관리번호가 입력되지 않았습니다.', -99999999);
+            throw new PopbillException('문서번호가 입력되지 않았습니다.', -99999999);
         }
 
         $Request = array('receiver' => $Receiver, 'sender' => $Sender);
@@ -295,7 +330,7 @@ class TaxinvoiceService extends PopbillBase
     public function GetInfo($CorpNum, $MgtKeyType, $MgtKey)
     {
         if (is_null($MgtKey) || empty($MgtKey)) {
-            throw new PopbillException('관리번호가 입력되지 않았습니다.');
+            throw new PopbillException('문서번호가 입력되지 않았습니다.');
         }
         $result = $this->executeCURL('/Taxinvoice/' . $MgtKeyType . '/' . $MgtKey, $CorpNum);
 
@@ -308,7 +343,7 @@ class TaxinvoiceService extends PopbillBase
     public function GetDetailInfo($CorpNum, $MgtKeyType, $MgtKey)
     {
         if (is_null($MgtKey) || empty($MgtKey)) {
-            throw new PopbillException('관리번호가 입력되지 않았습니다.');
+            throw new PopbillException('문서번호가 입력되지 않았습니다.');
         }
 
         $result = $this->executeCURL('/Taxinvoice/' . $MgtKeyType . '/' . $MgtKey . '?Detail', $CorpNum);
@@ -323,7 +358,7 @@ class TaxinvoiceService extends PopbillBase
     public function GetInfos($CorpNum, $MgtKeyType, $MgtKeyList = array())
     {
         if (is_null($MgtKeyList) || empty($MgtKeyList)) {
-            throw new PopbillException('관리번호가 입력되지 않았습니다.');
+            throw new PopbillException('문서번호가 입력되지 않았습니다.');
         }
 
         $postdata = json_encode($MgtKeyList);
@@ -345,7 +380,7 @@ class TaxinvoiceService extends PopbillBase
     public function GetLogs($CorpNum, $MgtKeyType, $MgtKey)
     {
         if (is_null($MgtKey) || empty($MgtKey)) {
-            throw new PopbillException('관리번호가 입력되지 않았습니다.');
+            throw new PopbillException('문서번호가 입력되지 않았습니다.');
         }
         $result = $this->executeCURL('/Taxinvoice/' . $MgtKeyType . '/' . $MgtKey . '/Logs', $CorpNum);
         $TaxinvoiceLogList = array();
@@ -363,25 +398,24 @@ class TaxinvoiceService extends PopbillBase
     public function AttachFile($CorpNum, $MgtKeyType, $MgtKey, $FilePath, $UserID = null)
     {
         if (is_null($MgtKey) || empty($MgtKey)) {
-            throw new PopbillException('관리번호가 입력되지 않았습니다.');
+            throw new PopbillException('문서번호가 입력되지 않았습니다.');
         }
 
-        if (mb_detect_encoding(basename($FilePath)) == 'ASCII') {
-            $FileName = iconv('CP949', 'UTF8', $FilePath);
-        } else {
-            $FileName = basename($FilePath);
+        if (mb_detect_encoding($this->GetBasename($FilePath)) == 'CP949') {
+            $FilePath = iconv('CP949', 'UTF-8', $FilePath);
         }
-
+        $FileName = $this->GetBasename($FilePath);
         $postdata = array('Filedata' => '@' . $FilePath . ';filename=' . $FileName);
 
         return $this->executeCURL('/Taxinvoice/' . $MgtKeyType . '/' . $MgtKey . '/Files', $CorpNum, $UserID, true, null, $postdata, true);
     }
 
+
     //첨부파일 목록 확인
     public function GetFiles($CorpNum, $MgtKeyType, $MgtKey)
     {
         if (is_null($MgtKey) || empty($MgtKey)) {
-            throw new PopbillException('관리번호가 입력되지 않았습니다.');
+            throw new PopbillException('문서번호가 입력되지 않았습니다.');
         }
         return $this->executeCURL('/Taxinvoice/' . $MgtKeyType . '/' . $MgtKey . '/Files', $CorpNum);
     }
@@ -390,7 +424,7 @@ class TaxinvoiceService extends PopbillBase
     public function DeleteFile($CorpNum, $MgtKeyType, $MgtKey, $FileID, $UserID = null)
     {
         if (is_null($MgtKey) || empty($MgtKey)) {
-            throw new PopbillException('관리번호가 입력되지 않았습니다.');
+            throw new PopbillException('문서번호가 입력되지 않았습니다.');
         }
         if (is_null($FileID) || empty($FileID)) {
             throw new PopbillException('파일아이디가 입력되지 않았습니다.');
@@ -402,7 +436,7 @@ class TaxinvoiceService extends PopbillBase
     public function GetPopUpURL($CorpNum, $MgtKeyType, $MgtKey, $UserID = null)
     {
         if (is_null($MgtKey) || empty($MgtKey)) {
-            throw new PopbillException('관리번호가 입력되지 않았습니다.');
+            throw new PopbillException('문서번호가 입력되지 않았습니다.');
         }
 
         return $this->executeCURL('/Taxinvoice/' . $MgtKeyType . '/' . $MgtKey . '?TG=POPUP', $CorpNum, $UserID)->url;
@@ -412,17 +446,27 @@ class TaxinvoiceService extends PopbillBase
     public function GetPrintURL($CorpNum, $MgtKeyType, $MgtKey, $UserID = null)
     {
         if (is_null($MgtKey) || empty($MgtKey)) {
-            throw new PopbillException('관리번호가 입력되지 않았습니다.');
+            throw new PopbillException('문서번호가 입력되지 않았습니다.');
         }
 
         return $this->executeCURL('/Taxinvoice/' . $MgtKeyType . '/' . $MgtKey . '?TG=PRINT', $CorpNum, $UserID)->url;
+    }
+
+    //구버전 양식 인쇄URL
+    public function GetOldPrintURL($CorpNum, $MgtKeyType, $MgtKey, $UserID = null)
+    {
+        if (is_null($MgtKey) || empty($MgtKey)) {
+            throw new PopbillException('문서번호가 입력되지 않았습니다.');
+        }
+
+        return $this->executeCURL('/Taxinvoice/' . $MgtKeyType . '/' . $MgtKey . '?TG=PRINTOLD', $CorpNum, $UserID)->url;
     }
 
     //인쇄URL
     public function GetViewURL($CorpNum, $MgtKeyType, $MgtKey, $UserID = null)
     {
         if (is_null($MgtKey) || empty($MgtKey)) {
-            throw new PopbillException('관리번호가 입력되지 않았습니다.');
+            throw new PopbillException('문서번호가 입력되지 않았습니다.');
         }
 
         return $this->executeCURL('/Taxinvoice/' . $MgtKeyType . '/' . $MgtKey . '?TG=VIEW', $CorpNum, $UserID)->url;
@@ -432,7 +476,7 @@ class TaxinvoiceService extends PopbillBase
     public function GetEPrintURL($CorpNum, $MgtKeyType, $MgtKey, $UserID = null)
     {
         if (is_null($MgtKey) || empty($MgtKey)) {
-            throw new PopbillException('관리번호가 입력되지 않았습니다.');
+            throw new PopbillException('문서번호가 입력되지 않았습니다.');
         }
 
         return $this->executeCURL('/Taxinvoice/' . $MgtKeyType . '/' . $MgtKey . '?TG=EPRINT', $CorpNum, $UserID)->url;
@@ -442,7 +486,7 @@ class TaxinvoiceService extends PopbillBase
     public function GetMailURL($CorpNum, $MgtKeyType, $MgtKey, $UserID = null)
     {
         if (is_null($MgtKey) || empty($MgtKey)) {
-            throw new PopbillException('관리번호가 입력되지 않았습니다.');
+            throw new PopbillException('문서번호가 입력되지 않았습니다.');
         }
 
         return $this->executeCURL('/Taxinvoice/' . $MgtKeyType . '/' . $MgtKey . '?TG=MAIL', $CorpNum, $UserID)->url;
@@ -452,7 +496,7 @@ class TaxinvoiceService extends PopbillBase
     public function GetMassPrintURL($CorpNum, $MgtKeyType, $MgtKeyList = array(), $UserID = null)
     {
         if (is_null($MgtKeyList) || empty($MgtKeyList)) {
-            throw new PopbillException('관리번호가 입력되지 않았습니다.');
+            throw new PopbillException('문서번호가 입력되지 않았습니다.');
         }
 
         $postdata = json_encode($MgtKeyList);
@@ -480,7 +524,8 @@ class TaxinvoiceService extends PopbillBase
 
     //세금계산서 조회
     public function Search($CorpNum, $MgtKeyType, $DType, $SDate, $EDate, $State = array(), $Type = array(), $TaxType = array(), $LateOnly, $Page, $PerPage, $Order,
-                           $TaxRegIDType = null, $TaxRegIDYN = null, $TaxRegID = null, $QString = null, $InterOPYN = null, $UserID = null, $IssueType = array())
+                           $TaxRegIDType = null, $TaxRegIDYN = null, $TaxRegID = null, $QString = null, $InterOPYN = null, $UserID = null, $IssueType = array(),
+                           $CloseDownState = array(), $MgtKey = null, $RegType = array())
     {
         if (is_null($DType) || $DType === "") {
             throw new PopbillException(-99999999, '일자유형이 입력되지 않았습니다.');
@@ -515,8 +560,16 @@ class TaxinvoiceService extends PopbillBase
             $uri .= '&IssueType=' . implode(',', $IssueType);
         }
 
+        if (!is_null($RegType) || !empty($RegType)) {
+            $uri .= '&RegType=' . implode(',', $RegType);
+        }
+
         if (!is_null($LateOnly) || !empty($LateOnly)) {
             $uri .= '&LateOnly=' . $LateOnly;
+        }
+
+        if (!is_null($CloseDownState) || !empty($CloseDownState)) {
+            $uri .= '&CloseDownState=' . implode(',', $CloseDownState);
         }
 
         if (!empty($TaxRegIDType)) {
@@ -537,6 +590,10 @@ class TaxinvoiceService extends PopbillBase
         $uri .= '&Page=' . $Page;
         $uri .= '&PerPage=' . $PerPage;
         $uri .= '&InterOPYN=' . $InterOPYN;
+
+        if (!empty($MgtKey)) {
+            $uri .= '&MgtKey=' . $MgtKey;
+        }
 
         $response = $this->executeCURL($uri, $CorpNum, $UserID);
 
@@ -584,11 +641,11 @@ class TaxinvoiceService extends PopbillBase
         return $ChargeInfo;
     }
 
-    // 문서관리번호 할당
+    // 문서문서번호 할당
     public function AssignMgtKey($CorpNum, $MgtKeyType, $itemKey, $MgtKey, $UserID = null)
     {
         if (is_null($MgtKey) || empty($MgtKey)) {
-            throw new PopbillException('할당할 문서관리번호가 입력되지 않았습니다.');
+            throw new PopbillException('할당할 문서문서번호가 입력되지 않았습니다.');
         }
         $uri = '/Taxinvoice/' . $itemKey . '/' . $MgtKeyType;
         $postdata = 'MgtKey=' . $MgtKey;
@@ -638,6 +695,32 @@ class TaxinvoiceService extends PopbillBase
     {
         $response = $this->executeCURL('/?TG=CERT', $CorpNum, $UserID);
         return $response->url;
+    }
+
+    // PDF URL
+    public function GetPDFURL($CorpNum, $MgtKeyType, $MgtKey, $UserID = null)
+    {
+        if (is_null($MgtKey) || empty($MgtKey)) {
+            throw new PopbillException('문서번호가 입력되지 않았습니다.');
+        }
+
+        return $this->executeCURL('/Taxinvoice/' . $MgtKeyType . '/' . $MgtKey . '?TG=PDF', $CorpNum, $UserID)->url;
+    }
+
+    // get PDF
+    public function GetPDF($CorpNum, $MgtKeyType, $MgtKey, $UserID = null)
+    {
+        if (is_null($MgtKey) || empty($MgtKey)) {
+            throw new PopbillException('문서번호가 입력되지 않았습니다.');
+        }
+
+        return $this->executeCURL('/Taxinvoice/' . $MgtKeyType . '/' . $MgtKey . '?PDF', $CorpNum, $UserID);
+    }
+
+    // 국세청 즉시전송 확인함수
+    public function GetSendToNTSConfig($CorpNum, $UserID = null)
+    {
+        return $this->executeCURL('/Taxinvoice/SendToNTSConfig', $CorpNum, $UserID)->sendToNTS;
     }
 }
 
@@ -870,6 +953,72 @@ class TaxinvoiceDetail
 
 }
 
+class BulkRequest
+{
+    public $forceIssue;
+    public $invoices;
+}
+
+class BulkTaxinvoiceResult
+{
+    public $code;
+    public $message;
+    public $submitID;
+    public $submitCount;
+    public $successCount;
+    public $failCount;
+    public $txState;
+    public $txResultCode;
+    public $txStartDT;
+    public $txEndDT;
+    public $receiptDT;
+    public $receiptID;
+    public $issueResult;
+
+    public function fromJsonInfo($jsonInfo)
+    {
+        isset($jsonInfo->code) ? $this->code = $jsonInfo->code : null;
+        isset($jsonInfo->message) ? $this->message = $jsonInfo->message : null;
+        isset($jsonInfo->submitID) ? $this->submitID = $jsonInfo->submitID : null;
+        isset($jsonInfo->submitCount) ? $this->submitCount = $jsonInfo->submitCount : null;
+        isset($jsonInfo->successCount) ? $this->successCount = $jsonInfo->successCount : null;
+        isset($jsonInfo->failCount) ? $this->failCount = $jsonInfo->failCount : null;
+        isset($jsonInfo->txState) ? $this->txState = $jsonInfo->txState : null;
+        isset($jsonInfo->txResultCode) ? $this->txResultCode = $jsonInfo->txResultCode : null;
+        isset($jsonInfo->txStartDT) ? $this->txStartDT = $jsonInfo->txStartDT : null;
+        isset($jsonInfo->txEndDT) ? $this->txEndDT = $jsonInfo->txEndDT : null;
+        isset($jsonInfo->receiptDT) ? $this->receiptDT = $jsonInfo->receiptDT : null;
+        isset($jsonInfo->receiptID) ? $this->receiptID = $jsonInfo->receiptID : null;
+
+        $InfoIssueResult = array();
+
+        for ($i = 0; $i < Count($jsonInfo->issueResult); $i++) {
+            $InfoObj = new BulkTaxinvoiceIssueResult();
+            $InfoObj->fromJsonInfo($jsonInfo->issueResult[$i]);
+            $InfoIssueResult[$i] = $InfoObj;
+        }
+        $this->issueResult = $InfoIssueResult;
+    }
+}
+
+class BulkTaxinvoiceIssueResult
+{
+    public $invoicerMgtKye;
+    public $trusteeMgtKye;
+    public $code;
+    public $ntsconfirmNum;
+    public $issueDT;
+
+    public function fromJsonInfo($jsonInfo)
+    {
+        isset($jsonInfo->invoicerMgtKey) ? $this->invoicerMgtKey = $jsonInfo->invoicerMgtKey : null;
+        isset($jsonInfo->trusteeMgtKey) ? $this->trusteeMgtKey = $jsonInfo->trusteeMgtKey : null;
+        isset($jsonInfo->code) ? $this->code = $jsonInfo->code : null;
+        isset($jsonInfo->ntsconfirmNum) ? $this->ntsconfirmNum = $jsonInfo->ntsconfirmNum : null;
+        isset($jsonInfo->issueDT) ? $this->issueDT = $jsonInfo->issueDT : null;
+    }
+}
+
 class TaxinvoiceAddContact
 {
     public $serialNum;
@@ -1006,6 +1155,7 @@ class TaxinvoiceLog
     public $log;
     public $procType;
     public $procCorpName;
+    public $procContactName;
     public $procMemo;
     public $regDT;
 
@@ -1016,6 +1166,7 @@ class TaxinvoiceLog
         isset($jsonInfo->log) ? $this->log = $jsonInfo->log : null;
         isset($jsonInfo->procType) ? $this->procType = $jsonInfo->procType : null;
         isset($jsonInfo->procCorpName) ? $this->procCorpName = $jsonInfo->procCorpName : null;
+        isset($jsonInfo->procContactName) ? $this->procContactName = $jsonInfo->procContactName : null;
         isset($jsonInfo->procMemo) ? $this->procMemo = $jsonInfo->procMemo : null;
         isset($jsonInfo->regDT) ? $this->regDT = $jsonInfo->regDT : null;
     }

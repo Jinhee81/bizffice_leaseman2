@@ -1,8 +1,8 @@
 <?php
 //이거가 서버에 있는 파일. 관리 매우 중요함...
 session_start();
-if(!isset($_SESSION['is_login'])){
-  header('Location: /svc/login.php');
+if (!isset($_SESSION['is_login'])) {
+    header('Location: /svc/login.php');
 }
 ?>
 <!DOCTYPE html>
@@ -11,28 +11,28 @@ if(!isset($_SESSION['is_login'])){
 <head>
     <title>납부예정</title>
     <?php
-include $_SERVER['DOCUMENT_ROOT']."/svc/view/service_header1_meta.php";
-include $_SERVER['DOCUMENT_ROOT']."/svc/view/service_header2.php";
-include $_SERVER['DOCUMENT_ROOT']."/svc/view/conn.php";
-include $_SERVER['DOCUMENT_ROOT']."/svc/main/condition.php";
-include $_SERVER['DOCUMENT_ROOT']."/svc/service/contract/building.php";
-// header("Content-Type: text/html; charset=UTF-8");
-$sql_sms = "select
+    include $_SERVER['DOCUMENT_ROOT'] . "/svc/view/service_header1_meta.php";
+    include $_SERVER['DOCUMENT_ROOT'] . "/svc/view/service_header2.php";
+    include $_SERVER['DOCUMENT_ROOT'] . "/svc/view/conn.php";
+    include $_SERVER['DOCUMENT_ROOT'] . "/svc/main/condition.php";
+    include $_SERVER['DOCUMENT_ROOT'] . "/svc/service/contract/building.php";
+    // header("Content-Type: text/html; charset=UTF-8");
+    $sql_sms = "select
           screen, title, description
         from sms
         where
           user_id={$_SESSION['id']} and
           screen='납부예정화면'";
-// echo $sql_sms;
+    // echo $sql_sms;
 
-$result_sms = mysqli_query($conn, $sql_sms);
-$rowsms = array();
-while($row_sms = mysqli_fetch_array($result_sms)){
-  $rowsms[] = $row_sms;
-}
+    $result_sms = mysqli_query($conn, $sql_sms);
+    $rowsms = array();
+    while ($row_sms = mysqli_fetch_array($result_sms)) {
+        $rowsms[] = $row_sms;
+    }
 
-// print_r($rowsms);
-?>
+    // print_r($rowsms);
+    ?>
 
     <style>
     /* 세금계산서 iframe 크기 조절  */
@@ -90,6 +90,24 @@ while($row_sms = mysqli_fetch_array($result_sms)){
                                     <option value="1pastMonth">1개월전</option>
                                     <option value="nextMonth">익월</option>
                                     <option value="nowYear">당년</option>
+                                    <option value="janu">1월</option>
+                                    <option value="feb">2월</option>
+                                    <option value="march">3월</option>
+                                    <option value="april">4월</option>
+                                    <option value="may">5월</option>
+                                    <option value="june">6월</option>
+                                    <option value="july">7월</option>
+                                    <option value="august">8월</option>
+                                    <option value="september">9월</option>
+                                    <option value="october">10월</option>
+                                    <option value="november">11월</option>
+                                    <option value="december">12월</option>
+                                    <option value="1quater">1분기</option>
+                                    <option value="2quater">2분기</option>
+                                    <option value="3quater">3분기</option>
+                                    <option value="4quater">4분기</option>
+                                    <option value="sangbangi">상반기</option>
+                                    <option value="habangi">하반기</option>
                                 </select>
                                 <!--시간구분-->
                             </td>
@@ -146,9 +164,9 @@ while($row_sms = mysqli_fetch_array($result_sms)){
                             <td>
                                 <select class="form-control form-control-sm" id="smsTitle" name="">
                                     <option value="상용구없음">상용구없음</option>
-                                    <?php for ($i=0; $i < count($rowsms); $i++) {
-                      echo "<option value='".$rowsms[$i]['title']."'>".$rowsms[$i]['title']."</option>";
-                    } ?>
+                                    <?php for ($i = 0; $i < count($rowsms); $i++) {
+                                        echo "<option value='" . $rowsms[$i]['title'] . "'>" . $rowsms[$i]['title'] . "</option>";
+                                    } ?>
                                 </select>
                             </td>
                             <td>
@@ -202,17 +220,21 @@ while($row_sms = mysqli_fetch_array($result_sms)){
                         <tr class="table-secondary">
                             <th width="2%" class="fixedHeader"><input type="checkbox" id="allselect"></th>
                             <th width="4%" class="fixedHeader">순번</th>
-                            <th width="5%" class="mobile fixedHeader">그룹명</th>
+                            <th width="5%" class="mobile fixedHeader">물건명<br>그룹명</th>
                             <th width="5%" class="fixedHeader">관리호수</th>
                             <th width="10%" class="fixedHeader">입주자</th>
                             <th width="10%" class="fixedHeader">연락처</th>
                             <th width="4%" class="mobile fixedHeader">개월</th>
-                            <th width="10%" class="mobile fixedHeader">시작일/종료일</th>
-                            <th width="10%" class="fixedHeader">예정일/입금일</th>
-                            <th width="10%" class="mobile fixedHeader">공급가액/세액</th>
-                            <th width="8%" class="fixedHeader">합계</th>
+                            <th width="10%" class="mobile fixedHeader">시작일<br>종료일</th>
+                            <th width="10%" class="fixedHeader">예정일<br>입금일</th>
+                            <th width="10%" class="mobile fixedHeader">공급가액<br>세액</th>
+                            <th width="8%" class="fixedHeader">
+                                합계<br>
+                                <span class="badge badge-light">파일</span>
+                                <span class="badge badge-dark">메모</span>
+                            </th>
                             <th width="5%" class="mobile fixedHeader">구분</th>
-                            <th width="6%" class="mobile fixedHeader">연체일수/이자</th>
+                            <th width="6%" class="mobile fixedHeader">연체일수<br>이자</th>
                             <th width="8%" class="mobile fixedHeader">증빙</th>
                         </tr>
                     </thead>
@@ -234,31 +256,34 @@ while($row_sms = mysqli_fetch_array($result_sms)){
 
 
     <?php
-include $_SERVER['DOCUMENT_ROOT']."/svc/service/customer/modal_customer.php";
-include "modal_pay.php";
-include $_SERVER['DOCUMENT_ROOT']."/svc/service/sms/modal_sms1.php";
-include $_SERVER['DOCUMENT_ROOT']."/svc/service/sms/modal_sms2.php";
-include $_SERVER['DOCUMENT_ROOT']."/svc/modal/modal_amount2.php";
+    include $_SERVER['DOCUMENT_ROOT'] . "/svc/service/customer/modal_customer.php";
+    include "modal_pay.php";
+    include $_SERVER['DOCUMENT_ROOT'] . "/svc/service/sms/modal_sms1.php";
+    include $_SERVER['DOCUMENT_ROOT'] . "/svc/service/sms/modal_sms2.php";
+    include $_SERVER['DOCUMENT_ROOT'] . "/svc/modal/modal_amount2.php";
+    include $_SERVER['DOCUMENT_ROOT'] . "/svc/modal/modal_file.php";
+    include $_SERVER['DOCUMENT_ROOT'] . "/svc/modal/modal_memo.php";
 
- ?>
 
-    <?php include $_SERVER['DOCUMENT_ROOT']."/svc/view/service_footer.php"; ?>
+    ?>
+
+    <?php include $_SERVER['DOCUMENT_ROOT'] . "/svc/view/service_footer.php"; ?>
 
     <script src="/svc/inc/js/jquery-3.3.1.min.js"></script>
     <script src="/svc/inc/js/popper.min.js"></script>
     <script src="/svc/inc/js/bootstrap.min.js"></script>
     <script src="/svc/inc/js/jquery.number.min.js"></script>
     <script src="/svc/inc/js/jquery-ui.min.js"></script>
-    <script src="/svc/inc/js/datepicker-ko.js?<?=date('YmdHis')?>"></script>
+    <script src="/svc/inc/js/datepicker-ko.js?<?= date('YmdHis') ?>"></script>
     <script src="/svc/inc/js/jquery-ui-timepicker-addon.js"></script>
-    <script src="/svc/inc/js/etc/newdate8.js?<?=date('YmdHis')?>"></script>
-    <script src="/svc/inc/js/etc/sms_noneparase3.js?<?=date('YmdHis')?>"></script>
-    <script src="/svc/inc/js/etc/sms_existparase10.js?<?=date('YmdHis')?>"></script>
-    <script src="/svc/inc/js/etc/checkboxtable.js?<?=date('YmdHis')?>"></script>
-    <script src="/svc/inc/js/etc/modal_table.js?<?=date('YmdHis')?>"></script>
-    <script src="/svc/inc/js/etc/form.js?<?=date('YmdHis')?>"></script>
+    <script src="/svc/inc/js/etc/newdate8.js?<?= date('YmdHis') ?>"></script>
+    <script src="/svc/inc/js/etc/sms_noneparase3.js?<?= date('YmdHis') ?>"></script>
+    <script src="/svc/inc/js/etc/sms_existparase10.js?<?= date('YmdHis') ?>"></script>
+    <script src="/svc/inc/js/etc/checkboxtable.js?<?= date('YmdHis') ?>"></script>
+    <script src="/svc/inc/js/etc/modal_table.js?<?= date('YmdHis') ?>"></script>
+    <script src="/svc/inc/js/etc/form.js?<?= date('YmdHis') ?>"></script>
     <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-    <script src="/svc/inc/js/daumAddressAPI3.js?<?=date('YmdHis')?>"></script>
+    <script src="/svc/inc/js/daumAddressAPI3.js?<?= date('YmdHis') ?>"></script>
 
     <script type="text/javascript">
     var lease_type = <?php echo json_encode($_SESSION['lease_type']); ?>;
@@ -270,19 +295,22 @@ include $_SERVER['DOCUMENT_ROOT']."/svc/modal/modal_amount2.php";
     var buildingText = <?php echo json_encode($_SESSION['user_name']); ?>;
     var popbillid = <?php echo json_encode($_SESSION['popbillid']); ?>;
     var companynumber =
-        <?=json_encode($_SESSION['companynumber'])?>;
+        <?= json_encode($_SESSION['companynumber']) ?>;
     console.log(buildingArray);
     console.log(groupBuildingArray);
     console.log(roomArray);
     </script>
 
-    <script src="/svc/inc/js/etc/building.js?<?=date('YmdHis')?>"></script>
-    <script type="text/javascript" src="j_checksum.js?<?=date('YmdHis')?>"></script>
-    <script type="text/javascript" src="j_sms_array.js?<?=date('YmdHis')?>"></script>
-    <script type="text/javascript" src="j_taxarray.js?<?=date('YmdHis')?>"></script>
-    <script type="text/javascript" src="/svc/inc/js/etc/ce_pl_f2.js?<?=date('YmdHis')?>"></script>
-    <script type="text/javascript" src="/svc/inc/js/etc/customer.js?<?=date('YmdHis')?>"></script>
-    <script type="text/javascript" src="/svc/inc/js/etc/customer_edit.js?<?=date('YmdHis')?>"></script>
+    <script src="/svc/inc/js/etc/building.js?<?= date('YmdHis') ?>"></script>
+    <script type="text/javascript" src="j_checksum.js?<?= date('YmdHis') ?>"></script>
+    <script type="text/javascript" src="j_sms_array.js?<?= date('YmdHis') ?>"></script>
+    <script type="text/javascript" src="j_taxarray.js?<?= date('YmdHis') ?>"></script>
+    <script type="text/javascript" src="/svc/inc/js/etc/ce_pl_f2.js?<?= date('YmdHis') ?>"></script>
+    <script type="text/javascript" src="/svc/inc/js/etc/customer.js?<?= date('YmdHis') ?>"></script>
+    <script type="text/javascript" src="/svc/inc/js/etc/customer_edit.js?<?= date('YmdHis') ?>"></script>
+    <script type="text/javascript" src="/svc/service/contract/j_contract_insidebuttons.js?<?= date('YmdHis') ?>">
+    </script>
+    <script src="/svc/inc/js/autosize.min.js"></script>
 
     <script>
     $(function() {
@@ -333,6 +361,7 @@ include $_SERVER['DOCUMENT_ROOT']."/svc/modal/modal_amount2.php";
             },
             success: function(data) {
                 data = JSON.parse(data);
+                console.log(data);
                 datacount = data.length;
 
                 var returns = '';
@@ -346,6 +375,19 @@ include $_SERVER['DOCUMENT_ROOT']."/svc/modal/modal_amount2.php";
                     $.each(data, function(key, value) {
                         countall = value.count;
                         var ordered = Number(value.num) - ((y - 1) * x);
+                        let filecount, memocount;
+
+                        if (value.filecount === 0) {
+                            filecount = '.';
+                        } else {
+                            filecount = value.filecount;
+                        }
+
+                        if (value.memocount === 0) {
+                            memocount = '.';
+                        } else {
+                            memocount = value.memocount;
+                        }
 
                         returns += '<tr>';
                         returns += '<td><input type="checkbox" name="psid" value="' + value
@@ -353,7 +395,8 @@ include $_SERVER['DOCUMENT_ROOT']."/svc/modal/modal_amount2.php";
                         returns += '<input type="hidden" name="rid" value="' + value.rid +
                             '"></td>';
                         returns += '<td>' + ordered + '</td>';
-                        returns += '<td class="mobile">' + value.gname + '</td>';
+                        returns +=
+                            `<td class="mobile"><span name=bname>${(value.bname).substring(0,3)}</span><br><span name=gname>${value.gname}</span></td>`;
                         returns += '<td>' + value.roomname + '</td>';
                         returns += '<td><a href="/svc/service/customer/m_c_edit.php?id=' + value
                             .cid +
@@ -405,6 +448,9 @@ include $_SERVER['DOCUMENT_ROOT']."/svc/modal/modal_amount2.php";
                         returns +=
                             `<td>
                             <span class="green contractAmount" data-toggle='modal' data-target=#modal_amount>${numberWithCommas(value.ptAmount)}</span>
+                            <br>
+                            <span class="badge badge-light modalfile" data-toggle="modal" data-target="#modal_file">${filecount}</span>
+                        <span class="badge badge-dark modalmemo" data-toggle="modal" data-target="#modal_memo">${memocount}</span>
                             <input type=hidden name=contractId value=${value.rid}><input type=hidden name=mAmount value=${value.mAmount}><input type=hidden name=mvAmount value=${value.mvAmount}><input type=hidden name=payOrder value=${value.payOrder}>
                             </td>`;
                         returns += '<td class="mobile">';
@@ -607,7 +653,7 @@ include $_SERVER['DOCUMENT_ROOT']."/svc/modal/modal_amount2.php";
             // console.log(payNumber);
             var rid = currow2.find('td:eq(0)').children('input[name=rid]').val();
 
-            var payamount = currow2.find('td:eq(10)').children('span').text();
+            var payamount = currow2.find('td:eq(10)').children('.contractAmount').text();
             var paykind = currow2.find('td:eq(11)').children().val();
             var pExpectedDate = $(this).text();
 
@@ -794,6 +840,8 @@ include $_SERVER['DOCUMENT_ROOT']."/svc/modal/modal_amount2.php";
 
     $('#allselect').click(function() {
 
+        let table = $('#checkboxTestTbl');
+
         var allCnt = $(".tbodycheckbox").length;
         if ($("#allselect").is(":checked")) {
             for (var i = 1; i <= allCnt; i++) {
@@ -803,7 +851,8 @@ include $_SERVER['DOCUMENT_ROOT']."/svc/modal/modal_amount2.php";
                     .val());
                 var executiveDate = table.find("tr:eq(" + i + ")").find("td:eq(8)").children(
                     'input[name=executiveDate]').val();
-                var executiveAmount = table.find("tr:eq(" + i + ")").find("td:eq(10)").children('a').text();
+                var executiveAmount = table.find("tr:eq(" + i + ")").find("td:eq(10)").children(
+                    '.contractAmount').text();
                 var payKind = table.find("tr:eq(" + i + ")").find("td:eq(11)").children('select').val();
                 var rid = table.find("tr:eq(" + i + ")").find("td:eq(0)").children('input[name=rid]').val();
 
@@ -899,9 +948,61 @@ include $_SERVER['DOCUMENT_ROOT']."/svc/modal/modal_amount2.php";
                 cid;
         })
     })
+
+    $(document).on('click', '.modalfile', function() {
+        var ccid = $(this).siblings('input[name=contractId]').val();
+        var cccustomer = $(this).parent().siblings('td:eq(4)').find('input[name=cname]').val();
+        var ccroom = $(this).parent().siblings('td:eq(3)').text();
+        ccid = Number(ccid);
+
+        $('span.mtitle').text('첨부파일');
+        $('span.contractNumber').text(ccid);
+        $('span.customer11').text(cccustomer);
+        $('span.room11').text(ccroom);
+
+        filelist(ccid);
+        //   console.log('file load');
+    })
+
+    $(document).on('click', '.modalmemo', function() {
+        var ccid = $(this).siblings('input[name=contractId]').val();
+        var cccustomer = $(this).parent().siblings('td:eq(4)').find('input[name=cname]').val();
+        var ccroom = $(this).parent().siblings('td:eq(3)').text();
+        ccid = Number(ccid);
+
+        // console.log('memo load');
+
+        $('span.mtitle').text('메모');
+        $('span.contractNumber').text(ccid);
+        $('span.customer11').text(cccustomer);
+        $('span.room11').text(ccroom);
+
+        memolist(ccid);
+    })
+
+    $('#modal_file').on('hidden.bs.modal', function() {
+        var pagerow = 50;
+        var getPage = 1;
+        maketable(pagerow, getPage);
+        // makesum(pagerow, getPage);
+    })
+
+    $('#modal_memo').on('hidden.bs.modal', function() {
+        var pagerow = 50;
+        var getPage = 1;
+        maketable(pagerow, getPage);
+        // makesum(pagerow, getPage);
+    })
+
+    $('#eachpop').on('hidden.bs.modal', function() {
+        var pagerow = 50;
+        var getPage = 1;
+        maketable(pagerow, getPage);
+        // makesum(pagerow, getPage);
+    })
     </script>
 
-    <script type="text/javascript" src="js_sms_tax.js?<?=date('YmdHis')?>"></script>
+    <script type="text/javascript" src="js_sms_tax.js?<?= date('YmdHis') ?>"></script>
 
     </body>
 

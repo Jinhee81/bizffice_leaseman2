@@ -50,6 +50,24 @@ if (!isset($_SESSION['is_login'])) {
                                     <option value="1pastMonth">1개월</option>
                                     <option value="3pastMonth">3개월</option>
                                     <option value="nowYear">당년</option>
+                                    <option value="janu">1월</option>
+                                    <option value="feb">2월</option>
+                                    <option value="march">3월</option>
+                                    <option value="april">4월</option>
+                                    <option value="may">5월</option>
+                                    <option value="june">6월</option>
+                                    <option value="july">7월</option>
+                                    <option value="august">8월</option>
+                                    <option value="september">9월</option>
+                                    <option value="october">10월</option>
+                                    <option value="november">11월</option>
+                                    <option value="december">12월</option>
+                                    <option value="1quater">1분기</option>
+                                    <option value="2quater">2분기</option>
+                                    <option value="3quater">3분기</option>
+                                    <option value="4quater">4분기</option>
+                                    <option value="sangbangi">상반기</option>
+                                    <option value="habangi">하반기</option>
                                 </select>
                                 <!--codi2-->
                             </td>

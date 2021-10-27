@@ -62,6 +62,20 @@ for ($i=0; $i < count($allRows); $i++) {
     $allRows[$i]['div5'] = '';
   }
 
+  $sql_file_c = "select count(*) from upload_file where realContract_id={$allRows[$i]['rid']}";
+  // echo $sql_file_c;
+  $result_file_c = mysqli_query($conn, $sql_file_c);
+  $row_file_c = mysqli_fetch_array($result_file_c);
+
+  $allRows[$i]['filecount'] = (int)$row_file_c[0];
+
+
+  $sql_memo_c = "select count(*) from realContract_memo where realContract_id={$allRows[$i]['rid']}";
+  $result_memo_c = mysqli_query($conn, $sql_memo_c);
+  $row_memo_c = mysqli_fetch_array($result_memo_c);
+
+  $allRows[$i]['memocount'] = (int)$row_memo_c[0];
+
   // $allRows[$i]['pAmount'] = number_format($allRows[$i]['pAmount']);
   // $allRows[$i]['pvAmount'] = number_format($allRows[$i]['pvAmount']);
   // $allRows[$i]['ptAmount'] = number_format($allRows[$i]['ptAmount']);

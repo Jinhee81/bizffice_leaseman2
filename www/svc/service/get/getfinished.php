@@ -2,8 +2,8 @@
 // ini_set('display_errors', 1);
 // ini_set('error_reporting', E_ALL);
 session_start();
-if(!isset($_SESSION['is_login'])){
-  header('Location: /svc/login.php');
+if (!isset($_SESSION['is_login'])) {
+    header('Location: /svc/login.php');
 }
 ?>
 <!DOCTYPE html>
@@ -12,29 +12,29 @@ if(!isset($_SESSION['is_login'])){
 <head>
     <title>납부완료목록</title>
     <?php
-include $_SERVER['DOCUMENT_ROOT']."/svc/view/service_header1_meta.php";
-include $_SERVER['DOCUMENT_ROOT']."/svc/view/service_header2.php";
-include $_SERVER['DOCUMENT_ROOT']."/svc/view/conn.php";
-include $_SERVER['DOCUMENT_ROOT']."/svc/main/condition.php";
-include $_SERVER['DOCUMENT_ROOT']."/svc/service/contract/building.php"; //이거빼면큰일남, 조회안됨
-// print_r($_SESSION);
+    include $_SERVER['DOCUMENT_ROOT'] . "/svc/view/service_header1_meta.php";
+    include $_SERVER['DOCUMENT_ROOT'] . "/svc/view/service_header2.php";
+    include $_SERVER['DOCUMENT_ROOT'] . "/svc/view/conn.php";
+    include $_SERVER['DOCUMENT_ROOT'] . "/svc/main/condition.php";
+    include $_SERVER['DOCUMENT_ROOT'] . "/svc/service/contract/building.php"; //이거빼면큰일남, 조회안됨
+    // print_r($_SESSION);
 
-$sql_sms = "select
+    $sql_sms = "select
           screen, title, description
         from sms
         where
           user_id={$_SESSION['id']} and
           screen='납부완료화면'";
-// echo $sql_sms;
+    // echo $sql_sms;
 
-$result_sms = mysqli_query($conn, $sql_sms);
-$rowsms = array();
-while($row_sms = mysqli_fetch_array($result_sms)){
-  $rowsms[] = $row_sms;
-}
+    $result_sms = mysqli_query($conn, $sql_sms);
+    $rowsms = array();
+    while ($row_sms = mysqli_fetch_array($result_sms)) {
+        $rowsms[] = $row_sms;
+    }
 
-// print_r($rowsms);
-?>
+    // print_r($rowsms);
+    ?>
 
     <style>
     /* 세금계산서 iframe 크기 조절  */
@@ -187,9 +187,9 @@ while($row_sms = mysqli_fetch_array($result_sms)){
                             <td>
                                 <select class="form-control form-control-sm" id="smsTitle" name="">
                                     <option value="상용구없음">상용구없음</option>
-                                    <?php for ($i=0; $i < count($rowsms); $i++) {
-                      echo "<option value='".$rowsms[$i]['title']."'>".$rowsms[$i]['title']."</option>";
-                    } ?>
+                                    <?php for ($i = 0; $i < count($rowsms); $i++) {
+                                        echo "<option value='" . $rowsms[$i]['title'] . "'>" . $rowsms[$i]['title'] . "</option>";
+                                    } ?>
                                 </select>
                             </td>
                             <td>
@@ -265,8 +265,12 @@ while($row_sms = mysqli_fetch_array($result_sms)){
                     <th scope="col" class="mobile">구분</th>
                     <th scope="col" class="">납부자명</th>
                     <th scope="col" class="">연락처</th>
+                    <th scope="col" class="">물건명</th>
                     <th scope="col" class="">계약(상품)</th>
                     <th scope="col" class="mobile">증빙</th>
+                    <th scope="col" class=""><span class="badge badge-light">파일</span>
+                        <span class="badge badge-dark">메모</span>
+                    </th>
                 </tr>
             </thead>
             <tbody id="allVals">
@@ -281,14 +285,16 @@ while($row_sms = mysqli_fetch_array($result_sms)){
 
 
     <?php
-include $_SERVER['DOCUMENT_ROOT']."/svc/service/customer/modal_customer.php";
-include "modal_pay2.php";
-include $_SERVER['DOCUMENT_ROOT']."/svc/service/sms/modal_sms1.php";
-include $_SERVER['DOCUMENT_ROOT']."/svc/service/sms/modal_sms2.php";
-include $_SERVER['DOCUMENT_ROOT']."/svc/modal/modal_amount2.php";
- ?>
+    include $_SERVER['DOCUMENT_ROOT'] . "/svc/service/customer/modal_customer.php";
+    include "modal_pay2.php";
+    include $_SERVER['DOCUMENT_ROOT'] . "/svc/service/sms/modal_sms1.php";
+    include $_SERVER['DOCUMENT_ROOT'] . "/svc/service/sms/modal_sms2.php";
+    include $_SERVER['DOCUMENT_ROOT'] . "/svc/modal/modal_amount2.php";
+    include $_SERVER['DOCUMENT_ROOT'] . "/svc/modal/modal_file.php";
+    include $_SERVER['DOCUMENT_ROOT'] . "/svc/modal/modal_memo.php";
+    ?>
 
-    <?php include $_SERVER['DOCUMENT_ROOT']."/svc/view/service_footer.php"; ?>
+    <?php include $_SERVER['DOCUMENT_ROOT'] . "/svc/view/service_footer.php"; ?>
 
 
     <script src="/svc/inc/js/jquery-3.3.1.min.js"></script>
@@ -296,17 +302,17 @@ include $_SERVER['DOCUMENT_ROOT']."/svc/modal/modal_amount2.php";
     <script src="/svc/inc/js/bootstrap.min.js"></script>
     <script src="/svc/inc/js/jquery.number.min.js"></script>
     <script src="/svc/inc/js/jquery-ui.min.js"></script>
-    <script src="/svc/inc/js/datepicker-ko.js?<?=date('YmdHis')?>"></script>
+    <script src="/svc/inc/js/datepicker-ko.js?<?= date('YmdHis') ?>"></script>
     <script src="/svc/inc/js/jquery-ui-timepicker-addon.js"></script>
-    <script src="/svc/inc/js/etc/newdate8.js?<?=date('YmdHis')?>"></script>
-    <script src="/svc/inc/js/etc/sms_noneparase3.js?<?=date('YmdHis')?>"></script>
-    <script src="/svc/inc/js/etc/sms_existparase10.js?<?=date('YmdHis')?>"></script>
-    <script src="/svc/inc/js/etc/checkboxtable.js?<?=date('YmdHis')?>">
+    <script src="/svc/inc/js/etc/newdate8.js?<?= date('YmdHis') ?>"></script>
+    <script src="/svc/inc/js/etc/sms_noneparase3.js?<?= date('YmdHis') ?>"></script>
+    <script src="/svc/inc/js/etc/sms_existparase10.js?<?= date('YmdHis') ?>"></script>
+    <script src="/svc/inc/js/etc/checkboxtable.js?<?= date('YmdHis') ?>">
     </script>
-    <script src="/svc/inc/js/etc/form.js?<?=date('YmdHis')?>"></script>
-    <script type="text/javascript" src="/svc/inc/js/etc/ce_pl_f2.js?<?=date('YmdHis')?>"></script>
+    <script src="/svc/inc/js/etc/form.js?<?= date('YmdHis') ?>"></script>
+    <script type="text/javascript" src="/svc/inc/js/etc/ce_pl_f2.js?<?= date('YmdHis') ?>"></script>
     <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-    <script src="/svc/inc/js/daumAddressAPI3.js?<?=date('YmdHis')?>"></script>
+    <script src="/svc/inc/js/daumAddressAPI3.js?<?= date('YmdHis') ?>"></script>
 
     <script type="text/javascript">
     function taxInfo2(bid, mun, ccid) {
@@ -330,7 +336,7 @@ include $_SERVER['DOCUMENT_ROOT']."/svc/modal/modal_amount2.php";
     var buildingText = <?php echo json_encode($_SESSION['user_name']); ?>;
     var popbillid = <?php echo json_encode($_SESSION['popbillid']); ?>;
     var companynumber =
-        <?=json_encode($_SESSION['companynumber'])?>;
+        <?= json_encode($_SESSION['companynumber']) ?>;
     // console.log(buildingArray);
     // console.log(groupBuildingArray);
     // console.log(roomArray);
@@ -341,12 +347,15 @@ include $_SERVER['DOCUMENT_ROOT']."/svc/modal/modal_amount2.php";
     </script>
 
 
-    <script src="/svc/inc/js/etc/building.js?<?=date('YmdHis')?>"></script>
-    <script src="/svc/inc/js/etc/customer.js?<?=date('YmdHis')?>"></script>
-    <script src="/svc/inc/js/etc/customer_edit.js?<?=date('YmdHis')?>"></script>
-    <script type="text/javascript" src="j_checksum_f.js?<?=date('YmdHis')?>"></script>
-    <script type="text/javascript" src="j_sms_array_f.js?<?=date('YmdHis')?>"></script>
-    <script type="text/javascript" src="j_taxarray_f.js?<?=date('YmdHis')?>"></script>
+    <script src="/svc/inc/js/etc/building.js?<?= date('YmdHis') ?>"></script>
+    <script src="/svc/inc/js/etc/customer.js?<?= date('YmdHis') ?>"></script>
+    <script src="/svc/inc/js/etc/customer_edit.js?<?= date('YmdHis') ?>"></script>
+    <script type="text/javascript" src="j_checksum_f.js?<?= date('YmdHis') ?>"></script>
+    <script type="text/javascript" src="j_sms_array_f.js?<?= date('YmdHis') ?>"></script>
+    <script type="text/javascript" src="j_taxarray_f.js?<?= date('YmdHis') ?>"></script>
+    <script type="text/javascript" src="/svc/service/contract/j_contract_insidebuttons.js?<?= date('YmdHis') ?>">
+    </script>
+    <script src="/svc/inc/js/autosize.min.js"></script>
 
 
     <script type="text/javascript">
@@ -359,7 +368,7 @@ include $_SERVER['DOCUMENT_ROOT']."/svc/modal/modal_amount2.php";
             data: $('form').serialize(),
             success: function(data) {
                 data = JSON.parse(data);
-                // console.log(data);
+                console.log(data);
                 datacount = data.length;
 
                 var returns = '';
@@ -375,6 +384,19 @@ include $_SERVER['DOCUMENT_ROOT']."/svc/modal/modal_amount2.php";
                     returns = "<tr><td colspan='11'>조회값이 없어요. 조회조건을 다시 확인하거나 서둘러 입력해주세요!</td></tr>";
                 } else {
                     $.each(data, function(key, value) {
+                        let filecount, memocount;
+                        if (value.filecount === 0) {
+                            filecount = '.';
+                        } else {
+                            filecount = value.filecount;
+                        }
+
+                        if (value.memocount === 0) {
+                            memocount = '.';
+                        } else {
+                            memocount = value.memocount;
+                        }
+
                         returns += '<tr>';
                         returns += '<td class=""><input type="checkbox" name="pid" value="' + value
                             .idpaySchedule2 +
@@ -459,16 +481,17 @@ include $_SERVER['DOCUMENT_ROOT']."/svc/modal/modal_amount2.php";
 
                         returns += '<td class=""><a href="tel:' + value.contact + '">' + value
                             .contact + '</td>';
+                        returns += `<td class="">${value.buildingname}</td>`;
 
                         if (value.roomdiv === 'room') {
-                            returns += '<td class="">' + '임대계약' + '(' + value.groupname + ',' +
+                            returns += '<td class="">' + '임대' + '(' + value.groupname + ',' +
                                 value.roomname + ')' +
                                 '<input type="hidden" name="roomdiv" value="' + value.roomdiv +
                                 '"><input type="hidden" name="groupname" value="' + value
                                 .groupname + '"><input type="hidden" name="roomname" value="' +
                                 value.roomname + '"></td>';
                         } else if (value.roomdiv === 'good') {
-                            returns += '<td class="">' + '기타계약' + '(' + value.groupname + ')' +
+                            returns += '<td class="">' + '기타' + '(' + value.groupname + ')' +
                                 '<input type="hidden" name="roomdiv" value="' + value.roomdiv +
                                 '"><input type="hidden" name="groupname" value="' + value
                                 .groupname +
@@ -507,6 +530,11 @@ include $_SERVER['DOCUMENT_ROOT']."/svc/modal/modal_amount2.php";
                                 returns += '<td class="mobile"></td>';
                             }
                         }
+
+                        returns += `<td class="mobile" name=filememo>
+                        <span class="badge badge-light modalfile" data-toggle="modal" data-target="#modal_file">${filecount}</span>
+                        <span class="badge badge-dark modalmemo" data-toggle="modal" data-target="#modal_memo">${memocount}</span>
+                    </td>`;
 
 
 
@@ -685,9 +713,61 @@ include $_SERVER['DOCUMENT_ROOT']."/svc/modal/modal_amount2.php";
                 cid;
         })
     })
+
+    $(document).on('click', '.modalfile', function() {
+        var ccid = $(this).parent().siblings('td:eq(0)').find('input[name=rid]').val();
+        var cccustomer = $(this).parent().parent().find('td:eq(7)').find('input[name=name]').val();
+        var ccroom = $(this).parent().parent().find('td:eq(9)').find('input[name=roomname]').val();
+        ccid = Number(ccid);
+
+        $('span.mtitle').text('첨부파일');
+        $('span.contractNumber').text(ccid);
+        $('span.customer11').text(cccustomer);
+        $('span.room11').text(ccroom);
+
+        filelist(ccid);
+        //   console.log('file load');
+    })
+
+    $(document).on('click', '.modalmemo', function() {
+        var ccid = $(this).parent().siblings('td:eq(0)').find('input[name=rid]').val();
+        var cccustomer = $(this).parent().parent().find('td:eq(7)').find('input[name=name]').val();
+        var ccroom = $(this).parent().parent().find('td:eq(9)').find('input[name=roomname]').val();
+        ccid = Number(ccid);
+
+        // console.log('memo load');
+
+        $('span.mtitle').text('메모');
+        $('span.contractNumber').text(ccid);
+        $('span.customer11').text(cccustomer);
+        $('span.room11').text(ccroom);
+
+        memolist(ccid);
+    })
+
+    $('#eachpop').on('hidden.bs.modal', function() {
+        var pagerow = 50;
+        var getPage = 1;
+        maketable(pagerow, getPage);
+        // makesum(pagerow, getPage);
+    })
+
+    $('#modal_file').on('hidden.bs.modal', function() {
+        var pagerow = 50;
+        var getPage = 1;
+        maketable(pagerow, getPage);
+        // makesum(pagerow, getPage);
+    })
+
+    $('#modal_memo').on('hidden.bs.modal', function() {
+        var pagerow = 50;
+        var getPage = 1;
+        maketable(pagerow, getPage);
+        // makesum(pagerow, getPage);
+    })
     </script>
 
-    <script type="text/javascript" src="js_sms_tax.js?<?=date('YmdHis')?>">
+    <script type="text/javascript" src="js_sms_tax.js?<?= date('YmdHis') ?>">
     </script>
 
     </body>

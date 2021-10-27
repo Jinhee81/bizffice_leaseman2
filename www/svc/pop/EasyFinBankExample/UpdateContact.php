@@ -1,12 +1,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<link rel="stylesheet" type="text/css" href="/Example.css" media="screen" />
-		<title>팝빌 SDK PHP 5.X Example.</title>
-	</head>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link rel="stylesheet" type="text/css" href="/Example.css" media="screen" />
+        <title>팝빌 SDK PHP 5.X Example.</title>
+    </head>
 <?php
     /**
-     * 연동회원의 담당자 정보를 수정합니다.
+     * 연동회원 사업자번호에 등록된 담당자(팝빌 로그인 계정) 정보를 수정합니다.
      * - https://docs.popbill.com/easyfinbank/php/api#UpdateContact
      */
 
@@ -39,8 +39,8 @@
     // 팩스번호
     $ContactInfo->fax = '070-111-222';
 
-    // 전체조회 여부, false-개인조회, true-전체조회
-    $ContactInfo->searchAllAllowYN = true;
+    // 담당자 조회권한 1 - 개인권한 / 2 - 읽기권한  / 3 - 회사권한
+    $ContactInfo->searchRole = 3;
 
     try {
         $result = $EasyFinBankService->UpdateContact($testCorpNum, $ContactInfo, $testUserID);
@@ -52,17 +52,17 @@
         $message = $pe->getMessage();
     }
 ?>
-	<body>
-		<div id="content">
-			<p class="heading1">Response</p>
-			<br/>
-			<fieldset class="fieldset1">
-				<legend>담당자 정보 수정</legend>
-				<ul>
-					<li>Response.code : <?php echo $code ?></li>
-					<li>Response.message : <?php echo $message ?></li>
-				</ul>
-			</fieldset>
-		 </div>
-	</body>
+    <body>
+        <div id="content">
+            <p class="heading1">Response</p>
+            <br/>
+            <fieldset class="fieldset1">
+                <legend>담당자 정보 수정</legend>
+                <ul>
+                    <li>Response.code : <?php echo $code ?></li>
+                    <li>Response.message : <?php echo $message ?></li>
+                </ul>
+            </fieldset>
+         </div>
+    </body>
 </html>

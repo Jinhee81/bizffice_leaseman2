@@ -19,8 +19,10 @@
     <fieldset class="fieldset1">
         <legend>팩스 전송</legend>
         <ul>
-            <li><a href="SendFAX.php">SendFAX</a> (팩스 전송. 1파일 1건 전송)</li>
-            <li><a href="SendFAX_Multi.php">SendFAX_Multi</a> (팩스 전송. 1파일 동보 전송(수신번호 최대 1000개))</li>
+            <li><a href="SendFAX.php">SendFAX</a> (팩스 전송. 파일(최대 20개) 1건 전송)</li>
+            <li><a href="SendFAX_Multi.php">SendFAX_Multi</a> (팩스 전송. 파일(최대 20개) 동보 전송(수신번호 최대 1000개))</li>
+            <li><a href="SendFAXBinary.php">SendFAXBinary</a> (팩스 전송. 바이너리 데이터(최대 20개) 1건 전송)</li>
+            <li><a href="SendFAXBinary_Multi.php">SendFAXBinary_Multi</a> (팩스 전송. 바이너리 데이터(최대 20개) 동보 전송(수신번호 최대 1000개))</li>
             <li><a href="ResendFAX.php">ResendFAX</a> (팩스 재전송)</li>
             <li><a href="ResendFAXRN.php">ResendFAXRN</a> (팩스 재전송 - 요청번호할당)</li>
             <li><a href="ResendFAX_Multi.php">ResendFAX_Multi</a> (팩스 동보 재전송)</li>
@@ -44,6 +46,8 @@
         <ul>
             <li><a href="GetBalance.php">GetBalance</a> (연동회원 잔여포인트 확인)</li>
             <li><a href="GetChargeURL.php">GetChargeURL</a> (연동회원 포인트충전 URL)</li>
+            <li><a href="GetPaymentURL.php">GetPaymentURL</a> (연동회원 포인트 결제내역 URL)</li>
+            <li><a href="GetUseHistoryURL.php">GetUseHistoryURL</a> (연동회원 사용내역 URL)</li>
             <li><a href="GetPartnerBalance.php">GetPartnerBalance</a> (파트너 잔여포인트 확인)</li>
             <li><a href="GetPartnerURL.php">GetPartnerURL</a> (파트너 포인트충전 URL)</li>
             <li><a href="GetUnitCost.php">GetUnitCost</a> (전송 단가 확인)</li>
@@ -58,6 +62,7 @@
             <li><a href="JoinMember.php">JoinMember</a> (연동회원 신규가입)</li>
             <li><a href="GetAccessURL.php">GetAccessURL</a> (팝빌 로그인 URL)</li>
             <li><a href="RegistContact.php">RegistContact</a> (담당자 등록)</li>
+            <li><a href="GetContactInfo.php">GetContactInfo</a> (담당자 정보 확인)</li>
             <li><a href="ListContact.php">ListContact</a> (담당자 목록 확인)</li>
             <li><a href="UpdateContact.php">UpdateContact</a> (담당자 정보 수정)</li>
             <li><a href="GetCorpInfo.php">GetCorpInfo</a> (회사정보 확인)</li>

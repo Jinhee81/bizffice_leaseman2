@@ -37,6 +37,7 @@
         <ul>
             <li><a href="GetPopUpURL.php">GetPopUpURL</a> (전자명세서 보기 URL)</li>
             <li><a href="GetPrintURL.php">GetPrintURL</a> (전자명세서 인쇄 [공급자] URL)</li>
+            <li><a href="GetViewURL.php">GetViewURL</a> (전자명세서 보기 URL - 메뉴/버튼없는 뷰)</li>
             <li><a href="GetEPrintURL.php">GetEPrintURL</a> (전자명세서 인쇄 [공급받는자용] URL)</li>
             <li><a href="GetMassPrintURL.php">GetMassPrintURL</a> (전자명세서 대량 인쇄 URL)</li>
             <li><a href="GetMailURL.php">GetMailURL</a> (전자명세서 메일링크 URL)</li>
@@ -64,6 +65,8 @@
         <ul>
             <li><a href="GetBalance.php">GetBalance</a> (연동회원 잔여포인트 확인)</li>
             <li><a href="GetChargeURL.php">GetChargeURL</a> (연동회원 포인트충전 URL)</li>
+            <li><a href="GetPaymentURL.php">GetPaymentURL</a> (연동회원 포인트 결제내역 URL)</li>
+            <li><a href="GetUseHistoryURL.php">GetUseHistoryURL</a> (연동회원 사용내역 URL)</li>
             <li><a href="GetPartnerBalance.php">GetPartnerBalance</a> (파트너 잔여포인트 확인)</li>
             <li><a href="GetPartnerURL.php">GetPartnerURL</a> (파트너 포인트충전 URL)</li>
             <li><a href="GetUnitCost.php">GetUnitCost</a> (발행 단가 확인)</li>
@@ -79,6 +82,7 @@
             <li><a href="GetCorpInfo.php">GetCorpInfo</a> (회사정보 확인)</li>
             <li><a href="UpdateCorpInfo.php">UpdateCorpInfo</a> (회사정보 수정)</li>
             <li><a href="RegistContact.php">RegistContact</a> (담당자 등록)</li>
+            <li><a href="GetContactInfo.php">GetContactInfo</a> (담당자 정보 확인)</li>
             <li><a href="ListContact.php">ListContact</a> (담당자 목록 확인)</li>
             <li><a href="UpdateContact.php">UpdateContact</a> (담당자 정보 수정)</li>
         </ul>

@@ -1,15 +1,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<link rel="stylesheet" type="text/css" href="/Example.css" media="screen" />
-		<title>팝빌 SDK PHP 5.X Example.</title>
-	</head>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link rel="stylesheet" type="text/css" href="/Example.css" media="screen" />
+        <title>팝빌 SDK PHP 5.X Example.</title>
+    </head>
 <?php
     /**
-     * 1건의 현금영수증을 [즉시발행]합니다.
-     * - 발행일 기준 오후 5시 이전에 발행된 현금영수증은 다음날 오후 2시에 국세청 전송결과를 확인할 수 있습니다.
-     * - 현금영수증 국세청 전송 정책에 대한 정보는 "[현금영수증 API 연동매뉴얼] > 1.3. 국세청 전송정책"을 참조하시기 바랍니다.
-     * - 취소현금영수증 작성방법 안내 - http://blog.linkhub.co.kr/702
+     * 작성된 현금영수증 데이터를 팝빌에 저장과 동시에 발행하여 "발행완료" 상태로 처리합니다.
+     * - 현금영수증 국세청 전송 정책 : https://docs.popbill.com/cashbill/ntsSendPolicy?lang=php
+     * - https://docs.popbill.com/cashbill/php/api#RegistIssue
      */
 
     include 'common.php';
@@ -20,8 +19,8 @@
     // 팝빌회원 아이디
     $testUserID = 'testkorea';
 
-    // 문서번호, 사업자별로 중복없이 1~24자리 영문, 숫자, '-', '_' 조합으로 구성
-    $mgtKey = '20200118-01';
+    // 문서번호, 최대 24자리, 영문, 숫자 '-', '_'를 조합하여 사업자별로 중복되지 않도록 구성
+    $mgtKey = '20210804-001';
 
     // 메모
     $memo = '현금영수증 즉시발행 메모';
@@ -35,14 +34,6 @@
 
     // [필수] 현금영수증 문서번호,
     $Cashbill->mgtKey = $mgtKey;
-
-    // [취소 현금영수증 발행시 필수] 원본 현금영수증 국세청승인번호
-    // 국세청승인번호는 GetInfo API의 ConfirmNum 항목으로 확인할 수 있습니다.
-    $Cashbill->orgConfirmNum = '';
-
-    // [취소 현금영수증 발행시 필수] 원본 현금영수증 거래일자
-    // 현금영수증 거래일자는 GetInfo API의 TradeDate 항목으로 확인할 수 있습니다.
-    $Cashbill->orgTradeDate = '';
 
     // [필수] 문서형태, (승인거래, 취소거래) 중 기재
     $Cashbill->tradeType = '승인거래';
@@ -89,7 +80,7 @@
     $Cashbill->identityNum = '0101112222';
 
     // 주문자명
-    $Cashbill->customerName = '고객명';
+    $Cashbill->customerName = '주식회사주문자명담당자';
 
     // 주문상품명
     $Cashbill->itemName = '상품명';
@@ -112,23 +103,33 @@
         $result = $CashbillService->RegistIssue($testCorpNum, $Cashbill, $memo, $testUserID, $emailSubject);
         $code = $result->code;
         $message = $result->message;
+        $confirmNum = $result->confirmNum;
+        $tradeDate = $result->tradeDate;
     }
     catch(PopbillException $pe) {
         $code = $pe->getCode();
         $message = $pe->getMessage();
     }
 ?>
-	<body>
-		<div id="content">
-			<p class="heading1">Response</p>
-			<br/>
-			<fieldset class="fieldset1">
-				<legend>현금영수증 즉시발행</legend>
-				<ul>
-					<li>Response.code : <?php echo $code ?></li>
-					<li>Response.message : <?php echo $message ?></li>
-				</ul>
-			</fieldset>
-		 </div>
-	</body>
+    <body>
+        <div id="content">
+            <p class="heading1">Response</p>
+            <br/>
+            <fieldset class="fieldset1">
+                <legend>현금영수증 즉시발행</legend>
+                <ul>
+                    <li>Response.code : <?php echo $code ?></li>
+                    <li>Response.message : <?php echo $message ?></li>
+                    <?php
+                      if ( isset($confirmNum) ) {
+                    ?>
+                      <li>Response.confirmNum : <?php echo $confirmNum ?></li>
+                      <li>Response.tradeDate : <?php echo $tradeDate ?></li>
+                    <?php
+                      }
+                    ?>
+                </ul>
+            </fieldset>
+         </div>
+    </body>
 </html>

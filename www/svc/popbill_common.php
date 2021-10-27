@@ -19,21 +19,28 @@
 */
 
 //require_once '../Popbill/PopbillTaxinvoice.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/svc/pop/Popbill/PopbillTaxinvoice.php';
+// require_once $_SERVER['DOCUMENT_ROOT'].'/svc/pop/Popbill/PopbillTaxinvoice.php';
 
 // 링크아이디
-$LinkID = 'LEASEMANSOFT';
+$LinkID = 'LEASEMAN';
 
 // 비밀키
-$SecretKey = 'XyEkszHPws8kwnPXSVpbKP+2snZr5yUxpTTOsgPIgKI=';
+$SecretKey = 'UjpPt7hGxLe5sRwqUi6lvJ1pDzJOJGKDBGALwztMe3o=';
 
 // 통신방식 기본은 CURL , curl 사용에 문제가 있을경우 STREAM 사용가능.
 // STREAM 사용시에는 php.ini의 allow_fopen_url = on 으로 설정해야함.
 define('LINKHUB_COMM_MODE','STREAM');
 //CURL을 STREAM 나중에 바꾸기
-$TaxinvoiceService = new TaxinvoiceService($LinkID, $SecretKey);
+// $TaxinvoiceService = new TaxinvoiceService($LinkID, $SecretKey);
 
 // 연동환경 설정값, 개발용(true), 상업용(false)
-$TaxinvoiceService->IsTest(false);
+// $TaxinvoiceService->IsTest(true);
+
+// $MessagingService = new MessagingService($LinkID, $SecretKey);
+
+//   // 연동환경 설정값, 개발용(true), 상업용(false)
+//   $MessagingService->IsTest(true);
+
+// echo $LinkID;
 
 ?>

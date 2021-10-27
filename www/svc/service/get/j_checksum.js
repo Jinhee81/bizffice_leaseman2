@@ -10,7 +10,7 @@ $("#allselect").click(function(){
     for (var i = 1; i <= allCnt; i++) {
       var colpAmount = table.find("tr:eq("+i+")").find("td:eq(9)").children('label:eq(0)').text();
       var colpvAmount = table.find("tr:eq("+i+")").find("td:eq(9)").children('label:eq(1)').text();
-      var colptAmount = table.find("tr:eq("+i+")").find("td:eq(10)").children('span').text();
+      var colptAmount = table.find("tr:eq("+i+")").find("td:eq(10)").children('.contractAmount').text();
       colpAmount = colpAmount.replace(/,/gi,'');
       colpvAmount = colpvAmount.replace(/,/gi,'');
       colptAmount = colptAmount.replace(/,/gi,'');
@@ -53,7 +53,7 @@ $(document).on('click', '.tbodycheckbox', function(){
       var colid = currow.find('td:eq(0)').children('input').val();
       var colpAmount = currow.find("td:eq(9)").children('label:eq(0)').text();
       var colpvAmount = currow.find("td:eq(9)").children('label:eq(1)').text();
-      var colptAmount = currow.find("td:eq(10)").children('span').text();
+      var colptAmount = currow.find("td:eq(10)").children('.contractAmount').text();
       colpAmount = colpAmount.replace(/,/gi,'');
       colpAmount = Number(colpAmount);
       colpvAmount = colpvAmount.replace(/,/gi,'');

@@ -1,18 +1,18 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<link rel="stylesheet" type="text/css" href="/Example.css" media="screen" />
-		<title>팝빌 SDK PHP 5.X Example.</title>
-	</head>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link rel="stylesheet" type="text/css" href="/Example.css" media="screen" />
+        <title>팝빌 SDK PHP 5.X Example.</title>
+    </head>
 <?php
     /**
-     * 팝빌에 전자명세서를 등록하지 않고 공급받는자에게 팩스전송합니다.
-     * - https://docs.popbill.com/statement/php/api#FAXSend
+     * 전자명세서를 팩스로 전송하는 함수로, 팝빌에 데이터를 저장하는 과정이 없습니다.
+
      * - 팩스 전송 요청시 포인트가 차감됩니다. (전송실패시 환불처리)
-     * - 팩스 발행 요청시 작성한 문서번호는 팩스전송 파일명으로 사용됩니다.
-     * - 전송내역 확인은 "팝빌 로그인" > [문자 팩스] > [팩스] > [전송내역] 메뉴에서 전송결과를 확인할 수 있습니다.
+     * - 팝빌 사이트 [문자·팩스] > [팩스] > [전송내역] 메뉴에서 전송결과를 확인 할 수 있습니다.
      * - 팩스 전송결과를 확인하기 위해서는 선팩스 전송 요청 시 반환받은 접수번호를 이용하여
      *   팩스 API의 전송결과 확인 (GetFaxDetail) API를 이용하면 됩니다.
+     * - https://docs.popbill.com/statement/php/api#FAXSend
      */
 
     include 'common.php';
@@ -21,7 +21,7 @@
     $testCorpNum = '1234567890';
 
     // 문서번호
-    $mgtKey = '20190101-001';
+    $mgtKey = '20210801-001';
 
     // 명세서 코드 - 121(거래명세서), 122(청구서), 123(견적서) 124(발주서), 125(입금표), 126(영수증)
     $itemCode = '121';
@@ -39,7 +39,7 @@
      *                       전자명세서 정보
      ************************************************************/
     // [필수] 기재상 작성일자
-    $Statement->writeDate = '20190101';
+    $Statement->writeDate = '20210801';
 
     // [필수] (영수, 청구) 중 기재
     $Statement->purposeType = '영수';
@@ -111,7 +111,7 @@
 
     $Statement->detailList[0] = new StatementDetail();
     $Statement->detailList[0]->serialNum = '1';					//품목 일련번호 1부터 순차 기재
-    $Statement->detailList[0]->purchaseDT = '20190101';			//거래일자 yyyyMMdd
+    $Statement->detailList[0]->purchaseDT = '20210801';			//거래일자 yyyyMMdd
     $Statement->detailList[0]->itemName = '품명';
     $Statement->detailList[0]->spec = '규격';
     $Statement->detailList[0]->unit = '단위';
@@ -128,7 +128,7 @@
 
     $Statement->detailList[1] = new StatementDetail();
     $Statement->detailList[1]->serialNum = '2';					//품목 일련번호 순차기재
-    $Statement->detailList[1]->purchaseDT = '20190101';			//거래일자 yyyyMMdd
+    $Statement->detailList[1]->purchaseDT = '20210801';			//거래일자 yyyyMMdd
     $Statement->detailList[1]->itemName = '품명';
     $Statement->detailList[1]->spec = '규격';
     $Statement->detailList[1]->unit = '단위';
@@ -163,27 +163,27 @@
         $message = $pe->getMessage();
     }
 ?>
-	<body>
-		<div id="content">
-			<p class="heading1">Response</p>
-			<br/>
-			<fieldset class="fieldset1">
-				<legend>전자명세서 선팩스전송</legend>
-					<ul>
-					<?php
-						if ( isset($receiptNum) ) {
-					?>
-							<li>receiptNum(팩스전송 접수번호) : <?php echo $receiptNum?></li>
-					<?php
-						} else {
-					?>
-							<li>Response.code : <?php echo $code ?> </li>
-							<li>Response.message : <?php echo $message ?></li>
-					<?php
-						}
-					?>
-					</ul>
-			</fieldset>
-		 </div>
-	</body>
+    <body>
+        <div id="content">
+            <p class="heading1">Response</p>
+            <br/>
+            <fieldset class="fieldset1">
+                <legend>전자명세서 선팩스전송</legend>
+                    <ul>
+                    <?php
+                        if ( isset($receiptNum) ) {
+                    ?>
+                            <li>receiptNum(팩스전송 접수번호) : <?php echo $receiptNum?></li>
+                    <?php
+                        } else {
+                    ?>
+                            <li>Response.code : <?php echo $code ?> </li>
+                            <li>Response.message : <?php echo $message ?></li>
+                    <?php
+                        }
+                    ?>
+                    </ul>
+            </fieldset>
+         </div>
+    </body>
 </html>

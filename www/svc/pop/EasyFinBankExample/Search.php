@@ -1,12 +1,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<link rel="stylesheet" type="text/css" href="/Example.css" media="screen" />
-		<title>팝빌 SDK PHP 5.X Example.</title>
-	</head>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link rel="stylesheet" type="text/css" href="/Example.css" media="screen" />
+        <title>팝빌 SDK PHP 5.X Example.</title>
+    </head>
 <?php
     /*
-    * 계좌 거래내역을 조회한다.
+    * GetJobState(수집 상태 확인)를 통해 상태 정보가 확인된 작업아이디를 활용하여 계좌 거래 내역을 조회합니다.
     * - https://docs.popbill.com/easyfinbank/php/api#Search
     */
 
@@ -19,7 +19,7 @@
     $testUserID = 'testkorea';
 
     // 수집 요청(RequestJob) 호출시 반환받은 작업아이디
-    $JobID = '019121916000000001';
+    $JobID = '021080717000000014';
 
     // 거래유형 배열, I-입금, O-출금
     $TradeType = array (
@@ -48,7 +48,7 @@
         $message = $pe->getMessage();
     }
 ?>
-	<body>
+    <body>
     <div id="content">
         <p class="heading1">Response</p>
         <br/>
@@ -65,10 +65,11 @@
                     ?>
                     <li>code (응답코드) : <?php echo $response->code ?></li>
                     <li>message (응답메시지) : <?php echo $response->message ?></li>
-                    <li>total (총 검색결고 건수) : <?php echo $response->total ?></li>
+                    <li>total (총 검색결과 건수) : <?php echo $response->total ?></li>
                     <li>perPage (페이지당 검색개수) : <?php echo $response->perPage ?></li>
                     <li>pageNum (페이지 번호) : <?php echo $response->pageNum ?></li>
                     <li>pageCount (페이지 개수) : <?php echo $response->pageCount ?></li>
+                    <li>lastScrapDT (최종 조회일시) : <?php echo $response->lastScrapDT ?></li>
 
                     <?php
                     for ( $i = 0; $i < Count ( $response->list ); $i++ ) {
@@ -98,5 +99,5 @@
             </ul>
         </fieldset>
     </div>
-	</body>
+    </body>
 </html>

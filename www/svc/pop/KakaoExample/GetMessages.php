@@ -1,12 +1,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<link rel="stylesheet" type="text/css" href="/Example.css" media="screen" />
-		<title>팝빌 SDK PHP 5.X Example.</title>
-	</head>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link rel="stylesheet" type="text/css" href="/Example.css" media="screen" />
+        <title>팝빌 SDK PHP 5.X Example.</title>
+    </head>
 <?php
   /**
-  * 카카오톡 전송요청시 발급받은 접수번호(receiptNum)로 전송결과를 확인합니다.
+  * 팝빌에서 반환받은 접수번호를 통해 알림톡/친구톡 전송상태 및 결과를 확인합니다.
   * - https://docs.popbill.com/kakao/php/api#GetMessages
   */
 
@@ -16,7 +16,7 @@
     $testCorpNum = '1234567890';
 
     // 카카오톡 전송 요청 시 발급받은 접수번호(receiptNum)
-    $ReceiptNum = '018123114023400001';
+    $ReceiptNum = '020072911054400001';
 
     try {
         $result = $KakaoService->GetMessages($testCorpNum, $ReceiptNum);
@@ -93,6 +93,7 @@
                                 <li> altResultDT (대체문자 전송결과 수신일시) : <?php echo $result->msgs[$i]->altResultDT ?> </li>
                                 <li> receiptNum (접수번호) : <?php echo $result->msgs[$i]->receiptNum ?> </li>
                                 <li> requestNum (요청번호) : <?php echo $result->msgs[$i]->requestNum ?> </li>
+                                <li> interOPRefKey (파트너 지정키) : <?php echo $result->msgs[$i]->interOPRefKey ?> </li>
                             </ul>
                         </fieldset>
                         <?php

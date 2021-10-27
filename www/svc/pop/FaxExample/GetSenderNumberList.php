@@ -6,7 +6,7 @@
 </head>
 <?php
     /**
-     * 팩스 발신번호 목록을 반환합니다.
+     * 팝빌에 등록한 연동회원의 팩스 발신번호 목록을 확인합니다.
      * - https://docs.popbill.com/fax/php/api#GetSenderNumberList
      */
 
@@ -39,6 +39,7 @@
                         <li> 발신번호(number) : <?php echo $result[$i]->number ?></li>
                         <li> 대표번호 지정여부(representYN) : <?php echo $result[$i]->representYN ? 'true' : 'false' ?></li>
                         <li> 등록상태 (state) : <?php echo $result[$i]->state ?></li>
+                        <li> 메모 (memo) : <?php echo $result[$i]->memo ?></li>
                     </ul>
                 </fieldset>
 
