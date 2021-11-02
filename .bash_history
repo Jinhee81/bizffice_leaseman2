@@ -254,3 +254,73 @@ cd www
 quit
 #1635318716
 exit
+#1635318726
+git status
+#1635318743
+git add .
+#1635318748
+git status
+#1635318771
+git commit -m 'popbill 추가'
+#1635318783
+git push origin main
+#1635318861
+Note about fast-forwards
+#1635318870
+git push --help
+#1635319016
+dir .gitignore
+#1635319046
+touch .gitignore
+#1635319053
+vim .gitignore
+#1635319942
+cat .gitignore
+#1635319947
+git status
+#1635319956
+git add.
+#1635319964
+git add .
+#1635319967
+git status
+#1635319990
+git commit -m 'gitignore 수정'
+#1635319994
+git status
+#1635320003
+git push origin main
+#1635320594
+git reset HEAD^
+#1635320606
+git status
+#1635320640
+git reset HEAD
+#1635320646
+git status
+#1635320667
+git reset HEAD~2
+#1635320673
+git status
+#1635320718
+git reset HEAD
+#1635320733
+git status
+#1635320754
+git add .
+#1635320765
+git add --all
+#1635320768
+git status
+#1635320831
+git commit -m 'get파일에 자잘오류수정'
+#1635320839
+git push origin main
+#1635320976
+git pull --rebase main master
+#1635321022
+git pull --rebase origin master
+#1635321099
+git push -f origin main
+#1635324546
+mysql -ubizffice -p

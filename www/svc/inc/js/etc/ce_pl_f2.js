@@ -188,7 +188,7 @@ function deletefile(a,b,c){
 //=========================
 function success(data){
   data = JSON.parse(data);
-  console.log(data);
+//   console.log(data);
   if(errorArray.includes(data)){
     alert('데이터처리과정에 문제가 생겼습니다. 오류번호는 '+data+' 입니다.');
     return false;
@@ -367,6 +367,7 @@ function amountlist(a,b){
   let amountlist = $.ajax({
     url:b,
     method: 'post',
+    async:false,
     data:{'contractId':a},
     success:function(data){
       success(data);

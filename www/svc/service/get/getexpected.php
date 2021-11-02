@@ -308,8 +308,9 @@ if (!isset($_SESSION['is_login'])) {
     <script type="text/javascript" src="/svc/inc/js/etc/ce_pl_f2.js?<?= date('YmdHis') ?>"></script>
     <script type="text/javascript" src="/svc/inc/js/etc/customer.js?<?= date('YmdHis') ?>"></script>
     <script type="text/javascript" src="/svc/inc/js/etc/customer_edit.js?<?= date('YmdHis') ?>"></script>
-    <script type="text/javascript" src="/svc/service/contract/j_contract_insidebuttons.js?<?= date('YmdHis') ?>">
-    </script>
+    <script type="text/javascript" src="/svc/inc/js/etc/memo.js?<?= date('YmdHis') ?>"></script>
+    <script type="text/javascript" src="/svc/inc/js/etc/filedelete.js?<?= date('YmdHis') ?>"></script>
+
     <script src="/svc/inc/js/autosize.min.js"></script>
 
     <script>
@@ -431,7 +432,7 @@ if (!isset($_SESSION['is_login'])) {
                             '</label><br>';
                         returns += '<label class="mb-0">' + value.pEndDate + '</label></td>';
                         returns +=
-                            '<td><p class="modalAsk mb-0" data-toggle="modal" data-target="#pPay">' +
+                            '<td><p class="modalAsk mb-0" data-toggle="modal" data-target="#pPay2">' +
                             value.pExpectedDate + '</p>';
                         returns +=
                             '<input type="text" name="executiveDate" class="form-control form-control-sm grey text-center" value="' +

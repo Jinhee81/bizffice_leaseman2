@@ -117,7 +117,7 @@ $('#btnTaxDateInput').on('click', function(){
   goCategoryPage(buildingkey, buildingText, popbillid, companynumber, taxArrayTo, taxSelect, taxDiv);
 
   function goCategoryPage(a,b,c,d,e,f,g,h,i,j){
-      var frm = formCreate('taxSave', 'post', 'p_payScheduleTaxInput3.php','');
+      var frm = formCreate('taxSave', 'post', 'p_payScheduleTaxInput4.php','');
       frm = formInput(frm, 'buildingId', a);
       frm = formInput(frm, 'buildingText', b);
       frm = formInput(frm, 'buildingPopbill', c);

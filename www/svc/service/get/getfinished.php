@@ -1,6 +1,6 @@
 <?php
-// ini_set('display_errors', 1);
-// ini_set('error_reporting', E_ALL);
+ini_set('display_errors', 1);
+ini_set('error_reporting', E_ALL);
 session_start();
 if (!isset($_SESSION['is_login'])) {
     header('Location: /svc/login.php');
@@ -315,12 +315,13 @@ if (!isset($_SESSION['is_login'])) {
     <script src="/svc/inc/js/daumAddressAPI3.js?<?= date('YmdHis') ?>"></script>
 
     <script type="text/javascript">
-    function taxInfo2(bid, mun, ccid) {
+    function taxInfo(bid, mun, ccid) {
+        console.log('solmi');
         var tmps = "<iframe name='ifm_pops_21' id='ifm_pops_21' class='popup_iframe'   scrolling='no' src=''></iframe>";
         $("body").append(tmps);
         //alert( "/inc/tax_invoice2.php?chkId="+chkId+"&callnum="+subIdx );
 
-        $("#ifm_pops_21").attr("src", "/svc/service/get/tax_invoice2.php?building_idx=" + bid + "&mun=" + mun + "&id=" +
+        $("#ifm_pops_21").attr("src", "/svc/service/get/tax_invoice3.php?building_idx=" + bid + "&mun=" + mun + "&id=" +
             ccid + "&flag=finished");
         $('#ifm_pops_21').show();
         // $('.pops_wrap, .pops_21').show();
@@ -506,7 +507,7 @@ if (!isset($_SESSION['is_login'])) {
 
                         if (mun) {
                             if (value.taxSelect === '세금계산서') {
-                                returns += '<td class="mobile"><a onclick="taxInfo2(' + bid +
+                                returns += '<td class="mobile"><a onclick="taxInfo(' + bid +
                                     ',\'' + mun + '\',\'' + ccid +
                                     '\');"><span class="badge badge-warning text-light" style="width: 1.5rem;">세</span><label class="green mb-0"><u>' +
                                     value.taxDate + '</u></label></a></td>';

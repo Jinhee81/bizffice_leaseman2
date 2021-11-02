@@ -1,9 +1,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
-  <head>
+
+<head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" type="text/css" href="/Example.css" media="screen" />
     <title>팝빌 SDK PHP 5.X Example.</title>
-  </head>
+</head>
 <?php
     /**
      * 작성된 세금계산서 데이터를 팝빌에 저장과 동시에 발행(전자서명)하여 "발행완료" 상태로 처리합니다.
@@ -11,13 +12,15 @@
      * - https://docs.popbill.com/taxinvoice/php/api#RegistIssue
      */
 
-    include 'common.php';
+    ini_set('display_errors', 1);
+    ini_set('error_reporting', E_ALL);
+    include $_SERVER['DOCUMENT_ROOT'] .'/svc/popbill_common2.php';
 
-    // 팝빌회원 사업자번호, '-' 제외 10자리
-    $testCorpNum = '1234567890';
+    // 팝빌 회원 사업자번호, '-' 제외 10자리
+    $testCorpNum = '7450601064';
 
     // 팝빌회원 아이디
-    $testUserID = 'testkorea';
+    $testUserID = 'charm19813';
 
     // 세금계산서 문서번호
     // - 최대 24자리, 영문, 숫자 '-', '_'를 조합하여 사업자별로 중복되지 않도록 구성
@@ -277,24 +280,26 @@
         $message = $pe->getMessage();
     }
 ?>
-  <body>
+
+<body>
     <div id="content">
-      <p class="heading1">Response</p>
-      <br/>
-      <fieldset class="fieldset1">
-        <legend>전자세금계산서 즉시발행</legend>
-        <ul>
-          <li>응답코드 (code) : <?php echo $code ?></li>
-          <li>응답메시지 (message) : <?php echo $message ?></li>
-          <?php
+        <p class="heading1">Response</p>
+        <br />
+        <fieldset class="fieldset1">
+            <legend>전자세금계산서 즉시발행</legend>
+            <ul>
+                <li>응답코드 (code) : <?php echo $code ?></li>
+                <li>응답메시지 (message) : <?php echo $message ?></li>
+                <?php
             if ( isset($ntsConfirmNum) ) {
           ?>
-            <li>국세청승인번호 (ntsConfirmNum) : <?php echo $ntsConfirmNum ?></li>
-          <?php
+                <li>국세청승인번호 (ntsConfirmNum) : <?php echo $ntsConfirmNum ?></li>
+                <?php
             }
           ?>
-        </ul>
-      </fieldset>
-     </div>
-  </body>
+            </ul>
+        </fieldset>
+    </div>
+</body>
+
 </html>

@@ -80,7 +80,7 @@ $(document).on('click', '.tbodycheckbox', function(){
       var colid = currow.find('td:eq(0)').children('input').val();
       var colpAmount = currow.find("td:eq(9)").children('label:eq(0)').text();
       var colpvAmount = currow.find("td:eq(9)").children('label:eq(1)').text();
-      var colptAmount = currow.find("td:eq(10)").children('span').text();
+      var colptAmount = currow.find("td:eq(10)").children('.contractAmount').text();
       colpAmount = colpAmount.replace(/,/gi,'');
       colpAmount = Number(colpAmount);
       colpvAmount = colpvAmount.replace(/,/gi,'');

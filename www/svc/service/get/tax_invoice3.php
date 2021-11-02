@@ -24,6 +24,8 @@ $sql4 = "SELECT id,
 $result4 = mysqli_query($conn, $sql4);
 $row4 = mysqli_fetch_array($result4);
 
+print_r($row4);echo "<br>";
+
 // echo "<br><br><br><br><br><br><br>";
 // echo $sql4;
 // echo  $_GET['mun'];
@@ -41,7 +43,13 @@ $row5 = mysqli_fetch_array($result5);
 
 header("Content-Type: text/html; charset=UTF-8");
 include $_SERVER['DOCUMENT_ROOT']."/svc/view/service_header1_meta.php";
-require_once $_SERVER['DOCUMENT_ROOT'].'/svc/popbill_common.php';
+// require_once $_SERVER['DOCUMENT_ROOT'].'/svc/pop/Popbill/PopbillTaxinvoice.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/svc/popbill_common2.php';
+
+print_r($cnum);echo "<br>";
+print_r($_GET['mun']);echo "<br>";
+
+
 $result = $TaxinvoiceService->GetDetailInfo($cnum, 'SELL', $_GET['mun']);
 // echo "<br><br><br><br><br><br>";
 // print_r($result);
@@ -75,7 +83,7 @@ if($result->invoicerMgtKey == null || $result->invoicerMgtKey == ''){
         <div class="pops_box pops_21 one">
             <div class="pops_h">
                 <h2>세금계산서</h2>
-                <a href="#!" class="pops_close"><img src="/img/main/pops_close.png" alt="닫기버튼"></a>
+                <a href="#!" class="pops_close"><img src="/svc/inc/img/icon/pops_close.png" alt="닫기버튼"></a>
             </div>
             <div class="pops_con one" style="margin:0 auto">
                 <!--
