@@ -58,7 +58,7 @@ $(document).on('click', '.tbodycheckbox', function(){
       var colpvAmount = currow.find("td:eq(4)").text();
       var colptAmount = currow.find("td:eq(5)").children('a').text();
 
-      console.log(colpAmount, colpvAmount, colptAmount);
+    //   console.log(colpAmount, colpvAmount, colptAmount);
 
       colpAmount = colpAmount.replace(/,/gi,'');
       colpAmount = Number(colpAmount);
@@ -79,7 +79,7 @@ $(document).on('click', '.tbodycheckbox', function(){
       $('#pvAmountSelectAmount').number(true);
       $('#ptAmountSelectAmount').html(amountMoney[2]);
       $('#ptAmountSelectAmount').number(true);
-      console.log(amountMoney);
+    //   console.log(amountMoney);
     } else {
       var checkedCnt = $(".tbodycheckbox").filter(":checked").length;
       var currow = $(this).closest('tr');
@@ -107,6 +107,6 @@ $(document).on('click', '.tbodycheckbox', function(){
       $('#pvAmountSelectAmount').number(true);
       $('#ptAmountSelectAmount').html(amountMoney[2]);
       $('#ptAmountSelectAmount').number(true);
-      console.log(amountMoney);
+    //   console.log(amountMoney);
     }
 })

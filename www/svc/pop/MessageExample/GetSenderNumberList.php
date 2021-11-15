@@ -1,38 +1,39 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <link rel="stylesheet" type="text/css" href="/Example.css" media="screen" />
-        <title>팝빌 SDK PHP 5.X Example.</title>
-    </head>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" href="/Example.css" media="screen" />
+    <title>팝빌 SDK PHP 5.X Example.</title>
+</head>
 <?php
-    /**
-     * 팝빌에 등록한 연동회원의 문자 발신번호 목록을 확인합니다.
-     * - https://docs.popbill.com/message/php/api#GetSenderNumberList
-     */
+/**
+ * 팝빌에 등록한 연동회원의 문자 발신번호 목록을 확인합니다.
+ * - https://docs.popbill.com/message/php/api#GetSenderNumberList
+ */
 
-    include 'common.php';
+include 'common.php';
 
-    // 팝빌회원 사업자번호, "-"제외 10자리
-    $testCorpNum = '1234567890';
+// 팝빌회원 사업자번호, "-"제외 10자리
+$testCorpNum = '7450601064';
 
-    try {
-        $result = $MessagingService->GetSenderNumberList($testCorpNum);
-    }
-    catch (PopbillException $pe) {
-        $code = $pe->getCode();
-        $message = $pe->getMessage();
-    }
+try {
+    $result = $MessagingService->GetSenderNumberList($testCorpNum);
+} catch (PopbillException $pe) {
+    $code = $pe->getCode();
+    $message = $pe->getMessage();
+}
 ?>
-    <body>
+
+<body>
     <div id="content">
         <p class="heading1">Response</p>
-        <br/>
+        <br />
         <fieldset class="fieldset1">
             <legend>문자 발신번호 목록 확인</legend>
 
             <?php
-            if ( isset( $result ) ) {
-                for ( $i = 0; $i < Count ( $result ) ; $i++) {
+            if (isset($result)) {
+                for ($i = 0; $i < Count($result); $i++) {
             ?>
                     <fieldset class="fieldset2">
                         <ul>
@@ -43,10 +44,10 @@
                         </ul>
                     </fieldset>
 
-            <?php
+                <?php
                 }
             } else {
-            ?>
+                ?>
                 <li>Response.code : <?php echo $code ?> </li>
                 <li>Response.message : <?php echo $message ?></li>
             <?php
@@ -54,5 +55,6 @@
             ?>
         </fieldset>
     </div>
-    </body>
+</body>
+
 </html>

@@ -3,8 +3,8 @@
 // ini_set('error_reporting', E_ALL);
 // 환불액 넣으려고 새로 만든 것
 session_start();
-if(!isset($_SESSION['is_login'])){
-  header('Location: /svc/login.php');
+if (!isset($_SESSION['is_login'])) {
+    header('Location: /svc/login.php');
 }
 ?>
 <!DOCTYPE html>
@@ -32,21 +32,21 @@ if(!isset($_SESSION['is_login'])){
         integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 
     <!-- 커스텀 css -->
-    <link rel="stylesheet" href="/svc/inc/css/customizing.css?<?=date('YmdHis')?>">
+    <link rel="stylesheet" href="/svc/inc/css/customizing.css?<?= date('YmdHis') ?>">
 
     <!-- fullCalendar css -->
-    <link rel="stylesheet" href="/svc/inc/css/fullcalendar.css?<?=date('YmdHis')?>">
-    <link rel="stylesheet" href="/svc/inc/css/fullcalendar.min.css?<?=date('YmdHis')?>">
+    <link rel="stylesheet" href="/svc/inc/css/fullcalendar.css?<?= date('YmdHis') ?>">
+    <link rel="stylesheet" href="/svc/inc/css/fullcalendar.min.css?<?= date('YmdHis') ?>">
 </head>
 <?php
-include $_SERVER['DOCUMENT_ROOT']."/svc/view/service_header2.php";
-include $_SERVER['DOCUMENT_ROOT']."/svc/view/conn.php";
+include $_SERVER['DOCUMENT_ROOT'] . "/svc/view/service_header2.php";
+include $_SERVER['DOCUMENT_ROOT'] . "/svc/view/conn.php";
 include "building.php";
 include "./condi/sql_all2.php";
 include "./condi/sql_deposit.php";
 include "./condi/sql_file.php";
 include "./condi/sql_memo.php";
- ?>
+?>
 <style>
 /* 세금계산서 iframe 크기 조절  */
 .popup_iframe {
@@ -70,14 +70,14 @@ include "./condi/sql_memo.php";
 
 <section class="container jumbotron pt-3 pb-3 mb-2">
     <label for="" style="font-size:32px;">임대계약상세(화면번호 202)</label>
-    <label class="font-italic" style="font-size:20px;color:#2E9AFE;">계약번호 <?=$filtered_id?></label>
+    <label class="font-italic" style="font-size:20px;color:#2E9AFE;">계약번호 <?= $filtered_id ?></label>
 </section>
 
 <section>
     <div class="row justify-content-center">
         <div class="col-11">
-            <?php include "./edit/1_button2.php";?>
-            <?php include "./edit/2_ci.php";?>
+            <?php include "./edit/1_button2.php"; ?>
+            <?php include "./edit/2_ci.php"; ?>
         </div>
     </div>
 </section>
@@ -87,74 +87,73 @@ include "./condi/sql_memo.php";
     <nav class="">
         <ul class="nav nav-tabs">
             <li class="nav-items">
-                <a class="nav-link" href="contractEdit.php?id=<?=$filtered_id?>">임대료목록(<?=$row['count2']?>개월)</a>
+                <a class="nav-link" href="contractEdit.php?id=<?= $filtered_id ?>">임대료목록(<?= $row['count2'] ?>개월)</a>
             </li>
         </ul>
     </nav>
     <div class="">
         <?php
-    include "./edit/3_schedule.php";
-    include "../../modal/modal_nadd.php";//n개월추가모달
-    include "../../modal/modal_regist.php";//청구설정모달
-    ?>
+        include "./edit/3_schedule2.php";
+        include "../../modal/modal_nadd.php"; //n개월추가모달
+        include "../../modal/modal_regist.php"; //청구설정모달
+        ?>
     </div>
 
     <nav class="">
         <ul class="nav nav-tabs">
             <li class="nav-items">
-                <a class="nav-link" href="contractEdit.php?id=<?=$filtered_id?>">보증금 (<span
+                <a class="nav-link" href="contractEdit.php?id=<?= $filtered_id ?>">보증금 (<span
                         name="depositMoney"></span>원), 중간종료내역</a>
             </li>
         </ul>
     </nav>
     <div class="">
         <?php
-    include "./edit/4_deposit3.php";
-    ?>
+        include "./edit/4_deposit3.php";
+        ?>
     </div>
 
     <nav class="">
         <ul class="nav nav-tabs">
             <li class="nav-items">
-                <a class="nav-link" href="contractEdit.php?id=<?=$filtered_id?>">첨부파일(<?=count($fileRows)?>건)</a>
+                <a class="nav-link" href="contractEdit.php?id=<?= $filtered_id ?>">첨부파일(<?= count($fileRows) ?>건)</a>
             </li>
         </ul>
     </nav>
     <div class="">
         <?php
-    include "./edit/5_file.php";
-    ?>
+        include "./edit/5_file.php";
+        ?>
     </div>
-
     <nav class="">
         <ul class="nav nav-tabs">
             <li class="nav-items">
                 <a id="navMemo" class="nav-link"
-                    href="contractEdit.php?id=<?=$filtered_id?>">메모작성(<?=count($memoRows)?>건)</a>
+                    href="contractEdit.php?id=<?= $filtered_id ?>">메모작성(<?= count($memoRows) ?>건)</a>
             </li>
         </ul>
     </nav>
     <div class="">
         <?php
-    include "./edit/6_memo.php";
-    ?>
+        include "./edit/6_memo.php";
+        ?>
     </div>
 </section>
 
 
 <!-- 최하단 계약정보작성자보여주기섹션 -->
 <section class="d-flex justify-content-center">
-    <small class="form-text text-muted text-center">계약번호[<?=$row[0]?>] 등록일시[<?=$row['createTime']?>]
-        수정일시[<?=$row['updateTime']?>] </small>
+    <small class="form-text text-muted text-center">계약번호[<?= $row[0] ?>] 등록일시[<?= $row['createTime'] ?>]
+        수정일시[<?= $row['updateTime'] ?>] </small>
 </section>
 
 </div>
 </div>
 
 <?php
-include $_SERVER['DOCUMENT_ROOT']."/svc/service/customer/modal_customer.php";
-include $_SERVER['DOCUMENT_ROOT']."/svc/service/sms/modal_sms3.php";
-include $_SERVER['DOCUMENT_ROOT']."/svc/view/service_footer.php"; ?>
+include $_SERVER['DOCUMENT_ROOT'] . "/svc/service/customer/modal_customer.php";
+include $_SERVER['DOCUMENT_ROOT'] . "/svc/service/sms/modal_sms3.php";
+include $_SERVER['DOCUMENT_ROOT'] . "/svc/view/service_footer.php"; ?>
 
 
 <script src="/svc/inc/js/jquery-3.3.1.min.js"></script>
@@ -164,13 +163,13 @@ include $_SERVER['DOCUMENT_ROOT']."/svc/view/service_footer.php"; ?>
 <script src="/svc/inc/js/datepicker-ko.js"></script>
 <script src="/svc/inc/js/autosize.min.js"></script>
 <script src="/svc/inc/js/jquery.number.min.js"></script>
-<script src="/svc/inc/js/etc/form.js?<?=date('YmdHis')?>"></script>
-<script src="/svc/inc/js/etc/sms_noneparase4.js?<?=date('YmdHis')?>"></script>
-<script src="/svc/inc/js/etc/customer.js?<?=date('YmdHis')?>"></script>
-<script src="/svc/inc/js/etc/customer_edit.js?<?=date('YmdHis')?>"></script>
-<script src="/svc/inc/js/etc/ce_pl_f2.js?<?=date('YmdHis')?>"></script>
+<script src="/svc/inc/js/etc/form.js?<?= date('YmdHis') ?>"></script>
+<script src="/svc/inc/js/etc/sms_noneparase4.js?<?= date('YmdHis') ?>"></script>
+<script src="/svc/inc/js/etc/customer.js?<?= date('YmdHis') ?>"></script>
+<script src="/svc/inc/js/etc/customer_edit.js?<?= date('YmdHis') ?>"></script>
+<script src="/svc/inc/js/etc/ce_pl_f2.js?<?= date('YmdHis') ?>"></script>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script src="/svc/inc/js/daumAddressAPI3.js?<?=date('YmdHis')?>"></script>
+<script src="/svc/inc/js/daumAddressAPI3.js?<?= date('YmdHis') ?>"></script>
 
 
 <script type="text/javascript">
@@ -183,11 +182,11 @@ console.log(roomArray);
 </script>
 
 <script>
-let contractId = <?=$filtered_id?>;
+let contractId = <?= $filtered_id ?>;
 // let tbl = $("#checkboxTestTbl");
 let customerId = $('input[name=customerId').val();
 let buildingId = $('input[name=building').val();
-let step = '<?=$step?>';
+let step = '<?= $step ?>';
 let url = '../../ajax/ajax_amountlist.php';
 
 $('input').attr('autocomplete', 'off');
@@ -254,10 +253,10 @@ $(document).ready(function() {
 
     $('#smsBtn').on('click', function() {
         // var buildingkey = $('input[name=building]').val();
-        var buildingkey = '<?=$row['building_id']?>';
+        var buildingkey = '<?= $row['building_id'] ?>';
         console.log(buildingkey);
-        var recievephonenumber = '<?=$cContact?>';
-        var cname = '<?=$row[2]?>';
+        var recievephonenumber = '<?= $cContact ?>';
+        var cname = '<?= $row[2] ?>';
 
         //문자발송번호
         var sendphonenumber = buildingArray[buildingkey][3] + buildingArray[buildingkey][4] +
@@ -278,8 +277,8 @@ $(document).ready(function() {
     filelist(contractId);
     refundlist(contractId);
 
-    //   $('title').text(<?=$row['rname']?>);
-    $(document).attr('title', '<?=$row['rname']?> 임대계약상세');
+    //   $('title').text(<?= $row['rname'] ?>);
+    $(document).attr('title', '<?= $row['rname'] ?> 임대계약상세');
 
 }) //document.ready function closing}
 //=====================================
@@ -629,13 +628,13 @@ $('#button6').click(function() { //n개월추가 버튼, 모달클릭으로 바�
     });
     modal1.show();
 
-    let mAmount = '<?=$row['mAmount']?>';
-    let mvAmount = '<?=$row['mvAmount']?>';
-    let mtAmount = '<?=$row['mtAmount']?>';
-    let lastDate = '<?=$row['endDate2']?>';
-    let payOrder = '<?=$row['payOrder']?>';
+    let mAmount = '<?= $row['mAmount'] ?>';
+    let mvAmount = '<?= $row['mvAmount'] ?>';
+    let mtAmount = '<?= $row['mtAmount'] ?>';
+    let lastDate = '<?= $row['endDate2'] ?>';
+    let payOrder = '<?= $row['payOrder'] ?>';
 
-    console.log(mAmount, mvAmount, mtAmount, lastDate, payOrder);
+    // console.log(mAmount, mvAmount, mtAmount, lastDate, payOrder);
 
     lastDate2 = new Date(lastDate);
     let nextDate = new Date(lastDate2.getFullYear(), lastDate2.getMonth(), lastDate2.getDate() + 1);
@@ -707,7 +706,7 @@ $('#button6').click(function() { //n개월추가 버튼, 모달클릭으로 바�
         let mvAmount = $("input[name='modalAmount2']").val();
         let mtAmount = $("input[name='modalAmount3']").val();
 
-        console.log(allCnt, addMonth, mAmount, mvAmount, mtAmount);
+        // console.log(allCnt, addMonth, mAmount, mvAmount, mtAmount);
 
         if (!addMonth) {
             alert('추가개월수가 비어있습니다. 개월수를 입력해야 합니다.');
@@ -723,7 +722,7 @@ $('#button6').click(function() { //n개월추가 버튼, 모달클릭으로 바�
 
         amountlist3(contractId, url, addMonth, mAmount, mvAmount, mtAmount);
 
-        // $('#nAddBtn').modal().hide();
+        // modal1.modal('dispose');
 
     }) //1.추가하기
 
@@ -1131,7 +1130,7 @@ $(document).on('click', '#button2', function() { //청구취소버튼 클릭시
     }
     // console.log(payIdArray);
 
-    var contractId = '<?=$filtered_id?>';
+    var contractId = '<?= $filtered_id ?>';
     payIdArray = JSON.stringify(payIdArray);
     var url = '/svc/service/contract/process/pp_payScheduleDropFor.php';
     // goCategoryPage(payIdArray, contractId);
@@ -1185,7 +1184,7 @@ $('#button3').click(function() { //일괄입금버튼 클릭시
     }
     console.log(payIdArray);
 
-    // var contractId = '<?=$filtered_id?>';
+    // var contractId = '<?= $filtered_id ?>';
     var url = '/svc/service/contract/process/pp_payScheduleGetAmountInputFor.php';
     payIdArray = JSON.stringify(payIdArray);
 
@@ -1481,8 +1480,8 @@ $('#enddate33').on('change', function() {
 })
 
 $(document).on('click', '#enddate3btn', function() {
-    var original_enddate = '<?=$row['endDate2']?>';
-    var startDate = '<?=$row['startDate']?>';
+    var original_enddate = '<?= $row['endDate2'] ?>';
+    var startDate = '<?= $row['startDate'] ?>';
     var enddate3 = $('#enddate33').val(); //중간종료일
     var enddate4 = $('#enddate44').val(); //환불일자
     var rPayid = $('input[name=rPayid]').val();
@@ -1554,7 +1553,7 @@ $(document).on('click', '#enddate3btn', function() {
 
 
 $(document).on('click', '#enddateCansel', function() { //철회버튼
-    let contractId = '<?=$filtered_id?>';
+    let contractId = '<?= $filtered_id ?>';
     let rPayid = $('input[name=rPayid]').val();
 
     middleEndCansel(contractId, rPayid);

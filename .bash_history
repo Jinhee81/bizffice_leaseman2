@@ -324,3 +324,17 @@ git pull --rebase origin master
 git push -f origin main
 #1635324546
 mysql -ubizffice -p
+#1635840868
+git status
+#1635841026
+git add .
+#1635841035
+git add --all
+#1635841037
+git status
+#1635841052
+git commit -m '납부예정 팝업오류 수정함'
+#1635841058
+git push origin main
+#1636542771
+mysql -ubizffice -p

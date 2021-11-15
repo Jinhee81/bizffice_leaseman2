@@ -197,8 +197,8 @@ function success(data){
     return false;
   } else {
     let returns = '';
-    const datacount = data.length;
-    const delayAmount = data[0]['sum'];
+    let datacount = data.length;
+    let delayAmount = data[0]['sum'];
   
     $.each(data, function(key, value){
         let rowIndex = datacount - Number(value.ordered);
@@ -561,7 +561,8 @@ function amountlist4(a,b,c,d,e,f,g,h,i){
           'buildingId':i
           },
     success:function(data){
-      success(data);
+    //   success(data);
+    console.log('solmi');
     }
   })
   expectedDayArray = [];
@@ -584,6 +585,7 @@ function amountlist5(a,b,c,d,e,f,g,h,i,j,k){
           'executiveAmount':k
           },
     success:function(data){
+        // console.log(data);
       success(data);
     }
   })
