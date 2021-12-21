@@ -15,10 +15,10 @@
     include 'common.php';
 
     // 팝빌 회원 사업자 번호, "-"제외 10자리
-    $testCorpNum = '7450601064';
+    $testCorpNum = '1908600646';
 
     // 팝빌 회원 아이디
-    $testUserID = 'charm19813';
+    $testUserID = 'bizffice';
 
     try {
         $url = $MessagingService->GetSentListURL($testCorpNum, $testUserID);

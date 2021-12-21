@@ -119,6 +119,9 @@ if($_POST['step'] === 'clear'){
           group_in_building_id = {$_POST['group']},
           r_g_in_building_id = {$_POST['room']},
           contractDate = '{$_POST['contractDate']}',
+          mAmount = '{$_POST['mAmount']}',
+          mvAmount = '{$_POST['mvAmount']}',
+          mtAmount = '{$_POST['mtAmount']}',
           updateTime = now()
       WHERE
         id = {$filtered_id}";

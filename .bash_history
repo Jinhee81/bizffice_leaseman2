@@ -338,3 +338,25 @@ git commit -m '납부예정 팝업오류 수정함'
 git push origin main
 #1636542771
 mysql -ubizffice -p
+#1636963150
+git status
+#1636963160
+git add .
+#1636963168
+git add --all
+#1636963171
+git status
+#1636963194
+git commit -m 'popbill 메시지 보내기'
+#1636963206
+git push origin main
+#1637213999
+mysql -ubizffice -p
+#1637565508
+git status
+#1638160479
+mysql -ubizffice -p
+#1639028654
+use -ubizffice -p
+#1639028666
+mysql -ubizffice -p

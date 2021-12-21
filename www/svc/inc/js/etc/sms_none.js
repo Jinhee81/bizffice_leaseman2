@@ -120,6 +120,15 @@ function sms_noneparase(){
             if(data==='date_require'){
                 alert('예약전송인 경우 날짜 시간을 지정해야 합니다.');
                 return false;
+            } else if (data==='error_occured2') {
+              alert('mysql_error. 관리자에게 문의하세요');
+              return false;
+            } else if (data==='success') {
+              alert('문자전송이 성공하였습니다.');
+              return false;
+            } else {
+              alert(data + ' 에러발생했습니다. 관리자에게 문의하세요.');
+              return false;
             }
         }
 
