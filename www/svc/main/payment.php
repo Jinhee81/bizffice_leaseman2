@@ -10,9 +10,10 @@ if(!isset($_SESSION['is_login'])){
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
+
+<head>
     <title>리스맨결제하기</title>
-<?php
+    <?php
 include $_SERVER['DOCUMENT_ROOT']."/svc/view/service_header1_meta.php";
 include $_SERVER['DOCUMENT_ROOT']."/svc/view/service_header2.php";
 include $_SERVER['DOCUMENT_ROOT']."/svc/view/conn.php";
@@ -83,75 +84,81 @@ $http_host = "https://" . $_SERVER['HTTP_HOST'];
 
  ?>
 
-   <!-- 이니시스 표준결제 js -->
-<script language="javascript" type="text/javascript" src="HTTPS://stdpay.inicis.com/stdjs/INIStdPay.js" charset="UTF-8"></script>
-        <!-- 이니시스 테스트결제 -->
-<!-- <script language="javascript" type="text/javascript" src="https://stgstdpay.inicis.com/stdjs/INIStdPay.js" charset="UTF-8"></script> -->
+    <!-- 이니시스 표준결제 js -->
+    <script language="javascript" type="text/javascript" src="HTTPS://stdpay.inicis.com/stdjs/INIStdPay.js"
+        charset="UTF-8"></script>
+    <!-- 이니시스 테스트결제 -->
+    <!-- <script language="javascript" type="text/javascript" src="https://stgstdpay.inicis.com/stdjs/INIStdPay.js" charset="UTF-8"></script> -->
 
 
- <script type="text/javascript">
+    <script type="text/javascript">
     function paybtn() {
-       INIStdPay.pay('SendPayForm_id');
+        INIStdPay.pay('SendPayForm_id');
     }
 
-    function cardShow(){
-       // document.getElementById("acceptmethod").value = "BILLAUTH(card):FULLVERIFY";
+    function cardShow() {
+        // document.getElementById("acceptmethod").value = "BILLAUTH(card):FULLVERIFY";
     }
 
-    function hppShow(){
-       document.getElementById("acceptmethod").value = "BILLAUTH(HPP):HPP(1)";
+    function hppShow() {
+        document.getElementById("acceptmethod").value = "BILLAUTH(HPP):HPP(1)";
     }
- </script>
- <link href="https://www.leaseman.co.kr/svc/main/preference.css" rel="stylesheet" type="text/css"/>
+    </script>
+    <link href="https://www.leaseman.co.kr/svc/main/preference.css" rel="stylesheet" type="text/css" />
 
- <style>
+    <style>
     #inicisModalDiv {
 
         opacity: 100;
 
     }
- </style>
+    </style>
 
- <!-- <script src="/preference/preference.js"></script> 비어있는 php -->
- <form method="post" name="fm_pay" id="SendPayForm_id" class="" accept-charset="UTF-8">
+    <!-- <script src="/preference/preference.js"></script> 비어있는 php -->
+    <form method="post" name="fm_pay" id="SendPayForm_id" class="" accept-charset="UTF-8">
 
-       <input type="hidden" name="goods_type" id="goods_type" value="" />
-       <input type="hidden" name="goods_price" id="goods_price" value="" />
-       <input type="hidden" name="goods_name" id="goods_name" value="" />
-       <input type="hidden" name="goodsname" id="goodsname" value="" />
-       <input type="hidden" name="goods_level" id="goods_level" value="" />
-       <input type="hidden" name="version" value="1.0" >
-       <input type="hidden" name="mid" id="mid" value="" >
-       <input type="hidden" name="goodname" id="goodname" value="" >
-       <input type="hidden" name="oid" id="oid" value="<?php echo $orderNumber ?>" >
-       <input type="hidden" name="price" id="price" value="" >
-       <input type="hidden" name="currency" value="WON" >
-       <input type="hidden" name="buyername" id="buyername" value="<?=isset($_SESSION['customer']['name']) ? $_SESSION['customer']['name'] : '';?>" >
+        <input type="hidden" name="goods_type" id="goods_type" value="" />
+        <input type="hidden" name="goods_price" id="goods_price" value="" />
+        <input type="hidden" name="goods_name" id="goods_name" value="" />
+        <input type="hidden" name="goodsname" id="goodsname" value="" />
+        <input type="hidden" name="goods_level" id="goods_level" value="" />
+        <input type="hidden" name="version" value="1.0">
+        <input type="hidden" name="mid" id="mid" value="">
+        <input type="hidden" name="goodname" id="goodname" value="">
+        <input type="hidden" name="oid" id="oid" value="<?php echo $orderNumber ?>">
+        <input type="hidden" name="price" id="price" value="">
+        <input type="hidden" name="currency" value="WON">
+        <input type="hidden" name="buyername" id="buyername"
+            value="<?=isset($_SESSION['customer']['name']) ? $_SESSION['customer']['name'] : '';?>">
 
-       <!-- <input type="hidden" name="buyertel" value="< ? =get_user_info('mobile')?>" > -->
+        <!-- <input type="hidden" name="buyertel" value="< ? =get_user_info('mobile')?>" > -->
 
-       <input type="hidden" name="buyertel" value="<?=$_SESSION['cellphone']?>" />     <!-- 결제요청 user 전화번호 -->
-       <input type="hidden" name="buyeremail" value="<?=isset($_SESSION['customer']['email']) ? $_SESSION['customer']['email'] : '';?>" >
-       <input type="hidden" name="timestamp" id="timestamp" value="<?php echo $timestamp ?>" >
-       <input type="hidden" name="signature" id="signature" value="" > <!-- <?php echo $sign ?> -->
-       <input type="hidden" name="returnUrl" value="<?php echo $siteDomain ?>/inistdpay_result.php" >
-       <input type="hidden" name="mKey" id="mKey" value="" >
-       <input type="hidden" name="gopaymethod" id="gopaymethod" value="">
-       <input type="hidden" name="offerPeriod" id="offerPeriod" value="" >
-       <input type="hidden" id="acceptmethod" name="acceptmethod" value="" >
-       <input type="hidden" id="billPrint_msg" name="billPrint_msg" value="해당 결제는 매달 자동 결제됩니다." >
-       <input type="hidden" name="languageView" value="" >
-       <input type="hidden" name="charset" value="UTF-8" >
-       <input type="hidden" name="payViewType" value="" >
-       <input type="hidden" name="closeUrl" value="<?php echo $http_host ?>/svc/main/stdpay3/INIStdPaySample/close.php">
-       <input type="hidden" name="popupUrl" value="<?php echo $http_host ?>/svc/main/stdpay3/INIStdPaySample/popup.php">
-       <input type="hidden" name="merchantData" id="merchantData" value="user_id=<?=$_SESSION["id"]?>" >            <!-- 인증 성공시 가맹점으로 리턴 (한글사용불가)  -->
-       <input type="hidden" name="signKeyPay"  id="signKeyPay" value="<?php echo $signKey["pay"] ?> " >
-       <input type="hidden" name="signKeyBill" id="signKeyBill" value="<?php echo $signKey["bill"] ?> " >
+        <input type="hidden" name="buyertel" value="<?=$_SESSION['cellphone']?>" /> <!-- 결제요청 user 전화번호 -->
+        <input type="hidden" name="buyeremail"
+            value="<?=isset($_SESSION['customer']['email']) ? $_SESSION['customer']['email'] : '';?>">
+        <input type="hidden" name="timestamp" id="timestamp" value="<?php echo $timestamp ?>">
+        <input type="hidden" name="signature" id="signature" value=""> <!-- <?php echo $sign ?> -->
+        <input type="hidden" name="returnUrl" value="<?php echo $siteDomain ?>/inistdpay_result.php">
+        <input type="hidden" name="mKey" id="mKey" value="">
+        <input type="hidden" name="gopaymethod" id="gopaymethod" value="">
+        <input type="hidden" name="offerPeriod" id="offerPeriod" value="">
+        <input type="hidden" id="acceptmethod" name="acceptmethod" value="">
+        <input type="hidden" id="billPrint_msg" name="billPrint_msg" value="해당 결제는 매달 자동 결제됩니다.">
+        <input type="hidden" name="languageView" value="">
+        <input type="hidden" name="charset" value="UTF-8">
+        <input type="hidden" name="payViewType" value="">
+        <input type="hidden" name="closeUrl"
+            value="<?php echo $http_host ?>/svc/main/stdpay3/INIStdPaySample/close.php">
+        <input type="hidden" name="popupUrl"
+            value="<?php echo $http_host ?>/svc/main/stdpay3/INIStdPaySample/popup.php">
+        <input type="hidden" name="merchantData" id="merchantData" value="user_id=<?=$_SESSION["id"]?>">
+        <!-- 인증 성공시 가맹점으로 리턴 (한글사용불가)  -->
+        <input type="hidden" name="signKeyPay" id="signKeyPay" value="<?php echo $signKey["pay"] ?> ">
+        <input type="hidden" name="signKeyBill" id="signKeyBill" value="<?php echo $signKey["bill"] ?> ">
 
     </form>
 
-<?php
+    <?php
 $sql = "SELECT count(*)
         FROM realContract
         WHERE user_id={$_SESSION['id']} and
@@ -196,15 +203,15 @@ $year1later = date('Y-m-d', strtotime($currentDate.'+1 year -1 days'));
 // echo 666;
 ?>
 
-<style media="screen">
-  /* .fas {
+    <style media="screen">
+    /* .fas {
     color:yellow;
   } */
-</style>
+    </style>
 
 
-<div class="">
-  <?php if($_GET['page']==='regular'){
+    <div class="">
+        <?php if($_GET['page']==='regular'){
     include "payment-regular.php";
   } else if($_GET['page']==='coin'){
     include "payment-coin.php";
@@ -212,283 +219,287 @@ $year1later = date('Y-m-d', strtotime($currentDate.'+1 year -1 days'));
     include "payment-regular.php";
   }
   ?>
-</div>
+    </div>
 
 
 
-<?php include $_SERVER['DOCUMENT_ROOT']."/svc/view/service_footer.php";?>
+    <?php include $_SERVER['DOCUMENT_ROOT']."/svc/view/service_footer.php";?>
 
-<script src="/svc/inc/js/jquery-3.3.1.min.js"></script>
+    <script src="/svc/inc/js/jquery-3.3.1.min.js"></script>
 
-<script>
+    <script>
+    //숫자에 콤마 넣음
+    Number.prototype.format = function() {
+        if (this == 0) return 0;
 
-//숫자에 콤마 넣음
-Number.prototype.format = function(){
-    if(this==0) return 0;
+        var reg = /(^[+-]?\d+)(\d{3})/;
+        var n = (this + '');
 
-    var reg = /(^[+-]?\d+)(\d{3})/;
-    var n = (this + '');
+        while (reg.test(n)) n = n.replace(reg, '$1' + ',' + '$2');
 
-    while (reg.test(n)) n = n.replace(reg, '$1' + ',' + '$2');
+        return n;
+    };
 
-    return n;
-};
+    //문자를 숫자형태로 바꿔서 콤마 넣음
+    String.prototype.format = function() {
+        var num = parseFloat(this);
+        if (isNaN(num)) return "0";
 
-//문자를 숫자형태로 바꿔서 콤마 넣음
-String.prototype.format = function(){
-    var num = parseFloat(this);
-    if( isNaN(num) ) return "0";
+        return num.format();
+    };
 
-    return num.format();
-};
-
-var orderNumber = $("#oid").val();
-var timestamp = $("#timestamp").val();
-var g_price = $("#price").val();
-var signKey = $("#signKey").val();
-var today = <?=json_encode($currentDate)?>;
-var month1later = <?=json_encode($month1later)?>;
-var month3later = <?=json_encode($month3later)?>;
-var year1later = <?=json_encode($year1later)?>;
-var weekDate = <?=json_encode($weekDate)?>;
-// 현재 host
-var http_host = document.location.hostname;
-// console.log(http_host);
+    var orderNumber = $("#oid").val();
+    var timestamp = $("#timestamp").val();
+    var g_price = $("#price").val();
+    var signKey = $("#signKey").val();
+    var today = <?=json_encode($currentDate)?>;
+    var month1later = <?=json_encode($month1later)?>;
+    var month3later = <?=json_encode($month3later)?>;
+    var year1later = <?=json_encode($year1later)?>;
+    var weekDate = <?=json_encode($weekDate)?>;
+    // 현재 host
+    var http_host = document.location.hostname;
+    // console.log(http_host);
 
 
-function goCategoryPage(a, b, c, d, e, f){
-    var frm = formCreate('gradeAdd', 'post', 'p_gradeAdd.php','');
-    frm = formInput(frm, 'paydiv', a);
-    frm = formInput(frm, 'today', b);
-    frm = formInput(frm, 'month1later', c);
-    frm = formInput(frm, 'year1later', d);
-    frm = formInput(frm, 'amount', e);
-    frm = formInput(frm, 'gradename', f);
-    formSubmit(frm);
-}
+    function goCategoryPage(a, b, c, d, e, f) {
+        var frm = formCreate('gradeAdd', 'post', 'p_gradeAdd.php', '');
+        frm = formInput(frm, 'paydiv', a);
+        frm = formInput(frm, 'today', b);
+        frm = formInput(frm, 'month1later', c);
+        frm = formInput(frm, 'year1later', d);
+        frm = formInput(frm, 'amount', e);
+        frm = formInput(frm, 'gradename', f);
+        formSubmit(frm);
+    }
 
-// 모바일인지 아닌지 확인
-function isMobile() {
-    var filter = "win16|win32|win64|mac";
-    if(navigator.platform){
-        if(0 > filter.indexOf(navigator.platform.toLowerCase())){
-            return "mobile";
-        }else{
-            return "pc";
+    // 모바일인지 아닌지 확인
+    function isMobile() {
+        var filter = "win16|win32|win64|mac";
+        if (navigator.platform) {
+            if (0 > filter.indexOf(navigator.platform.toLowerCase())) {
+                return "mobile";
+            } else {
+                return "pc";
+            }
         }
     }
-}
 
 
-$('.monthonly').on('click', function(){
+    $('.monthonly').on('click', function() {
 
-    var curTr = $(this).closest('tr');
-    var amount = $(this).parent().children('input[name=amount]').val();
-    var month = $(this).parent().children('input[name=month]').val();
-    var gradename = curTr.children('td:eq(0)').children('input[name=gradename]').val();
-    var grade_star   = curTr.children('td:eq(0)').children('input[name=grade_star]').val();
+        var curTr = $(this).closest('tr');
+        var amount = $(this).parent().children('input[name=amount]').val();
+        var month = $(this).parent().children('input[name=month]').val();
+        var gradename = curTr.children('td:eq(0)').children('input[name=gradename]').val();
+        var grade_star = curTr.children('td:eq(0)').children('input[name=grade_star]').val();
 
-    var pay, laterdate;
+        var pay, laterdate;
 
-    if(month==='1'){
-      laterdate = month1later;
-      pay = confirm(laterdate + '까지 1개월 이용 가능합니다. 결제 진행하시겠습니까?');
-    } else if(month==='3'){
-      amount = Number(amount)*3;
-      laterdate = month3later;
-      pay = confirm(laterdate + '까지 이용 가능합니다. 결제 금액은 3개월치 '+amount.format()+'원입니다. 결제 진행하시겠습니까?');
-    } else if(month==='12'){
-      amount = Number(amount)*12;
-      laterdate = year1later;
-      pay = confirm(laterdate + '까지 이용 가능합니다. 결제 금액은 12개월치 '+amount.format()+'원입니다. 결제 진행하시겠습니까?');
-    }
-    var paydiv = 'monthonly';
-    var goodsName = grade_star;
-    var merchantData = $('#merchantData').val();
-    var gopaymethod = $('#gopaymethod').val();
+        if (month === '1') {
+            laterdate = month1later;
+            pay = confirm(laterdate + '까지 1개월 이용 가능합니다. 하단 계좌번호로 입금 후 고객센터로 연락주세요.');
+        } else if (month === '3') {
+            amount = Number(amount) * 3;
+            laterdate = month3later;
+            pay = confirm(laterdate + '까지 이용 가능합니다. 결제 금액은 3개월치 ' + amount.format() +
+                '원입니다. 하단 계좌번호로 입금 후 고객센터로 연락주세요.');
+        } else if (month === '12') {
+            amount = Number(amount) * 12;
+            laterdate = year1later;
+            pay = confirm(laterdate + '까지 이용 가능합니다. 결제 금액은 12개월치 ' + amount.format() +
+                '원입니다. 하단 계좌번호로 입금 후 고객센터로 연락주세요.');
+        }
+        var paydiv = 'monthonly';
+        var goodsName = grade_star;
+        var merchantData = $('#merchantData').val();
+        var gopaymethod = $('#gopaymethod').val();
 
-   // alert(http_host);
+        // alert(http_host);
 
-    if(!pay) return;
+        if (!pay) return;
 
-    $.ajax({
-        url     : "https://" + http_host + "/svc/main/stdpay3/INIStdPaySample/get_sign2.php",
-        data    : "orderNumber="+orderNumber+"&timestamp="+timestamp+"&price="+amount,
-        success : function(data) {
-            console.log(gopaymethod);
-            merchantData += '&paydiv=' + paydiv + '&today='+today + '&laterdate='+laterdate +'&amount='+amount + '&gradename='+gradename + '&month='+month;
+        // $.ajax({
+        //     url     : "https://" + http_host + "/svc/main/stdpay3/INIStdPaySample/get_sign2.php",
+        //     data    : "orderNumber="+orderNumber+"&timestamp="+timestamp+"&price="+amount,
+        //     success : function(data) {
+        //         console.log(gopaymethod);
+        //         merchantData += '&paydiv=' + paydiv + '&today='+today + '&laterdate='+laterdate +'&amount='+amount + '&gradename='+gradename + '&month='+month;
 
-            // merchantData = '&today='+today;
-            // merchantData = '&month1later='+month1later;
-            // merchantData = '&amount='+amount;
-            // merchantData = '&gradename='+gradename;
+        //         // merchantData = '&today='+today;
+        //         // merchantData = '&month1later='+month1later;
+        //         // merchantData = '&amount='+amount;
+        //         // merchantData = '&gradename='+gradename;
 
-            //alert(merchantData);
+        //         //alert(merchantData);
 
-            $("#mid").val("<?=$mid['pay']?>");
-            $("#mKey").val("<?=$mKey['pay']?>");
-            $("#merchantData").val(merchantData);
-            $("#signature").val(data);
-            $("#price").val(amount);
-            $("#goods_name").val(goodsName);
-            $("#goodsname").val(goodsName);
-            $("#gradename").val(gradename);
-            $("#paydiv").val(paydiv);
-            $("#month1later").val(month1later);
-            $("#today").val(today);
-            $("#buyername").val("<?=$_SESSION['user_name']?>");
+        //         $("#mid").val("<?=$mid['pay']?>");
+        //         $("#mKey").val("<?=$mKey['pay']?>");
+        //         $("#merchantData").val(merchantData);
+        //         $("#signature").val(data);
+        //         $("#price").val(amount);
+        //         $("#goods_name").val(goodsName);
+        //         $("#goodsname").val(goodsName);
+        //         $("#gradename").val(gradename);
+        //         $("#paydiv").val(paydiv);
+        //         $("#month1later").val(month1later);
+        //         $("#today").val(today);
+        //         $("#buyername").val("<?=$_SESSION['user_name']?>");
 
-            $("#acceptmethod").val("hpp(1):vbank(" + weekDate + ")");   // 결제수단 추가
+        //         $("#acceptmethod").val("hpp(1):vbank(" + weekDate + ")");   // 결제수단 추가
 
-            cardShow();
-             paybtn();
+        //         cardShow();
+        //          paybtn();
 
-        },
+        //     },
 
-        error:function(request,status,error){
-             alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-          }
+        //     error:function(request,status,error){
+        //          alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+        //       }
 
-        //  error   : function() {
-        //  alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-        // }
-    });
-
-
-
-
-  // if(pay){
-  //   goCategoryPage(paydiv, today, month1later, year1later, amount, gradename);
-  // }
-
-})
-
-$('.monthly').on('click', function(){
-    var curTr = $(this).closest('tr');
-    var amount = $(this).parent().children('input[name=amount]').val();
-    var paydiv = 'monthly'
-    // console.log(monthAmount);
-
-    var gradename = curTr.children('td:eq(0)').children('input[name=gradename]').val();
-    var grade_star   = curTr.children('td:eq(0)').children('input[name=grade_star]').val();
-    var pay = confirm('정기결제를 클릭하시면 30일 간격으로 '+ amount.format() +'원이 카드자동결제(구독)가 됩니다. 결제 진행하시겠습니까?');
-
-    var goodsName = grade_star;
-    // var buyername = "노양후";
-    var merchantData = $('#merchantData').val();
-    var laterdate = month1later;
-    var month = 1;
-
-    if(!pay) return;
-
-  $.ajax({
-        url     : "https://" + http_host + "/svc/main/stdpay3/INIStdPaySample/get_sign2.php",
-        data    : "orderNumber="+orderNumber+ "&timestamp=" + timestamp + "&price="+ amount,
-
-        success : function(data) {
-            console.log(data);
-            // merchantData += '&paydiv=' + paydiv + '&today='+today + '&month1later='+month1later +'&amount='+amount + '&gradename='+gradename + '&buyername='+buyername;
-            merchantData += '&paydiv=' + paydiv + '&today='+today + '&laterdate='+laterdate +'&amount='+amount + '&gradename='+gradename + '&month='+month;
-
-            // merchantData += '&paydiv'=paydiv;
-            // merchantData += '&today'=today;
-            // merchantData += '&month1later'=month1later;
-            // merchantData += '&amount'=amount;
-            // merchantData += '&gradename'=gradename;
-
-            $("#mid").val("<?=$mid['bill']?>");
-            $("#mKey").val("<?=$mKey['bill']?>");
-            $("#merchantData").val(merchantData);
-            $("#signature").val(data);
-            $("#price").val(amount);
-            $("#goods_name").val(goodsName);
-            $("#goodsname").val(goodsName);
+        //     //  error   : function() {
+        //     //  alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+        //     // }
+        // });
 
 
-            document.getElementById("acceptmethod").value = "BILLAUTH(card):FULLVERIFY"
 
-          // cardShow();
-            paybtn();
-            console.log(merchantData);
-        },
 
-        error:function(request,status,error){
-             alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-          }
-
-        //  error   : function() {
-        //  alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+        // if(pay){
+        //   goCategoryPage(paydiv, today, month1later, year1later, amount, gradename);
         // }
 
-    });
-  // if(pay){
-  //   goCategoryPage(paydiv, today, month1later, year1later, amount, gradename);
-  // }
-})
-      //alert("goods_type="+g_type+"&goods_price="+g_price+"&goods_name="+g_name+"&goods_level="+g_level+"&oid="+orderNumber);
+    })
+
+    $('.monthly').on('click', function() {
+        var curTr = $(this).closest('tr');
+        var amount = $(this).parent().children('input[name=amount]').val();
+        var paydiv = 'monthly'
+        // console.log(monthAmount);
+
+        var gradename = curTr.children('td:eq(0)').children('input[name=gradename]').val();
+        var grade_star = curTr.children('td:eq(0)').children('input[name=grade_star]').val();
+        var pay = confirm('정기결제를 클릭하시면 30일 간격으로 ' + amount.format() + '원이 카드자동결제(구독)가 됩니다. 결제 진행하시겠습니까?');
+
+        var goodsName = grade_star;
+        // var buyername = "노양후";
+        var merchantData = $('#merchantData').val();
+        var laterdate = month1later;
+        var month = 1;
+
+        if (!pay) return;
+
+        $.ajax({
+            url: "https://" + http_host + "/svc/main/stdpay3/INIStdPaySample/get_sign2.php",
+            data: "orderNumber=" + orderNumber + "&timestamp=" + timestamp + "&price=" + amount,
+
+            success: function(data) {
+                console.log(data);
+                // merchantData += '&paydiv=' + paydiv + '&today='+today + '&month1later='+month1later +'&amount='+amount + '&gradename='+gradename + '&buyername='+buyername;
+                merchantData += '&paydiv=' + paydiv + '&today=' + today + '&laterdate=' +
+                    laterdate + '&amount=' + amount + '&gradename=' + gradename + '&month=' + month;
+
+                // merchantData += '&paydiv'=paydiv;
+                // merchantData += '&today'=today;
+                // merchantData += '&month1later'=month1later;
+                // merchantData += '&amount'=amount;
+                // merchantData += '&gradename'=gradename;
+
+                $("#mid").val("<?=$mid['bill']?>");
+                $("#mKey").val("<?=$mKey['bill']?>");
+                $("#merchantData").val(merchantData);
+                $("#signature").val(data);
+                $("#price").val(amount);
+                $("#goods_name").val(goodsName);
+                $("#goodsname").val(goodsName);
 
 
-$('.coin').on('click', function(){
+                document.getElementById("acceptmethod").value = "BILLAUTH(card):FULLVERIFY"
 
-    var curTr = $(this).closest('tr');
-    var amount = curTr.children('td:eq(0)').children('input[name=coinamount]').val();
-    var gradename = 'coin';
-    var grade_star = 'coin';
-    var paydiv = 'coin';
-    var goodsName = coin;
-    var merchantData = $('#merchantData').val();
-    var gopaymethod = $('#gopaymethod').val();
+                // cardShow();
+                paybtn();
+                console.log(merchantData);
+            },
 
-   // alert(http_host);
+            error: function(request, status, error) {
+                alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" +
+                    "error:" + error);
+            }
 
+            //  error   : function() {
+            //  alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+            // }
 
-    $.ajax({
-        url     : "https://" + http_host + "/svc/main/stdpay3/INIStdPaySample/get_sign2.php",
-        data    : "orderNumber="+orderNumber+"&timestamp="+timestamp+"&price="+amount,
-        success : function(data) {
-            console.log(gopaymethod);
-            merchantData += '&paydiv=' + paydiv + '&today='+today + '&month1later='+month1later +'&amount='+amount + '&gradename='+gradename;
-
-            // merchantData = '&today='+today;
-            // merchantData = '&month1later='+month1later;
-            // merchantData = '&amount='+amount;
-            // merchantData = '&gradename='+gradename;
-
-            //alert(merchantData);
-
-            $("#mid").val("<?=$mid['pay']?>");
-            $("#mKey").val("<?=$mKey['pay']?>");
-            $("#merchantData").val(merchantData);
-            $("#signature").val(data);
-            $("#price").val(amount);
-            $("#goods_name").val(goodsName);
-            $("#goodsname").val(goodsName);
-            $("#gradename").val(gradename);
-            $("#paydiv").val(paydiv);
-            $("#month1later").val(month1later);
-            $("#today").val(today);
-            $("#buyername").val("<?=$_SESSION['user_name']?>");
-
-            $("#acceptmethod").val("hpp(1):vbank(" + weekDate + ")");   // 결제수단 추가
-
-            cardShow();
-             paybtn();
-
-        },
-
-        error:function(request,status,error){
-             alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-          }
-
-        //  error   : function() {
-        //  alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+        });
+        // if(pay){
+        //   goCategoryPage(paydiv, today, month1later, year1later, amount, gradename);
         // }
-    });
-  // if(pay){
-  //   goCategoryPage(paydiv, today, month1later, year1later, amount, gradename);
-  // }
-})
+    })
+    //alert("goods_type="+g_type+"&goods_price="+g_price+"&goods_name="+g_name+"&goods_level="+g_level+"&oid="+orderNumber);
 
-</script>
-</body>
-<html>
+
+    $('.coin').on('click', function() {
+
+        var curTr = $(this).closest('tr');
+        var amount = curTr.children('td:eq(0)').children('input[name=coinamount]').val();
+        var gradename = 'coin';
+        var grade_star = 'coin';
+        var paydiv = 'coin';
+        var goodsName = coin;
+        var merchantData = $('#merchantData').val();
+        var gopaymethod = $('#gopaymethod').val();
+
+        // alert(http_host);
+
+
+        $.ajax({
+            url: "https://" + http_host + "/svc/main/stdpay3/INIStdPaySample/get_sign2.php",
+            data: "orderNumber=" + orderNumber + "&timestamp=" + timestamp + "&price=" + amount,
+            success: function(data) {
+                console.log(gopaymethod);
+                merchantData += '&paydiv=' + paydiv + '&today=' + today + '&month1later=' +
+                    month1later + '&amount=' + amount + '&gradename=' + gradename;
+
+                // merchantData = '&today='+today;
+                // merchantData = '&month1later='+month1later;
+                // merchantData = '&amount='+amount;
+                // merchantData = '&gradename='+gradename;
+
+                //alert(merchantData);
+
+                $("#mid").val("<?=$mid['pay']?>");
+                $("#mKey").val("<?=$mKey['pay']?>");
+                $("#merchantData").val(merchantData);
+                $("#signature").val(data);
+                $("#price").val(amount);
+                $("#goods_name").val(goodsName);
+                $("#goodsname").val(goodsName);
+                $("#gradename").val(gradename);
+                $("#paydiv").val(paydiv);
+                $("#month1later").val(month1later);
+                $("#today").val(today);
+                $("#buyername").val("<?=$_SESSION['user_name']?>");
+
+                $("#acceptmethod").val("hpp(1):vbank(" + weekDate + ")"); // 결제수단 추가
+
+                cardShow();
+                paybtn();
+
+            },
+
+            error: function(request, status, error) {
+                alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" +
+                    "error:" + error);
+            }
+
+            //  error   : function() {
+            //  alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+            // }
+        });
+        // if(pay){
+        //   goCategoryPage(paydiv, today, month1later, year1later, amount, gradename);
+        // }
+    })
+    </script>
+    </body>
+    <html>

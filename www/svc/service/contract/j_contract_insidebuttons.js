@@ -431,6 +431,8 @@ $(document).on('click', '.modalpay', function() { //청구번호클릭하는거(
     var executiveAmount = $(this).parent().siblings('input[name=getAmount]').val();
     var payDiv = $(this).parent().siblings('span[name=payDiv]').text();
     var taxMun = $(this).parent().siblings('input[name=taxMun]').val();
+    var taxDate = $(this).parent().siblings('input[name=taxDate]').val();
+    var taxSelect = $(this).parent().siblings('input[name=taxSelect]').val();
     console.log(taxMun);
 
     // console.log(filtered_id, payNumber, expectedAmount, expectedDate, executiveDiv, executiveDate, executiveAmount, payDiv, taxMun);
@@ -467,6 +469,7 @@ $(document).on('click', '.modalpay', function() { //청구번호클릭하는거(
         $('#executiveAmount').val(expectedAmount).prop('disabled', true); //하다보니 입금수단과 입금일은 좀 수정을 하고싶어짐
         $('#executiveDiv').val(executiveDiv);
         $('#executiveDate').val(executiveDate);
+        
         if (taxMun === 'null') {
             $('#modalfooter11').html(footer2);
         } else {

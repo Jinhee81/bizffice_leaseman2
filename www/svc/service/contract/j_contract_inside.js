@@ -86,7 +86,7 @@ if(errorArray.includes(data)){
 
         let delayString = ', 연체<span name=dcount1>'+dcount1+'</span>일/이자<span name=interest>'+interest1+'</span>원';//미납일때는 보이게 함
 
-        let hidden = `<input type=hidden name=ptAmount value=${value.paySchedule2.ptAmount}><input type=hidden name=pExpectedDate value=${value.paySchedule2.pExpectedDate}><input type=hidden name=payKind value=${value.paySchedule2.payKind}><input type=hidden name=executiveDate value=${value.paySchedule2.executiveDate}><input type=hidden name=getAmount value=${value.paySchedule2.getAmount}><input type=hidden name=taxMun value=${value.paySchedule2.mun}><input type=hidden name=taxDate value=${value.paySchedule2.taxDate}>`;
+        let hidden = `<input type=hidden name=ptAmount value=${value.paySchedule2.ptAmount}><input type=hidden name=pExpectedDate value=${value.paySchedule2.pExpectedDate}><input type=hidden name=payKind value=${value.paySchedule2.payKind}><input type=hidden name=executiveDate value=${value.paySchedule2.executiveDate}><input type=hidden name=getAmount value=${value.paySchedule2.getAmount}><input type=hidden name=taxMun value=${value.paySchedule2.mun}><input type=hidden name=taxDate value=${value.paySchedule2.taxDate}><input type=hidden name=taxSelect value=${value.paySchedule2.taxSelect}>`;
 
         if(value.paySchedule2.mun){
             taxString = `, 세금계산서 <span><u class=taxDate>${value.paySchedule2.taxDate}</u></span><input type=hidden name=taxMun value=${value.paySchedule2.mun}>`;

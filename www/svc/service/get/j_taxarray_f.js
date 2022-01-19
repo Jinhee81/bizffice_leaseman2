@@ -40,7 +40,7 @@ $("#allselect").click(function(){
         comment = '';
       }
 
-      var acceptdiv = table.find("tr:eq("+i+")").find("td:eq(6)").text().trim();//입금구분
+      var acceptdiv = table.find("tr:eq("+i+")").find("td:eq(6) option:selected").text().trim();//입금구분
       var evidencedate = table.find("tr:eq("+i+")").find("td:eq(11)").text();//증빙일자
 
       taxArrayEle.push({'순번':colOrder}, {'청구번호':colid}, {'사업자번호':companynumber}, {'사업자명':companyname}, {'성명':name}, {'주소':address}, {'업태':div4}, {'종목':div5}, {'연락처':contact}, {'이메일':email}, {'공급가액':supplyamount}, {'세액':vatamount}, {'합계':totalamount}, {'비고':comment}, {'입금구분':acceptdiv}, {'증빙일자':evidencedate});
@@ -50,7 +50,7 @@ $("#allselect").click(function(){
   } else {
     taxArray = [];
   }
-//   console.log(taxArray);
+  console.log(taxArray);
 })
 
 $(document).on('change', '.tbodycheckbox', function(){
@@ -90,7 +90,7 @@ var taxArrayEle = [];
         comment = '';
       }
 
-      var acceptdiv = currow.find("td:eq(6)").text().trim();//입금구분
+      var acceptdiv = currow.find("td:eq(6) option:selected").text().trim();//입금구분
       var evidencedate = currow.find("td:eq(11)").text();//증빙일자
 
       taxArrayEle.push({'순번':colOrder}, {'청구번호':colid}, {'사업자번호':companynumber}, {'사업자명':companyname}, {'성명':name}, {'주소':address}, {'업태':div4}, {'종목':div5}, {'연락처':contact}, {'이메일':email}, {'공급가액':supplyamount}, {'세액':vatamount}, {'합계':totalamount}, {'비고':comment}, {'입금구분':acceptdiv}, {'증빙일자':evidencedate});
@@ -113,16 +113,16 @@ var taxArrayEle = [];
         // var join1 = taxArray[i][0]['순번'];
         // var join2 = dropReady['순번'];
 
-        if(taxArray[i][0]['순번'] === dropOrder) {
+        if(taxArray[i][0]['순번'] === dropOrder) {
           var index = i;
+          break;
         }
-
 
       }
       console.log(index);
       taxArray.splice(index, 1);
 
     } //if else closing}
-    // console.log(taxArray);
+    console.log(taxArray);
 
 })//tbodycheckbox change event closing}

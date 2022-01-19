@@ -360,3 +360,29 @@ mysql -ubizffice -p
 use -ubizffice -p
 #1639028666
 mysql -ubizffice -p
+#1640067719
+git status
+#1640067749
+git add .
+#1640067852
+git status
+#1640067876
+git commit -m '계약수정'
+#1640067885
+git push origin main
+#1640069071
+exit
+#1641176331
+use bizffice
+#1641176347
+mysql -ubizffice -p
+#1641196676
+git status
+#1641781684
+mysql -ubizffice -p
+#1641787828
+exit
+#1642403568
+mysql -ubizffice -p
+#1642514384
+exit

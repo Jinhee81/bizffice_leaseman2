@@ -20,8 +20,7 @@
                             <p class="text-left">예정금액</p>
                         </div>
                         <div class="form-group col-md-6 mb-0">
-                            <input type="text" class="form-control form-control-sm amountNumber" id="expectedAmount"
-                                numberOnly disabled>
+                            <input type="text" class="form-control form-control-sm amountNumber" id="expectedAmount" numberOnly disabled>
                         </div>
                         <div class="form-group col-md-2 mb-0">
                             <p class="text-left">원</p>
@@ -52,8 +51,7 @@
                             <p class="text-left">입금일</p>
                         </div>
                         <div class="form-group col-md-8 mb-0">
-                            <input type="text" id="executiveDate" class="form-control form-control-sm dateType"
-                                style="color:#F7819F;" required>
+                            <input type="text" id="executiveDate" class="form-control form-control-sm dateType" style="color:#F7819F;" required>
                         </div>
                     </div>
                     <div class="form-row">
@@ -61,8 +59,7 @@
                             <p class="text-left">입금액</p>
                         </div>
                         <div class="form-group col-md-6 mb-0">
-                            <input type="text" id="executiveAmount" class="form-control form-control-sm amountNumber"
-                                style="color:#F7819F;" numberOnly required>
+                            <input type="text" id="executiveAmount" class="form-control form-control-sm amountNumber" style="color:#F7819F;" numberOnly required>
                         </div>
                         <div class="form-group col-md-2 mb-0">
                             <p class="text-left">원</p>
